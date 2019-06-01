@@ -1,6 +1,5 @@
 Player = require "src.entity.player.Player"
 GhostPlayer = require "src.entity.player.GhostPlayer"
-Vec2 = require "src.Vec2"
 
 describe "GhostPlayer", ->
     ghostPlayer = GhostPlayer!

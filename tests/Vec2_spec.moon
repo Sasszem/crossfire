@@ -1,6 +1,7 @@
+Vec2 = require "src.Vec2"
+
 describe "Vec2", ->
-    before_each setup ->
-        export Vec2 = require "src.Vec2"
+    before_each ->
         math.randomseed os.time!
     
     it "should be imported", ->
@@ -49,7 +50,7 @@ describe "Vec2", ->
 
         it "should have length 1", ->
             assert.near normalized\length!, 1, 10^-6
-            
+
         it "should be paralel to the original", ->
             -- test it by adding them & checking lengths
             assert.near normalized\length! + original\length!, (normalized+original)\length!, 10^-6
