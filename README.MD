@@ -1,8 +1,16 @@
 # Crossfire
 
-## Introduction
+### Introduction
 My goal is to recreate the game [Crossfire](https://seet.itch.io/crossfire), a bullett-dodging shooting-less shooter for windows.
 The original game was featured in [The Best Games from GMTK Game Jam 2018](https://www.youtube.com/watch?v=s2ebZXQ_J8Q).
+
+### Technical overview
+ - [LÖVE2D](https://love2d.org/) engine
+ - [Moonscript](https://moonscript.org/)
+ - [Nata](https://github.com/tesselode/nata/) [ECS](https://en.wikipedia.org/wiki/Entity_component_system)-lib
+ - [Busted](https://olivinelabs.com/busted/) unittesting
+ - Sadly, no documentation generator
+(no docgen supports Moonscript)
 
 ### Gameplay overview
 
@@ -55,14 +63,13 @@ The original game was featured in [The Best Games from GMTK Game Jam 2018](https
  - Speeds up the [Player](#Player)
  - The player can kill [Enemies](#enemies) by running into them
  
-### Shield
+#### Shield
  - Makes the [Player](#Player) withstand a single hit by a [Bullet](#bullets)
  - Breaks on hit
  - On break, releases an explosion, killing all [Enemies](#enemies)
  - Recharges via the [Score](#score)
  
-### Score
+#### Score
  - Increases by collecting [Orbs](#orbs)
  - Recharges [Shield](#shield)
  - Highscore is saved
- 
