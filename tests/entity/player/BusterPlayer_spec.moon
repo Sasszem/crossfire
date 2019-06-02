@@ -1,6 +1,5 @@
 Player = require "src.entity.player.Player"
 BusterPlayer = require "src.entity.player.BusterPlayer"
-Vec2 = require "src.Vec2"
 
 describe "BusterPlayer", ->
     busterPlayer = BusterPlayer!

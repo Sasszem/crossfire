@@ -23,6 +23,9 @@ describe "VelocitySystem", ->
     it "should be imported", ->
         assert.truthy VelocitySystem
 
+    it "should be createable", ->
+        assert.truthy VelocitySystem!
+
     it "should be added to the pool", ->
         assert.truthy instance
 
