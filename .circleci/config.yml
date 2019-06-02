@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: akorn/lua:5.1-alpine
+      - image: martijnrondeel/luarocks
     steps:
       - checkout
       - run: ./ci/setup.sh
@@ -10,7 +10,7 @@ jobs:
       - run: cat ./build/
   style:
     docker:
-      - image: akorn/lua:5.1-alpine
+      - image: martijnrondeel/luarocks
     steps:
       - checkout
       - run: ./ci/setup.sh
