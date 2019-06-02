@@ -7,7 +7,6 @@ jobs:
       - checkout
       - run: ./ci/setup.sh
       - run: moon build.moon test
-      - run: cat ./build/
   style:
     docker:
       - image: martijnrondeel/luarocks
