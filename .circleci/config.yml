@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: ./ci/setup.sh
-      - run: build.moon test
+      - run: moon build.moon test
       - run: cat ./build/
   style:
     docker:
