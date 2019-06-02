@@ -15,3 +15,9 @@ jobs:
       - checkout
       - run: ./ci/setup.sh
       - run: moon build.moon lint
+workflows:
+ version: 2
+ build:
+   jobs:
+     - test
+     - style
