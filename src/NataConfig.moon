@@ -3,6 +3,10 @@ NataConfig =
         all:  {},
         velocity: 
             filter: {'position', 'velocity'}
-    systems: {}
+        despawn:
+            filter: {'despawnTimer'}
+    systems: {
+        require "src.system.DespawnSystem"
+    }
 
 return NataConfig
