@@ -1,17 +1,17 @@
 version: 2
-  jobs:
-    test:
-      docker:
-        - image: akorn/lua:5.1-alpine
-      steps:
-        - checkout
-        - run: ./ci/setup.sh
-        - run: build.moon test
-        - run: cat ./build/
-    style:
-      docker:
-        - image: akorn/lua:5.1-alpine
-      steps:
-        - checkout
-        - run: ./ci/setup.sh
-        - run: moon build.moon lint
+jobs:
+  test:
+    docker:
+      - image: akorn/lua:5.1-alpine
+    steps:
+      - checkout
+      - run: ./ci/setup.sh
+      - run: build.moon test
+      - run: cat ./build/
+  style:
+    docker:
+      - image: akorn/lua:5.1-alpine
+    steps:
+      - checkout
+      - run: ./ci/setup.sh
+      - run: moon build.moon lint
