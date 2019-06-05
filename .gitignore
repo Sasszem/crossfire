@@ -1,6 +1,12 @@
 # Compiled Lua sources
 luac.out
 
+# Coverage reports
+luacov.*.out
+
+# build folder
+build/*
+
 # luarocks build files
 *.src.rock
 *.zip

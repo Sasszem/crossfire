@@ -9,8 +9,5 @@ describe "Orb", ->
     it "should have a position", ->
         assert.truthy orb.position
         assert.equals orb.position.__class, Vec2
-    it "should have a velocity", ->
-        assert.truthy orb.velocity
-        assert.equals orb.velocity.__class, Vec2
     
     

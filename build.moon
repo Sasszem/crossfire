@@ -76,6 +76,7 @@ package = ->
 clean = ->
     os.execute "rm -rf build game.love"
     recursive_delete ".", {"/lib/"}, ".*%.lua$"
+    recursive_delete ".", {}, "luacov%..*%.out$"
 
 lint = ->
     os.execute "moonc -l ."
