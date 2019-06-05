@@ -3,6 +3,11 @@ NataConfig = require "src.NataConfig"
 VelocitySystem = require "src.system.VelocitySystem"
 Vec2 = require "src.Vec2"
 
+class VelocityEntity
+    new: =>
+        @position = Vec2!
+        @velocity = Vec2 math.random(-10, 10), math.random(-10,10)
+
 describe "VelocitySystem", ->
     -- setup environment
     pool = nata.new {
@@ -10,9 +15,8 @@ describe "VelocitySystem", ->
         systems: {VelocitySystem}
     }
 
-    entity =
-        position: Vec2!
-        velocity: Vec2 math.random(-10, 10), math.random(-10,10)
+    entity = VelocityEntity!
+        
 
     pool\queue entity
     pool\flush!

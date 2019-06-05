@@ -2,6 +2,11 @@ nata = require "lib.nata"
 NataConfig = require "src.NataConfig"
 DespawnSystem = require "src.system.DespawnSystem"
 
+class DespawnableEntity
+    new: =>
+        @despawnTimer = 10
+
+
 describe "DespawnSystem", ->
     -- setup environment
     pool = nata.new {
@@ -9,8 +14,7 @@ describe "DespawnSystem", ->
         systems: {DespawnSystem}
     }
 
-    entity =
-        despawnTimer: 10
+    entity = DespawnableEntity!
 
     pool\queue entity
     pool\flush!
