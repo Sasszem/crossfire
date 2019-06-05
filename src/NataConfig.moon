@@ -1,3 +1,7 @@
+classFilter = (filter) ->
+    (entity) -> 
+        string.find(entity.__class.__name, filter) != nil
+
 NataConfig = 
     groups: 
         all:  {},
@@ -6,12 +10,16 @@ NataConfig =
         despawn:
             filter: {'despawnTimer'}
         orb:
-            filter: (entity) -> 
-                entity.__class.__name == "Orb"
+            filter: classFilter "Orb"
+        camera:
+            filter: classFilter "Camera"
+        player:
+            filter: classFilter "Player"
     systems: {
         require "src.system.DespawnSystem"
         require "src.system.orb.OrbMovement"
         require "src.system.VelocitySystem"
+        require "src.system.camera.CameraMovement"
     }
 
 return NataConfig
