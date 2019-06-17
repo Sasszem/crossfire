@@ -17,6 +17,8 @@ NataConfig =
             filter: classFilter "Player"
         enemy:
             filter: classFilter "Enemy"
+        bullet:
+            filter: classFilter "Bullet"
     systems: {
         require "src.system.DespawnSystem"
         require "src.system.orb.OrbMovement"

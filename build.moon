@@ -81,7 +81,7 @@ package = ->
 
 clean = ->
     run_command "rm -rf build game.love"
-    recursive_delete ".", {"/lib/"}, ".*%.lua$"
+    recursive_delete ".", {"/lib/", "lint_config%.lua"}, ".*%.lua$"
     recursive_delete ".", {}, "luacov%..*%.out$"
 
 lint = ->
