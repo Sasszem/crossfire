@@ -15,11 +15,15 @@ NataConfig =
             filter: classFilter "Camera"
         player:
             filter: classFilter "Player"
+        enemy:
+            filter: classFilter "Enemy"
     systems: {
         require "src.system.DespawnSystem"
         require "src.system.orb.OrbMovement"
         require "src.system.VelocitySystem"
         require "src.system.camera.CameraMovement"
+        require "src.system.enemy.EnemyMovement"
+        require "src.system.enemy.EnemyAim"
     }
 
 return NataConfig

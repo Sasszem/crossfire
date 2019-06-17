@@ -54,3 +54,18 @@ describe "Vec2", ->
         it "should be paralel to the original", ->
             -- test it by adding them & checking lengths
             assert.near normalized\length! + original\length!, (normalized+original)\length!, 10^-6
+    it "should make a vector from an angle", ->
+        angle = 30 * math.random 12
+        vec = Vec2.fromAngle angle 
+
+        assert.near 1, vec\length!, 10^-6
+        assert.near math.tan(math.rad angle), vec.y/vec.x, 10^-6
+
+        len = math.random!
+        vec = Vec2.fromAngle angle, len
+        assert.near len, vec\length!, 10^-6
+        assert.near math.tan(math.rad angle), vec.y/vec.x, 10^-6
+    it "should calculate its angle", ->
+        angle = 30 * math.random -6, 6
+        vec = Vec2.fromAngle angle
+        assert.near angle, vec\angle!, 10^-6

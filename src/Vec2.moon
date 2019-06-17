@@ -17,3 +17,10 @@ class Vec2
         len = @\length!
         assert len>0
         Vec2 @x/len, @y/len
+    
+    fromAngle: (angle, len=1) ->
+        angle = math.rad angle
+        Vec2(math.cos(angle), math.sin(angle)) * len
+
+    angle: =>
+        math.deg math.atan2(@y, @x)

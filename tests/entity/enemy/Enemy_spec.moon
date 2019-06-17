@@ -14,6 +14,11 @@ describe "Enemy", ->
         assert.equals enemy.velocity.__class, Vec2
     it "should have a direction", ->
         assert.truthy enemy.aim
-        assert.equals enemy.aim.__class, Vec2
-    
+        assert.is_number enemy.aim
+    it "should have a speed", ->
+        assert.truthy enemy.speed
+        assert.is_number enemy.speed
+    it "should have a turnspeed", ->
+        assert.truthy enemy.turnspeed
+        assert.is_number enemy.turnspeed
     
