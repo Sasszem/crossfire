@@ -1,5 +1,3 @@
-Vec2 = require "src.Vec2"
-
 class CameraMovement
     update: (dt) =>
         camera = @pool.groups.camera.entities[1]

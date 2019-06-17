@@ -4,7 +4,6 @@ CameraMovement = require "src.system.camera.CameraMovement"
 Camera = require "src.entity.camera.Camera"
 Player = require "src.entity.player.Player"
 Vec2 = require "src.Vec2"
-moon = require "moon"
 
 describe "CameraMovement", ->
     -- setup environment

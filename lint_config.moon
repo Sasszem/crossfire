@@ -9,6 +9,7 @@
       "describe"
       "assert"
       "before_each"
+      "spy"
     }
   }
 }

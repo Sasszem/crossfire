@@ -1,5 +1,11 @@
 lfs = require "lfs"
 
+run_command = (cmd, ignore = false) ->
+    result = os.execute cmd
+    --print "command \""..cmd.."\" returned "..tostring(ret_code)
+    if not (result==0 or result==true or ignore)
+        os.exit -1
+
 append_path = (path, file) ->
     if string.sub(path, -1) != "/"
         path ..= "/"
@@ -37,13 +43,13 @@ recursive_copy = (src, dest, exclude) ->
     run_recursive src, exclude, (path) ->
         dest_path = dest..string.sub(path, 2)
         dest_dir = string.match(dest_path, ".*/")
-        os.execute "mkdir -p "..dest_dir
-        os.execute "cp "..path.." "..dest_path
+        run_command "mkdir -p "..dest_dir
+        run_command "cp "..path.." "..dest_path
 
 recursive_delete = (src, exclude, filter) ->
     run_recursive src, exclude, (path) ->
         if string.match(path, filter)
-            os.execute "rm -f "..path
+            run_command "rm -f "..path
 
 build_ignore = {
     "%./build/"
@@ -61,25 +67,25 @@ build_ignore = {
 
 build = ->
     recursive_copy ".", "./build", build_ignore
-    os.execute "moonc ./build/"
+    run_command "moonc ./build/"
     recursive_delete "./build/", {}, ".*%.moon$"
 
 test = ->
     build!
-    os.execute "cd build && busted . -c"
-    os.execute "cd build && luacov"
+    run_command "cd build && busted . -c"
+    run_command "cd build && luacov"
 
 package = ->
     build!
-    os.execute "cd build && zip -r ../game.love ./*"
+    run_command "cd build && zip -r ../game.love ./*"
 
 clean = ->
-    os.execute "rm -rf build game.love"
+    run_command "rm -rf build game.love"
     recursive_delete ".", {"/lib/"}, ".*%.lua$"
     recursive_delete ".", {}, "luacov%..*%.out$"
 
 lint = ->
-    os.execute "moonc -l ."
+    run_command "moonc -l ."
 
 runner = 
     :test

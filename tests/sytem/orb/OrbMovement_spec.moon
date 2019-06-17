@@ -3,7 +3,6 @@ NataConfig = require "src.NataConfig"
 OrbMovement = require "src.system.orb.OrbMovement"
 Orb = require "src.entity.orb.Orb"
 Vec2 = require "src.Vec2"
-moon = require "moon"
 
 describe "OrbMovement", ->
     -- setup environment
