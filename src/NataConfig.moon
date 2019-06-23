@@ -19,8 +19,11 @@ NataConfig =
             filter: classFilter "Enemy"
         bullet:
             filter: classFilter "Bullet"
+        collision: 
+            filter: {'position', 'collision_radius'}
     systems: {
         require "src.system.DespawnSystem"
+        require "src.system.CollisionSystem"
         require "src.system.orb.OrbMovement"
         require "src.system.VelocitySystem"
         require "src.system.camera.CameraMovement"
