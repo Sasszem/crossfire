@@ -29,6 +29,7 @@ NataConfig =
         require "src.system.camera.CameraMovement"
         require "src.system.enemy.EnemyMovement"
         require "src.system.enemy.EnemyAim"
+        require "src.system.bullet.BulletCollisionResolver"
     }
 
 return NataConfig
