@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="modules/src.NataConfig.html">src.NataConfig</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="classes/src.Vec2.html">src.Vec2</a></li>
+  <li><a href="classes/src.entity.bullet.Bullet.html">src.entity.bullet.Bullet</a></li>
+  <li><a href="classes/src.entity.bullet.ExplodingBullet.html">src.entity.bullet.ExplodingBullet</a></li>
+  <li><a href="classes/src.entity.camera.Camera.html">src.entity.camera.Camera</a></li>
+  <li><a href="classes/src.entity.enemy.BigEnemy.html">src.entity.enemy.BigEnemy</a></li>
+  <li><a href="classes/src.entity.enemy.Enemy.html">src.entity.enemy.Enemy</a></li>
+  <li><a href="classes/src.entity.orb.Orb.html">src.entity.orb.Orb</a></li>
+  <li><a href="classes/src.entity.player.Player.html">src.entity.player.Player</a></li>
+  <li><a href="classes/src.system.CollisionSystem.html">src.system.CollisionSystem</a></li>
+  <li><a href="classes/src.system.DespawnSystem.html">src.system.DespawnSystem</a></li>
+  <li><a href="classes/src.system.VelocitySystem.html">src.system.VelocitySystem</a></li>
+  <li><a href="classes/src.system.bullet.BulletCollisionResolver.html">src.system.bullet.BulletCollisionResolver</a></li>
+  <li><a href="classes/src.system.camera.CameraMovement.html">src.system.camera.CameraMovement</a></li>
+  <li><a href="classes/src.system.enemy.EnemyAim.html">src.system.enemy.EnemyAim</a></li>
+  <li><a href="classes/src.system.enemy.EnemyMovement.html">src.system.enemy.EnemyMovement</a></li>
+  <li><a href="classes/src.system.enemy.EnemyShoot.html">src.system.enemy.EnemyShoot</a></li>
+  <li><a href="classes/src.system.orb.OrbMovement.html">src.system.orb.OrbMovement</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+
+<h2>Modules</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap><a href="modules/src.NataConfig.html">src.NataConfig</a></td>
+		<td class="summary">Nata ECS configuration</td>
+	</tr>
+</table>
+<h2>Classes</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.Vec2.html">src.Vec2</a></td>
+		<td class="summary">A simple 2D vector class for computations</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.bullet.Bullet.html">src.entity.bullet.Bullet</a></td>
+		<td class="summary">Bullets are shot by <a href="classes/src.entity.enemy.Enemy.html#">src.entity.enemy.Enemy</a>s</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.bullet.ExplodingBullet.html">src.entity.bullet.ExplodingBullet</a></td>
+		<td class="summary">ExplodingBullets are shot by <a href="classes/src.entity.enemy.BigEnemy.html#">src.entity.enemy.BigEnemy</a>s</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.camera.Camera.html">src.entity.camera.Camera</a></td>
+		<td class="summary">Camera is a "dummy" entity always following the current <a href="classes/src.entity.player.Player.html#">src.entity.player.Player</a> and used to focus the view on it</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.enemy.BigEnemy.html">src.entity.enemy.BigEnemy</a></td>
+		<td class="summary">BigEnemyes shoot <a href="classes/src.entity.bullet.ExplodingBullet.html#">src.entity.bullet.ExplodingBullet</a>s at the <a href="classes/src.entity.player.Player.html#">src.entity.player.Player</a></td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.enemy.Enemy.html">src.entity.enemy.Enemy</a></td>
+		<td class="summary">Enemyes shoot <a href="classes/src.entity.bullet.Bullet.html#">src.entity.bullet.Bullet</a>s at the <a href="classes/src.entity.player.Player.html#">src.entity.player.Player</a></td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.orb.Orb.html">src.entity.orb.Orb</a></td>
+		<td class="summary">Orbs are dropped by <a href="classes/src.entity.enemy.Enemy.html#">src.entity.enemy.Enemy</a>s and <a href="classes/src.entity.enemy.BigEnemy.html#">src.entity.enemy.BigEnemy</a>s and worth points if picked ub by the <a href="classes/src.entity.player.Player.html#">src.entity.player.Player</a></td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.entity.player.Player.html">src.entity.player.Player</a></td>
+		<td class="summary">The Player moves trough the field avoiding <a href="classes/src.entity.bullet.Bullet.html#">src.entity.bullet.Bullet</a>s and collecting <a href="classes/src.entity.orb.Orb.html#">src.entity.orb.Orb</a>s</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.CollisionSystem.html">src.system.CollisionSystem</a></td>
+		<td class="summary">System for detecting collisions and dispatching collision events</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.DespawnSystem.html">src.system.DespawnSystem</a></td>
+		<td class="summary">A system updating despawn timers and removing despawned entities</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.VelocitySystem.html">src.system.VelocitySystem</a></td>
+		<td class="summary">A system for updating entity positions based on their velocities</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.bullet.BulletCollisionResolver.html">src.system.bullet.BulletCollisionResolver</a></td>
+		<td class="summary">System to translate <a href="classes/src.entity.bullet.Bullet.html#">src.entity.bullet.Bullet</a>-<a href="classes/src.entity.enemy.Enemy.html#">src.entity.enemy.Enemy</a> and <a href="classes/src.entity.bullet.Bullet.html#">src.entity.bullet.Bullet</a>-<a href="classes/src.entity.player.Player.html#">src.entity.player.Player</a> collision events
+ (but ignore <a href="classes/src.entity.bullet.ExplodingBullet.html#">src.entity.bullet.ExplodingBullet</a>s) to hit events</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.camera.CameraMovement.html">src.system.camera.CameraMovement</a></td>
+		<td class="summary">Focus the camera on the player</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.enemy.EnemyAim.html">src.system.enemy.EnemyAim</a></td>
+		<td class="summary">Aim enemies to the Player</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.enemy.EnemyMovement.html">src.system.enemy.EnemyMovement</a></td>
+		<td class="summary">Update enemy velocities from speed and aim</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.enemy.EnemyShoot.html">src.system.enemy.EnemyShoot</a></td>
+		<td class="summary">Update <a href="classes/src.entity.enemy.Enemy.html#">src.entity.enemy.Enemy</a> shoot cooldowns and shoot <a href="classes/src.entity.bullet.Bullet.html#">src.entity.bullet.Bullet</a>s
+ Also works for <a href="classes/src.entity.enemy.BigEnemy.html#">src.entity.enemy.BigEnemy</a>es and <a href="classes/src.entity.bullet.ExplodingBullet.html#">src.entity.bullet.ExplodingBullet</a>s</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/src.system.orb.OrbMovement.html">src.system.orb.OrbMovement</a></td>
+		<td class="summary">Wiggle all the <a href="classes/src.entity.orb.Orb.html#">src.entity.orb.Orb</a>s randomly</td>
+	</tr>
+</table>
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-10-14 01:18:46 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

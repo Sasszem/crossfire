@@ -1,3 +1,6 @@
+--- Enemyes shoot @{src.entity.bullet.Bullet}s at the @{src.entity.player.Player}
+-- @classmod src.entity.enemy.Enemy
+
 Vec2 = require "src.Vec2"
 Bullet = require "src.entity.bullet.Bullet"
 

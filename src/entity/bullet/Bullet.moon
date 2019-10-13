@@ -1,3 +1,5 @@
+--- Bullets are shot by @{src.entity.enemy.Enemy}s
+-- @classmod src.entity.bullet.Bullet
 Vec2 = require "src.Vec2"
 
 class Bullet

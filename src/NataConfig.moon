@@ -1,7 +1,15 @@
+--- Nata ECS configuration
+--- @module src.NataConfig
+
+--- A class-based filter factory. Can filter subclasses if their name contains the superclasses name
+-- @tparam string filter the name of the class to filter
+-- @treturn function a filter function matching classes with given name
 classFilter = (filter) ->
     (entity) -> 
         string.find(entity.__class.__name, filter) != nil
 
+--- Nata groups and systems configuration 
+-- @table NataConfig
 NataConfig = 
     groups: 
         all:  {},

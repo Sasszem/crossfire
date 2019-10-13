@@ -1,4 +1,9 @@
-class VelocitySystem
+
+--- System for detecting collisions and dispatching collision events
+-- @classmod src.system.CollisionSystem
+class CollisionSystem
+    --- update event handler
+    -- @tparam number dt delta-time since prev. call
     update: (dt) =>
         for entity in *@pool.groups.collision.entities
             for other in *@pool.groups.collision.entities

@@ -1,4 +1,9 @@
-class VelocitySystem
+--- A system updating despawn timers and removing despawned entities 
+-- @classmod src.system.DespawnSystem
+class DespawnSystem
+
+    --- update event handler
+    -- @tparam number dt delta-time since prev. call
     update: (dt) =>
         for entity in *@pool.groups.despawn.entities
             with entity
