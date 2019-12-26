@@ -5,8 +5,10 @@
 -- @tparam string filter the name of the class to filter
 -- @treturn function a filter function matching classes with given name
 classFilter = (filter) ->
+    if type(filter)=="table"
+        error("Not implemented yet!")
     (entity) -> 
-        string.find(entity.__class.__name, filter) != nil
+        entity.type == filter
 
 --- Nata groups and systems configuration 
 -- @table NataConfig

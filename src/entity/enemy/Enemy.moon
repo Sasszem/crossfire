@@ -4,23 +4,17 @@
 Vec2 = require "src.Vec2"
 Bullet = require "src.entity.bullet.Bullet"
 
-class Enemy
-    @speed = 30
-    -- px/sec
+Enemy = (pos = Vec2!) ->
+    {
+        type: "Enemy"
+        position: pos
+        velocity: Vec2!
+        aim: 0
+        speed: 30
+        turnspeed: 20
+        refire_rate: 3
+        shoot_cooldown: 3
+        bullet: Bullet
+    }
 
-    @turnspeed = 20
-    -- degree/sec
-
-    @refire_rate = 3
-    @bullet = Bullet
-
-    new: (pos = Vec2!) =>
-        @position = pos
-        @velocity = Vec2!
-        @aim = 0
-        @speed = @@speed
-        @turnspeed = @@turnspeed
-        
-        @refire_rate = @@refire_rate
-        @shoot_cooldown = @refire_rate
-        @bullet = @@bullet
+return Enemy

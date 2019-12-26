@@ -3,6 +3,9 @@
 
 Vec2 = require "src.Vec2"
 
-class Camera
-    new: (pos = Vec2!) =>
-        @position = pos
+Camera = (pos = Vec2!) =>
+    {
+        type: "Camera"
+        position: pos
+    }
+return Camera

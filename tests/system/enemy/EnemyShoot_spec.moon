@@ -39,11 +39,11 @@ describe "EnemyShoot", ->
     it "should update cooldowns", ->
         pool\emit "update", 1
 
-        assert.equals Enemy.refire_rate - 1, entity.shoot_cooldown
+        assert.equals entity.refire_rate - 1, entity.shoot_cooldown
 
     it "should create a bullet", ->
 
-        pool\emit "update", Enemy.refire_rate
+        pool\emit "update", entity.refire_rate
         assert.equals 1, #pool.groups.bullet.entities
         
     

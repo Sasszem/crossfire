@@ -2,8 +2,6 @@
 --- (but ignore @{src.entity.bullet.ExplodingBullet}s) to hit events
 -- @classmod src.system.bullet.BulletCollisionResolver
 
-Bullet = require "src.entity.bullet.Bullet"
-
 class BulletCollisionResolver
     --- collision event handler
     -- @param first the first entity 
@@ -13,10 +11,10 @@ class BulletCollisionResolver
         victim = nil
 
         -- get bullet & shot entity
-        if first.__class == Bullet
+        if first.type == "Bullet"
             bullet = first
             victim = second
-        if second.__class == Bullet
+        if second.type == "Bullet"
             bullet = second
             victim = first
         

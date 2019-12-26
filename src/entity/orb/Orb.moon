@@ -3,6 +3,10 @@
 
 Vec2 = require "src.Vec2"
 
-class Orb
-    new: ( pos = Vec2! )=>
-        @position = pos
+Orb = (pos = Vec2!) ->
+    {
+        type: "Orb"
+        position: pos
+    }
+
+return Orb
