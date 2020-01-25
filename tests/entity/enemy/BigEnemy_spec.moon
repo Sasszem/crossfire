@@ -14,14 +14,14 @@ describe "BigEnemy", ->
         assert.truthy bigEnemy.velocity
         assert.equals bigEnemy.velocity.__class, Vec2
     it "should have a direction", ->
-        assert.truthy bigEnemy.aim
-        assert.is_number bigEnemy.aim
+        assert.truthy bigEnemy.angle
+        assert.is_number bigEnemy.angle
     it "should have a speed", ->
         assert.truthy bigEnemy.speed
         assert.is_number bigEnemy.speed
-    it "should have a turnspeed", ->
-        assert.truthy bigEnemy.turnspeed
-        assert.is_number bigEnemy.turnspeed
+    --it "should have a turnspeed", ->
+    --    assert.truthy bigEnemy.turnspeed
+    --    assert.is_number bigEnemy.turnspeed
     it "should have a bullet", ->
         assert.truthy bigEnemy.bullet
         assert.same ExplodingBullet, bigEnemy.bullet

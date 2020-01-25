@@ -1,17 +1,21 @@
 --- The Player moves trough the field avoiding @{src.entity.bullet.Bullet}s and collecting @{src.entity.orb.Orb}s
 -- @classmod src.entity.player.Player
 
-Vec2 = require "src.Vec2"
+buildEntity = require "src.entity.buildEntity"
+PositionComponent = require "src.component.PositionComponent"
+VelocityComponent = require "src.component.VelocityComponent"
+CollisionComponent = require "src.component.CollisionComponent"
+DirectionComponent = require "src.component.DirectionComponent"
 
-Player = (pos = Vec2!, aim = 0) ->
-    {
-        type: "Player"
-        position: pos
-        velocity: Vec2!
-        :aim
-        speed: 50
-        collision_radius: 30
-        state: "Normal"
-    }
+Player = (position, angle=0) ->
+    buildEntity "Player",
+        PositionComponent position,
+        VelocityComponent!,
+        CollisionComponent 30,
+        DirectionComponent!,
+        {
+            state: "Normal"
+        }
+
 
 return Player

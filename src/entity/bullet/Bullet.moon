@@ -1,14 +1,15 @@
 --- Bullets are shot by @{src.entity.enemy.Enemy}s
 -- @classmod src.entity.bullet.Bullet
-Vec2 = require "src.Vec2"
 
-Bullet = (position = Vec2!, velocity = Vec2(0, 1)) ->
-    {
-        type: "Bullet"
-        :position
-        speed: 50
-        velocity: velocity\normalize! * 50
-        collision_radius: 10
-    }
+buildEntity = require "src.entity.buildEntity"
+PositionComponent = require "src.component.PositionComponent"
+VelocityComponent = require "src.component.VelocityComponent"
+CollisionComponent = require "src.component.CollisionComponent"
+
+Bullet = (position, angle=0) ->
+    buildEntity "Bullet",
+        PositionComponent(position),
+        VelocityComponent.fromPolar(angle, 50),
+        CollisionComponent(10)
 
 return Bullet

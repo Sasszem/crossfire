@@ -17,7 +17,7 @@ describe "EnemyMovement", ->
     pool\flush!
 
     angle = 30 * math.random 12
-    entity.aim = angle
+    entity.angle = angle
 
     -- get instance
     instance = pool\getSystem EnemyMovement

@@ -13,7 +13,7 @@ describe "Player", ->
         assert.truthy player.velocity
         assert.equals player.velocity.__class, Vec2
     it "should have a direction", ->
-        assert.truthy player.aim
-        assert.is_number player.aim
+        assert.truthy player.angle
+        assert.is_number player.angle
     
     

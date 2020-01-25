@@ -1,15 +1,24 @@
 --- BigEnemyes shoot @{src.entity.bullet.ExplodingBullet}s at the @{src.entity.player.Player}
 -- @classmod src.entity.enemy.BigEnemy
 
-Enemy = require "src.entity.enemy.Enemy"
+
+buildEntity = require "src.entity.buildEntity"
+PositionComponent = require "src.component.PositionComponent"
+VelocityComponent = require "src.component.VelocityComponent"
+CollisionComponent = require "src.component.CollisionComponent"
+DirectionComponent = require "src.component.DirectionComponent"
+ShootComponent = require "src.component.ShootComponent"
+
 ExplodingBullet = require "src.entity.bullet.ExplodingBullet"
 
-BigEnemy = (pos) -> 
-    with Enemy(pos)
-        .type = "BigEnemy"
-        .speed = 20
-        .turnspeed = 10
-        .refire_rate = 6
-        .bullet = ExplodingBullet
+BigEnemy = (position, angle=0) ->
+    buildEntity "BigEnemy",
+        PositionComponent position,
+        VelocityComponent!,
+        DirectionComponent angle,
+        CollisionComponent 30,
+        ShootComponent(ExplodingBullet, 6)
+
+
 
 return BigEnemy

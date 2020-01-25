@@ -1,12 +1,18 @@
 --- ExplodingBullets are shot by @{src.entity.enemy.BigEnemy}s
 -- @classmod src.entity.bullet.ExplodingBullet
-Bullet = require "src.entity.bullet.Bullet"
-Vec2 = require "src.Vec2"
 
-ExplodingBullet = (position = Vec2!, velocity = Vec2(0, 1)) ->
-    with Bullet(position, velocity)
-        .type = "ExplodingBullet"
-        .speed = 30
-        .explosionRadius = 50
-        .velocity = .velocity\normalize! * 30
+buildEntity = require "src.entity.buildEntity"
+PositionComponent = require "src.component.PositionComponent"
+VelocityComponent = require "src.component.VelocityComponent"
+CollisionComponent = require "src.component.CollisionComponent"
+ExplosionComponent = require "src.component.ExplosionComponent"
+
+
+ExplodingBullet = (position, angle=0) ->
+    buildEntity "ExplodingBullet",
+        PositionComponent(position),
+        VelocityComponent.fromPolar(angle, 30),
+        CollisionComponent(10),
+        ExplosionComponent(50)
+
 return ExplodingBullet
