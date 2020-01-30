@@ -6,24 +6,13 @@ class BulletCollisionResolver
     --- collision event handler
     -- @param first the first entity 
     -- @param second the second entity 
-    collision: (first, second) =>
-        bullet = nil
-        victim = nil
+    collision: (bullet, victim) => 
 
-        -- get bullet & shot entity
-        if first.type == "Bullet"
-            bullet = first
-            victim = second
-        if second.type == "Bullet"
-            bullet = second
-            victim = first
-        
-        if not victim
+        if not @pool.groups.bullet.hasEntity[bullet]
+            return
+        if not @pool.groups.target.hasEntity[victim]
             return
 
-        -- ignore bullet - bullet-class
-        if @pool.groups.bullet.hasEntity[victim]
-            return
         
         -- kill bullet
         bullet.despawnTimer = 0

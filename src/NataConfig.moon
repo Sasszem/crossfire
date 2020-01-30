@@ -32,11 +32,15 @@ NataConfig =
         enemy:
             filter: classFilter {"Enemy", "BigEnemy"}
         bullet:
-            filter: classFilter {"Bullet", "ExplodingBullet"}
+            filter: {'isBullet'}
+        target:
+            filter: {'isTarget'}
         collision: 
             filter: {'position', 'collision_radius'}
         explosion:
             filter: {'explosion_radius'}
+        shoot:
+            filter: {'bullet'}
     systems: {
         require "src.system.DespawnSystem"
         require "src.system.CollisionSystem"
@@ -45,7 +49,9 @@ NataConfig =
         require "src.system.camera.CameraMovement"
         require "src.system.enemy.EnemyMovement"
         require "src.system.enemy.EnemyAim"
-        require "src.system.bullet.BulletCollisionResolver"
+        require "src.system.Shoot"
+        require "src.system.BulletCollision"
+        require "src.system.ExplosionSystem"
     }
 
 return NataConfig

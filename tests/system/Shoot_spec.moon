@@ -1,15 +1,15 @@
 nata = require "lib.nata"
 NataConfig = require "src.NataConfig"
-EnemyShoot = require "src.system.enemy.EnemyShoot"
+Shoot = require "src.system.Shoot"
 Enemy = require "src.entity.enemy.Enemy"
 Vec2 = require "src.Vec2"
 
 
-describe "EnemyShoot", ->
+describe "Shoot", ->
     -- setup environment
     pool = nata.new {
         groups: NataConfig.groups
-        systems: {EnemyShoot}
+        systems: {Shoot}
     }
 
     entity = Enemy Vec2!
@@ -21,13 +21,13 @@ describe "EnemyShoot", ->
     entity.aim = angle
 
     -- get instance
-    instance = pool\getSystem EnemyShoot
+    instance = pool\getSystem Shoot
 
     it "should be imported", ->
-        assert.truthy EnemyShoot
+        assert.truthy Shoot
 
     it "should be createable", ->
-        assert.truthy EnemyShoot!
+        assert.truthy Shoot!
 
     it "should be added to the pool", ->
         assert.equals 1, #pool._systems

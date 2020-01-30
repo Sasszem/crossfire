@@ -12,5 +12,7 @@ describe "Bullet", ->
     it "should have a velocity", ->
         assert.truthy bullet.velocity
         assert.equals bullet.velocity.__class, Vec2
+    it "should be a bullet", ->
+        assert.truthy bullet.isBullet
     
     

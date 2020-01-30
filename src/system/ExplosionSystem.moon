@@ -8,7 +8,7 @@ class BulletExplosionSystem
     -- @param second the second entity 
     collision: (bullet, victim) =>
 
-        if not @pool.groups.enemy.hasEntity[victim] and not  @pool.groups.player.hasEntity[victim]
+        if not @pool.groups.target.hasEntity[victim]
             return
         
         if not @pool.groups.explosion.hasEntity[bullet]

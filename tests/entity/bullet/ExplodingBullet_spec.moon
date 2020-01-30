@@ -12,5 +12,7 @@ describe "ExplodingBullet", ->
     it "should have a velocity", ->
         assert.truthy explodingBullet.velocity
         assert.equals explodingBullet.velocity.__class, Vec2
+    it "should explode", ->
+        assert.truthy explodingBullet.explosion_radius
     
     

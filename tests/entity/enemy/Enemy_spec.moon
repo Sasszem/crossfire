@@ -31,3 +31,5 @@ describe "Enemy", ->
     it "should have a refire rate", ->
         assert.truthy enemy.refire_rate
         assert.is_number enemy.refire_rate
+    it "should be a target", ->
+        assert.truthy enemy.isTarget

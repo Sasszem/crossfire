@@ -7,7 +7,7 @@ VelocityComponent = require "src.component.VelocityComponent"
 CollisionComponent = require "src.component.CollisionComponent"
 ExplosionComponent = require "src.component.ExplosionComponent"
 DespawnComponent = require "src.component.DespawnComponent"
-
+BulletComponent = require "src.component.BulletComponent"
 
 ExplodingBullet = (position, angle=0) ->
     buildEntity "ExplodingBullet",
@@ -15,6 +15,7 @@ ExplodingBullet = (position, angle=0) ->
         VelocityComponent.fromPolar(angle, 30),
         CollisionComponent(10),
         ExplosionComponent(50),
-        DespawnComponent(10)
+        DespawnComponent(10),
+        BulletComponent!
 
 return ExplodingBullet

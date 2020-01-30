@@ -15,5 +15,7 @@ describe "Player", ->
     it "should have a direction", ->
         assert.truthy player.angle
         assert.is_number player.angle
+    it "should be a target", ->
+        assert.truthy player.isTarget
     
     

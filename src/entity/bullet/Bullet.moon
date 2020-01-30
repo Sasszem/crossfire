@@ -6,12 +6,14 @@ PositionComponent = require "src.component.PositionComponent"
 VelocityComponent = require "src.component.VelocityComponent"
 CollisionComponent = require "src.component.CollisionComponent"
 DespawnComponent = require "src.component.DespawnComponent"
+BulletComponent = require "src.component.BulletComponent"
 
 Bullet = (position, angle=0) ->
     buildEntity "Bullet",
         PositionComponent(position),
         VelocityComponent.fromPolar(angle, 50),
         CollisionComponent(10),
-        DespawnComponent(10)
+        DespawnComponent(10),
+        BulletComponent!
 
 return Bullet
