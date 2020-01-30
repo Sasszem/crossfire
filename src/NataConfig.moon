@@ -6,7 +6,11 @@
 -- @treturn function a filter function matching classes with given name
 classFilter = (filter) ->
     if type(filter)=="table"
-        error("Not implemented yet!")
+        return (entity) ->
+            for f in *filter
+                if f==entity.type 
+                    return true
+            return false
     (entity) -> 
         entity.type == filter
 
@@ -26,11 +30,13 @@ NataConfig =
         player:
             filter: classFilter "Player"
         enemy:
-            filter: classFilter "Enemy"
+            filter: classFilter {"Enemy", "BigEnemy"}
         bullet:
-            filter: classFilter "Bullet"
+            filter: classFilter {"Bullet", "ExplodingBullet"}
         collision: 
             filter: {'position', 'collision_radius'}
+        explosion:
+            filter: {'explosion_radius'}
     systems: {
         require "src.system.DespawnSystem"
         require "src.system.CollisionSystem"
