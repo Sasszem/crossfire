@@ -7,6 +7,7 @@ VelocityComponent = require "src.component.VelocityComponent"
 CollisionComponent = require "src.component.CollisionComponent"
 DirectionComponent = require "src.component.DirectionComponent"
 ShootComponent = require "src.component.ShootComponent"
+DespawnComponent = require "src.component.DespawnComponent"
 
 Bullet = require "src.entity.bullet.Bullet"
 
@@ -16,7 +17,8 @@ Enemy = (position, angle=0) ->
         VelocityComponent(nil, 30),
         DirectionComponent angle,
         CollisionComponent 30,
-        ShootComponent(Bullet, 3)
+        ShootComponent(Bullet, 3),
+        DespawnComponent!
 
 
 

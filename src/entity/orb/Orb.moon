@@ -3,9 +3,11 @@
 
 buildEntity = require "src.entity.buildEntity"
 PositionComponent = require "src.component.PositionComponent"
+DespawnComponent = require "src.component.DespawnComponent"
 
 Orb = (position) ->
     buildEntity "Orb",
-        PositionComponent(position)
+        PositionComponent(position),
+        DespawnComponent(15)
 
 return Orb

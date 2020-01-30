@@ -6,6 +6,7 @@ PositionComponent = require "src.component.PositionComponent"
 VelocityComponent = require "src.component.VelocityComponent"
 CollisionComponent = require "src.component.CollisionComponent"
 DirectionComponent = require "src.component.DirectionComponent"
+DespawnComponent = require "src.component.DespawnComponent"
 
 Player = (position, angle=0) ->
     buildEntity "Player",
@@ -13,6 +14,7 @@ Player = (position, angle=0) ->
         VelocityComponent!,
         CollisionComponent 30,
         DirectionComponent!,
+        DespawnComponent!,
         {
             state: "Normal"
         }

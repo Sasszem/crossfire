@@ -8,6 +8,7 @@ VelocityComponent = require "src.component.VelocityComponent"
 CollisionComponent = require "src.component.CollisionComponent"
 DirectionComponent = require "src.component.DirectionComponent"
 ShootComponent = require "src.component.ShootComponent"
+DespawnComponent = require "src.component.DespawnComponent"
 
 ExplodingBullet = require "src.entity.bullet.ExplodingBullet"
 
@@ -17,7 +18,8 @@ BigEnemy = (position, angle=0) ->
         VelocityComponent!,
         DirectionComponent angle,
         CollisionComponent 30,
-        ShootComponent(ExplodingBullet, 6)
+        ShootComponent(ExplodingBullet, 6),
+        DespawnComponent!
 
 
 
