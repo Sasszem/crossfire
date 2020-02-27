@@ -90,6 +90,11 @@ package = ->
     build!
     run_command "cd build && zip -r ../game.love ./*"
 
+love = ->
+    build!
+    run_command "cd build && love ."
+
+
 clean = ->
     run_command "rm -rf build game.love"
     recursive_delete ".", {"/lib/", "lint_config%.lua", "main%.lua"}, ".*%.lua$"
@@ -120,4 +125,5 @@ runner =
     :clean
     :lint
     :install_dev
+    :love
 runner[arg[1]]!

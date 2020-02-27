@@ -30,6 +30,12 @@
             "type": "shell",
             "command": "ldoc src",
             "problemMatcher": []
+        },
+        {
+            "label": "Run with LÖVE2D",
+            "type": "shell",
+            "command": "moon build.moon love",
+            "problemMatcher": []
         }
     ]
 }
