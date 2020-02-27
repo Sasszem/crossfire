@@ -1,7 +1,7 @@
 --- Aim enemies to the Player
 -- @classmod src.system.enemy.EnemyAim
 
-class EnemyMovement
+class EnemyAim
     --- update event handler
     -- @tparam number dt delta-time since prev. call
     update: (dt) =>
