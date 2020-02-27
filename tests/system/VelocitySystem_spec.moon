@@ -3,10 +3,13 @@ NataConfig = require "src.NataConfig"
 VelocitySystem = require "src.system.VelocitySystem"
 Vec2 = require "src.Vec2"
 
-class VelocityEntity
-    new: =>
-        @position = Vec2!
-        @velocity = Vec2 math.random(-10, 10), math.random(-10,10)
+VelocityEntity = () ->
+    {
+        position: Vec2!
+        velocity: Vec2 math.random(-10, 10), math.random(-10,10)
+    }
+
+
 
 describe "VelocitySystem", ->
     -- setup environment

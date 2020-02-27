@@ -2,9 +2,10 @@ nata = require "lib.nata"
 NataConfig = require "src.NataConfig"
 DespawnSystem = require "src.system.DespawnSystem"
 
-class DespawnableEntity
-    new: =>
-        @despawnTimer = 10
+DespawnableEntity = () ->
+    {
+        despawnTimer: 10
+    }
 
 
 describe "DespawnSystem", ->

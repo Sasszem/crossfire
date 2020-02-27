@@ -6,12 +6,13 @@ Bullet = require "src.entity.bullet.Bullet"
 Player = require "src.entity.player.Player"
 Vec2 = require "src.Vec2"
 
-class SomeCollidable
-    new: (position) =>
-        @position = position
-        @collision_radius = 20
-        @isTarget = true
-        @type = "SomeCollidable"
+SomeCollidable = (position) ->
+    {
+        :position
+        collision_radius: 20
+        isTarget: true
+        type: "SomeCollidable"
+    }
 
 describe "BulletCollision", ->
     -- setup environment

@@ -3,10 +3,12 @@ NataConfig = require "src.NataConfig"
 CollisionSystem = require "src.system.CollisionSystem"
 Vec2 = require "src.Vec2"
 
-class CollidableEntity
-    new: (pos = Vec2!)=>
-        @collision_radius = 10
-        @position = pos
+CollidableEntity = (position = Vec2!) ->
+    {
+        :position
+        collision_radius: 10
+        type: "CollidableEntity"
+    }
 
 
 describe "CollisionSystem", ->
