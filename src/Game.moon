@@ -8,7 +8,9 @@ class Game
         @w = w
         @h = h
         @pool = nata.new NataConfig
-        @pool\queue Player!
+        @player = Player!
+        @player.state = "Shield"
+        @pool\queue @player
         @camera = Camera!
         @pool\queue @camera
         @pool\flush!
