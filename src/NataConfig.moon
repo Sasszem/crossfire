@@ -48,6 +48,7 @@ NataConfig =
         require "src.system.VelocitySystem"
         require "src.system.camera.CameraMovement"
         require "src.system.enemy.EnemyMovement"
+        require "src.system.enemy.EnemyHit"
         require "src.system.enemy.EnemyAim"
         require "src.system.Shoot"
         require "src.system.BulletCollision"
