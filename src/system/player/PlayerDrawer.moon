@@ -15,7 +15,9 @@ class PlayerDrawer
             love.graphics.setLineWidth 10
             love.graphics.line player.position.x, player.position.y, player.position.x + v.x, player.position.y + v.y
             if player.state=="Shield"
+                fromrad = math.rad player.angle - 45
+                torad = math.rad player.angle + 45
                 love.graphics.setColor({1, 0, 0})
-                love.graphics.arc "line", "open", player.position.x, player.position.y, 100, player.angle - 0.79, player.angle + 0.79 
+                love.graphics.arc "line", "open", player.position.x, player.position.y, 100, fromrad, torad
 
             
