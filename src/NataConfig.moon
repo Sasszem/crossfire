@@ -19,6 +19,8 @@ classFilter = (filter) ->
 NataConfig = 
     groups: 
         all:  {},
+        position:
+            filter: {'position'}
         velocity: 
             filter: {'position', 'velocity'}
         despawn:
@@ -51,6 +53,7 @@ NataConfig =
         require "src.system.enemy.EnemyHit"
         require "src.system.enemy.EnemyAim"
         require "src.system.Shoot"
+        require "src.system.WallSystem"
         require "src.system.BulletCollision"
         require "src.system.ExplosionSystem"
         require "src.system.player.PlayerDrawer"
