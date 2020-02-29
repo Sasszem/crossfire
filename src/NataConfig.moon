@@ -54,6 +54,7 @@ NataConfig =
         require "src.system.BulletCollision"
         require "src.system.ExplosionSystem"
         require "src.system.player.PlayerDrawer"
+        require "src.system.player.PlayerMovement"
     }
 
 return NataConfig

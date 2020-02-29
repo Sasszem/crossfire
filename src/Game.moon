@@ -7,7 +7,11 @@ class Game
     new: (w, h) =>
         @w = w
         @h = h
-        @pool = nata.new NataConfig
+
+        config = NataConfig
+        config.data = @
+
+        @pool = nata.new config
         @player = Player!
         @player.state = "Shield"
         @pool\queue @player
