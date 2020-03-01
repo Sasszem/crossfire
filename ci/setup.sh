@@ -1,4 +1,3 @@
 set -e
 luarocks install moonscript
-luarocks install busted 
-luarocks install luacov
+moon build.moon install_dev

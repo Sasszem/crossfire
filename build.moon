@@ -1,10 +1,16 @@
 lfs = require "lfs"
 
+magiclines = (s) ->
+    if s\sub(-1) != "\n"
+        s ..= "\n"
+    s\gmatch "(.-)\n"
+
 run_command = (cmd, ignore = false) ->
     result = os.execute cmd
     --print "command \""..cmd.."\" returned "..tostring(ret_code)
     if not (result==0 or result==true or ignore)
         os.exit -1
+    return result
 
 capture_command = (cmd, ignore=false) ->
     f = assert io.popen cmd, 'r'
@@ -101,7 +107,14 @@ clean = ->
     recursive_delete ".", {}, "luacov%..*%.out$"
 
 lint = ->
-    run_command "moonc -l ."
+    files = capture_command 'find . -type f -name "*.moon" | grep src'
+    succ = true
+    for line in magiclines files
+        res = run_command "moonpick #{line}", true
+        if not (res==0 or res==true)
+            succ = false
+    if not succ
+        os.exit -1
 
 install_dev = ->
     is_admin, _ = capture_command "id -u"
@@ -116,6 +129,8 @@ install_dev = ->
     run_command "luarocks install ldoc"
     print "Installing luacov"
     run_command "luarocks install luacov"
+    print "Installing moonpick"
+    run_command "luarocks install moonpick"
     print "All dev tools are installed!"
 
 
