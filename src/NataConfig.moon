@@ -45,6 +45,7 @@ NataConfig =
             filter: {'bullet'}
     systems: {
         require "src.system.BackgroundDrawer"
+        require "src.system.WallDrawer"
         require "src.system.DespawnSystem"
         require "src.system.CollisionSystem"
         require "src.system.orb.OrbMovement"
