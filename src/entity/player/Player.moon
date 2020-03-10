@@ -14,7 +14,7 @@ Player = (position, angle=0) ->
     buildEntity "Player",
         PositionComponent position,
         VelocityComponent!,
-        CollisionComponent 30,
+        CollisionComponent 50,
         DirectionComponent!,
         DespawnComponent!,
         TargetComponent!,
