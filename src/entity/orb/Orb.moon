@@ -2,12 +2,12 @@
 -- @classmod src.entity.orb.Orb
 
 buildEntity = require "src.entity.buildEntity"
-PositionComponent = require "src.component.PositionComponent"
-DespawnComponent = require "src.component.DespawnComponent"
+C = require "src.Components"
+
 
 Orb = (position) ->
     buildEntity "Orb",
-        PositionComponent(position),
-        DespawnComponent(15)
+        C.PositionComponent(position),
+        C.DespawnComponent(15)
 
 return Orb

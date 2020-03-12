@@ -2,10 +2,10 @@
 -- @classmod src.entity.camera.Camera
 
 buildEntity = require "src.entity.buildEntity"
-PositionComponent = require "src.component.PositionComponent"
+C = require "src.Components"
 
 Camera = (position) ->
     buildEntity "Camera",
-        PositionComponent(position)
+        C.PositionComponent(position)
 
 return Camera

@@ -3,25 +3,19 @@
 
 
 buildEntity = require "src.entity.buildEntity"
-PositionComponent = require "src.component.PositionComponent"
-VelocityComponent = require "src.component.VelocityComponent"
-CollisionComponent = require "src.component.CollisionComponent"
-DirectionComponent = require "src.component.DirectionComponent"
-ShootComponent = require "src.component.ShootComponent"
-DespawnComponent = require "src.component.DespawnComponent"
-TargetComponent = require "src.component.TargetComponent"
+C = require "src.Components"
 
 ExplodingBullet = require "src.entity.bullet.ExplodingBullet"
 
 BigEnemy = (position, angle=0) ->
     buildEntity "BigEnemy",
-        PositionComponent position,
-        VelocityComponent!,
-        DirectionComponent angle,
-        CollisionComponent 30,
-        ShootComponent(ExplodingBullet, 6),
-        DespawnComponent!,
-        TargetComponent!
+        C.PositionComponent position,
+        C.VelocityComponent!,
+        C.DirectionComponent angle,
+        C.CollisionComponent 30,
+        C.ShootComponent(ExplodingBullet, 6),
+        C.DespawnComponent!,
+        C.TargetComponent!
 
 
 

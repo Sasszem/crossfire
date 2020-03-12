@@ -2,18 +2,14 @@
 -- @classmod src.entity.bullet.Bullet
 
 buildEntity = require "src.entity.buildEntity"
-PositionComponent = require "src.component.PositionComponent"
-VelocityComponent = require "src.component.VelocityComponent"
-CollisionComponent = require "src.component.CollisionComponent"
-DespawnComponent = require "src.component.DespawnComponent"
-BulletComponent = require "src.component.BulletComponent"
+C = require "src.Components"
 
 Bullet = (position, angle=0) ->
     buildEntity "Bullet",
-        PositionComponent(position),
-        VelocityComponent.fromPolar(angle, 50),
-        CollisionComponent(10),
-        DespawnComponent(10),
-        BulletComponent!
+        C.PositionComponent(position),
+        C.VelocityComponent.fromPolar(angle, 50),
+        C.CollisionComponent(10),
+        C.DespawnComponent(10),
+        C.BulletComponent!
 
 return Bullet

@@ -82,7 +82,39 @@ build_ignore = {
 }
 
 
+
+endswith = (str, endstr) ->
+    endstr == "" or str\sub(-#endstr) == endstr
+
+generate_component_imports = ->
+    src_dir = "src/component"
+    
+    file_object = io.open "src/Components.moon", "w"
+    file_object\write "-- AUTO-GENERATED IMPORTS FILE\n"
+    file_object\write "-- GETS DISCARDED EVERY TIME\n"
+    file_object\write "-- AND A NEW ONE IS GENERATED\n"
+    file_object\write "-- DO NOT COMMIT THIS FILE!\n"
+
+    file_object\write "Components = \n"
+    for file in lfs.dir src_dir
+        if file=="." or file==".."
+            continue
+        
+        full_path = append_path(src_dir, file)
+        
+        if lfs.attributes(full_path).mode == "file"
+            if endswith full_path, "moon"
+                without_extension = full_path\sub 1, -6
+                classpath = without_extension\gsub "/", "."
+                classname = (classpath\match "%.%a+$")\sub 2
+                --print classname
+                file_object\write "    #{classname}: require \"#{classpath}\"\n"
+    file_object\write "return Components"
+    file_object\close!
+
+
 build = ->
+    generate_component_imports!
     recursive_copy ".", "./build", build_ignore
     run_command "moonc ./build/"
     recursive_delete "./build/", {}, ".*%.moon$"
@@ -103,6 +135,7 @@ love = ->
 
 clean = ->
     run_command "rm -rf build game.love"
+    run_command "rm -rf src/Components.moon"
     recursive_delete ".", {"/lib/", "lint_config%.lua", "main%.lua"}, ".*%.lua$"
     recursive_delete ".", {}, "luacov%..*%.out$"
 
@@ -132,7 +165,6 @@ install_dev = ->
     print "Installing moonpick"
     run_command "luarocks install moonpick"
     print "All dev tools are installed!"
-
 
 runner = 
     :test

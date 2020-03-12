@@ -2,23 +2,18 @@
 -- @classmod src.entity.player.Player
 
 buildEntity = require "src.entity.buildEntity"
-PositionComponent = require "src.component.PositionComponent"
-VelocityComponent = require "src.component.VelocityComponent"
-CollisionComponent = require "src.component.CollisionComponent"
-DirectionComponent = require "src.component.DirectionComponent"
-DespawnComponent = require "src.component.DespawnComponent"
-TargetComponent = require "src.component.TargetComponent"
-LivesCounterComponent = require "src.component.LivesCounterComponent"
+C = require "src.Components"
+
 
 Player = (position, angle=0) ->
     buildEntity "Player",
-        PositionComponent position,
-        VelocityComponent!,
-        CollisionComponent 50,
-        DirectionComponent!,
-        DespawnComponent!,
-        TargetComponent!,
-        LivesCounterComponent!,
+        C.PositionComponent position,
+        C.VelocityComponent!,
+        C.CollisionComponent 50,
+        C.DirectionComponent!,
+        C.DespawnComponent!,
+        C.TargetComponent!,
+        C.LivesCounterComponent!,
         {
             state: "Normal"
         }

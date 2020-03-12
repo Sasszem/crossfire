@@ -2,25 +2,20 @@
 -- @classmod src.entity.enemy.Enemy
 
 buildEntity = require "src.entity.buildEntity"
-PositionComponent = require "src.component.PositionComponent"
-VelocityComponent = require "src.component.VelocityComponent"
-CollisionComponent = require "src.component.CollisionComponent"
-DirectionComponent = require "src.component.DirectionComponent"
-ShootComponent = require "src.component.ShootComponent"
-DespawnComponent = require "src.component.DespawnComponent"
-TargetComponent = require "src.component.TargetComponent"
+C = require "src.Components"
+
 
 Bullet = require "src.entity.bullet.Bullet"
 
 Enemy = (position, angle=0) ->
     buildEntity "Enemy",
-        PositionComponent position,
-        VelocityComponent(nil, 30),
-        DirectionComponent angle,
-        CollisionComponent 30,
-        ShootComponent(Bullet, 3),
-        DespawnComponent!,
-        TargetComponent!
+        C.PositionComponent position,
+        C.VelocityComponent(nil, 30),
+        C.DirectionComponent angle,
+        C.CollisionComponent 30,
+        C.ShootComponent(Bullet, 3),
+        C.DespawnComponent!,
+        C.TargetComponent!
 
 
 
