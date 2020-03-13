@@ -8,13 +8,16 @@ Vec2 = require "src.Vec2"
 
 describe "EnemyAim", ->
     -- setup environment
-    pool = nata.new {
-        groups: NataConfig.groups
-        systems: {EnemyAim}
-    }
 
     entity = Enemy Vec2!
     player = Player Vec2!
+
+    pool = nata.new {
+        groups: NataConfig.groups
+        systems: {EnemyAim}
+        data:
+            :player
+    }
 
     pool\queue entity
     pool\queue player

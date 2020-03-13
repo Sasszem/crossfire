@@ -7,13 +7,17 @@ Vec2 = require "src.Vec2"
 
 describe "CameraMovement", ->
     -- setup environment
+    
+    camera = Camera Vec2!
+    player = Player Vec2 math.random(10), math.random(10)
+
     pool = nata.new {
         groups: NataConfig.groups
         systems: {CameraMovement}
+        data:
+            :player
+            :camera
     }
-
-    camera = Camera Vec2!
-    player = Player Vec2 math.random(10), math.random(10)
 
     pool\queue camera
     pool\queue player

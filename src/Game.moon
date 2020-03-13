@@ -5,21 +5,32 @@ Camera = require "src.entity.camera.Camera"
 
 class Game
     new: (w, h) =>
+        -- screen dimensions
         @w = w
         @h = h
 
+        -- shared game values & objects
+        @score = 0
+        @camera = Camera!
+        @player = Player!
+        @player.state = "Shield"
+
+
+        -- Nata Config
         config = NataConfig
         config.data = @
 
+        -- Nata Pool
         @pool = nata.new config
-        @player = Player!
-        @player.state = "Shield"
         @pool\queue @player
-        @camera = Camera!
         @pool\queue @camera
         @pool\flush!
+
+
     update: (dt) =>
         @pool\emit "update", dt
+
+
     draw: () =>
         love.graphics.push!
         love.graphics.translate -@camera.position.x + @w/2, -@camera.position.y + @h/2

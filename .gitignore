@@ -45,3 +45,4 @@ build/*
 *.x86_64
 *.hex
 
+src/Components.moon

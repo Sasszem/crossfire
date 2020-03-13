@@ -4,6 +4,6 @@ class CameraMovement
     --- update event handler
     -- @tparam number dt delta-time since prev. call
     update: (dt) =>
-        camera = @pool.groups.camera.entities[1]
-        player = @pool.groups.player.entities[1]
+        camera = @pool.data.camera
+        player = @pool.data.player
         camera.position = player.position
