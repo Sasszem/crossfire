@@ -10,6 +10,6 @@ class Shoot
             with entity
                 .shoot_cooldown -= dt
                 if .shoot_cooldown <= 0 
-                    @pool\queue .bullet(.position, .angle)
+                    @pool\queue .bullet(.position, .angle, entity)
                     .shoot_cooldown += .refire_rate
         @pool\flush!

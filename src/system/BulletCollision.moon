@@ -13,6 +13,9 @@ class BulletCollisionResolver
         if not @pool.groups.target.hasEntity[victim]
             return
 
+        -- ignore if it's the enemy's own bullet
+        if bullet.parent == victim
+            return
         
         -- kill bullet
         bullet.despawnTimer = 0
