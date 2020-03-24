@@ -19,5 +19,3 @@ class PlayerDrawer
                 torad = math.rad player.angle + 45
                 love.graphics.setColor({1, 0, 0})
                 love.graphics.arc "line", "open", player.position.x, player.position.y, 100, fromrad, torad
-
-            

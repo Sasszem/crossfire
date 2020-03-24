@@ -11,7 +11,7 @@ class Wall
             if ent.collision_radius
                 s -= ent.collision_radius
             if @pool.groups.bullet.hasEntity[ent]
-                if abs x > s or abs y > s
+                if abs(x) > s or abs(y) > s
                     -- despawn bullet
                     ent.despawn_timer = 0
             x = min x, s

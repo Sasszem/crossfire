@@ -3,6 +3,8 @@ NataConfig = require "src.NataConfig"
 Player = require "src.entity.player.Player"
 Camera = require "src.entity.camera.Camera"
 
+import installEventLogger from require "src.EventLogger"
+
 class Game
     new: (w, h) =>
         -- screen dimensions
@@ -22,6 +24,7 @@ class Game
 
         -- Nata Pool
         @pool = nata.new config
+        installEventLogger(@pool)
         @pool\queue @player
         @pool\queue @camera
         @pool\flush!
