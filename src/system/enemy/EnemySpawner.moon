@@ -30,3 +30,5 @@ class EnemySpawner
                 @enemyCount += 1
                 return
 
+    EnemyDeath: (en) =>
+        @enemyCount -= 1

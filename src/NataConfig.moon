@@ -66,6 +66,7 @@ NataConfig =
         require "src.system.enemy.BulletDrawer"
         require "src.system.player.Shield"
         require "src.system.player.Hit"
+        require "src.system.player.ShockWave"
     }
 
 return NataConfig

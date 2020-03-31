@@ -13,7 +13,7 @@ class PlayerHit
         player.lives -= 1
         
         if player.lives == 0
-            @pool.emit "GameOver"
+            @pool\emit "GameOver"
 
 
         -- spawn shockwave

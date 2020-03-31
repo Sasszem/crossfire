@@ -2,6 +2,8 @@
 -- Also works for @{src.entity.enemy.BigEnemy}es and @{src.entity.bullet.ExplodingBullet}s
 -- @classmod src.system.enemy.Shoot
 
+Vec2 = require "src.Vec2"
+
 class Shoot
     --- update event handler
     -- @tparam number dt delta-time since prev. call
@@ -10,6 +12,7 @@ class Shoot
             with entity
                 .shoot_cooldown -= dt
                 if .shoot_cooldown <= 0 
-                    @pool\queue .bullet(.position, .angle, entity)
+                    dP = Vec2.fromAngle(.angle, 50)
+                    @pool\queue .bullet(.position+dP, .angle, entity)
                     .shoot_cooldown += .refire_rate
         @pool\flush!
