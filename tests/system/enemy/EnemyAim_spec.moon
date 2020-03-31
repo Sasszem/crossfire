@@ -45,6 +45,6 @@ describe "EnemyAim", ->
     it "should update the entities aim", ->
 
         pool\emit "update", 1
-        assert.near entity.aim, (player.position - entity.position)\angle!, 10^-6
+        assert.near entity.angle, (player.position - entity.position)\angle!, 10^-6
         
     

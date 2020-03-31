@@ -13,7 +13,7 @@ class Wall
             if @pool.groups.bullet.hasEntity[ent]
                 if abs(x) > s or abs(y) > s
                     -- despawn bullet
-                    ent.despawn_timer = 0
+                    ent.despawnTimer = 0
             x = min x, s
             x = max x, -s
             y = min y, s

@@ -8,4 +8,4 @@ class EnemyAim
         player = @pool.data.player
         for entity in *@pool.groups.enemy.entities
             with entity
-                .aim = (player.position - .position)\angle!
+                .angle = (player.position - .position)\angle!
