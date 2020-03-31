@@ -17,6 +17,10 @@ class BulletCollisionResolver
         if bullet.parent == victim
             return
         
+        -- ignore shield player - bullet collisions
+        if @pool.groups.player.hasEntity[victim] and victim.state == "Shield"
+            return
+
         -- kill bullet
         bullet.despawnTimer = 0
         @pool\emit "hit", victim

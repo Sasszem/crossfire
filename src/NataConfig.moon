@@ -64,6 +64,8 @@ NataConfig =
         require "src.system.player.PlayerMovement"
         require "src.system.FPSDrawer"
         require "src.system.enemy.BulletDrawer"
+        require "src.system.player.Shield"
+        require "src.system.player.Hit"
     }
 
 return NataConfig

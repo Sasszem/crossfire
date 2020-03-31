@@ -5,6 +5,10 @@ class Wall
         @size = 200
     update: (dt) =>
         for ent in *@pool.groups.position.entities
+            -- ignore ShockWave
+            if ent.type=="ShockWave"
+                continue
+
             x = ent.position.x
             y = ent.position.y
             s = @size
