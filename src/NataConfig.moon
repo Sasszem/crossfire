@@ -67,6 +67,10 @@ NataConfig =
         require "src.system.player.Shield"
         require "src.system.player.Hit"
         require "src.system.player.ShockWave"
+        require "src.system.orb.OrbSpawner"
+        require "src.system.orb.OrbDrawer"
+        require "src.system.player.OrbCollect"
+        require "src.system.ScoreDrawer"
     }
 
 return NataConfig

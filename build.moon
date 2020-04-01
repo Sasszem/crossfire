@@ -152,7 +152,8 @@ lint = ->
 install_dev = ->
     is_admin, _ = capture_command "id -u"
     print type is_admin
-    if not is_admin == '0'
+    print is_admin
+    if is_admin != "0\n"
         print "This command must be run as root!"
         print "run sudo moon build.moon install_dev"
         os.exit -1

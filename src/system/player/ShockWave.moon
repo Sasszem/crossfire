@@ -1,7 +1,7 @@
 class ShockWave
     collision: (wave, victim) =>
         -- only care about shockwave-collisions
-        if not wave.type=="ShockWave"
+        if wave.type!="ShockWave"
             return
         -- only care about despawnable entities
         if not @pool.groups.despawn.hasEntity[victim]

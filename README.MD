@@ -11,3 +11,10 @@ My secondary goal is to let this project be damn well documented - UML diagrams,
  - [Nata](https://github.com/tesselode/nata/) [ECS](https://en.wikipedia.org/wiki/Entity_component_system)-lib
  - [Busted](https://olivinelabs.com/busted/) unittesting
  - [LDoc](https://github.com/stevedonovan/LDoc) doc generator (at least I try)
+
+### Thanks to
+ - the LÖVE2D team for this engine
+ - Leafo for Moonscript
+ - Tesselode for Nata
+ - David Chung for the font I'm using
+ 

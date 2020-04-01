@@ -8,6 +8,7 @@ C = require "src.Components"
 Orb = (position) ->
     buildEntity "Orb",
         C.PositionComponent(position),
+        C.CollisionComponent(7),
         C.DespawnComponent(15)
 
 return Orb

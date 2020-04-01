@@ -46,7 +46,6 @@ describe "DespawnSystem", ->
         pool\on("remove", removeSpy)
 
         pool\emit "update", 10-dt
-        print entity.despawnTimer
         --assert.equals 0, #pool.groups.despawn.entities
         assert.spy(removeSpy).was.called()
         assert.spy(removeSpy).was.called_with(entity)
