@@ -15,7 +15,8 @@ BigEnemy = (position, angle=0) ->
         C.CollisionComponent 30,
         C.ShootComponent(ExplodingBullet, 6),
         C.DespawnComponent!,
-        C.TargetComponent!
+        C.TargetComponent!,
+        C.EnemyAI(120, 10, 60, 60, 30)
 
 
 

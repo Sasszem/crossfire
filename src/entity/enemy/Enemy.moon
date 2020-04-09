@@ -15,7 +15,8 @@ Enemy = (position, angle=0) ->
         C.CollisionComponent 30,
         C.ShootComponent(Bullet, 3),
         C.DespawnComponent!,
-        C.TargetComponent!
+        C.TargetComponent!,
+        C.EnemyAI(200, 20, 90, 70, 20)
 
 
 

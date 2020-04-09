@@ -51,9 +51,7 @@ NataConfig =
         require "src.system.orb.OrbMovement"
         require "src.system.VelocitySystem"
         require "src.system.camera.CameraMovement"
-        require "src.system.enemy.EnemyMovement"
         require "src.system.enemy.EnemyHit"
-        require "src.system.enemy.EnemyAim"
         require "src.system.enemy.EnemySpawner"
         require "src.system.enemy.EnemyDrawer"
         require "src.system.Shoot"
@@ -71,6 +69,7 @@ NataConfig =
         require "src.system.orb.OrbDrawer"
         require "src.system.player.OrbCollect"
         require "src.system.ScoreDrawer"
+        require "src.system.enemy.AI"
     }
 
 return NataConfig
