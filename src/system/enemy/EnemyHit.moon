@@ -7,4 +7,4 @@ class EnemyHit
     hit: (entity) =>
         if @pool.groups.enemy.hasEntity[entity]
             entity.despawnTimer = 0
-            @pool\emit "EnemyDeath", entity.position
+            @pool\emit "EnemyDeath", entity.position, entity.type

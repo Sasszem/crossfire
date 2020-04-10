@@ -46,6 +46,6 @@ describe "EnemyHit", ->
     
     it "should emit an EnemyDeath event", ->
         assert.spy(enemyDeathSpy).was.called(1)
-        assert.spy(enemyDeathSpy).was.called_with(entity.position)
+        assert.spy(enemyDeathSpy).was.called_with(entity.position, entity.type)
         
     

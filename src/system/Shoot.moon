@@ -10,6 +10,9 @@ class Shoot
     update: (dt) =>
         for entity in *@pool.groups.shoot.entities
             with entity
+                if .state!="locked"
+                    .shoot_cooldown = .refire_rate/3
+                    continue
                 .shoot_cooldown -= dt
                 if .shoot_cooldown <= 0 
                     dP = Vec2.fromAngle(.angle, 50)

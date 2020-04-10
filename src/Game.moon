@@ -21,7 +21,7 @@ class Game
         -- Nata Config
         config = NataConfig
         config.data = @
-        config.systems[#config.systems+1] = nata.oop!
+        table.insert(config.systems, 1, nata.oop!)
 
         -- Nata Pool
         @pool = nata.new config
