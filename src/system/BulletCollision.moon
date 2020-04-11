@@ -8,7 +8,7 @@ class BulletCollisionResolver
     -- @param second the second entity 
     collision: (bullet, victim) => 
 
-        if not @pool.groups.bullet.hasEntity[bullet]
+        if bullet.type != "Bullet"
             return
         if not @pool.groups.target.hasEntity[victim]
             return
