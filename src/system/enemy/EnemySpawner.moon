@@ -1,3 +1,5 @@
+Vec2 = require "src.Vec2"
+
 Enemy = require "src.entity.enemy.Enemy"
 BigEnemy = require "src.entity.enemy.BigEnemy"
 
@@ -21,10 +23,14 @@ class EnemySpawner
         @cooldown -= dt
         if @cooldown<=0
             should_have_enemy = math.floor(@pool.data.score / 10) + 1
-            should_have_bigEnemy = math.floor @pool.data.score / 50
+            --should_have_bigEnemy = math.floor @pool.data.score / 50
+            should_have_bigEnemy = 1
+
+            player = @pool.groups.player.entities[1]
+            ofset = Vec2.fromAngle(math.random(360), math.random(100, 150))
 
             if @bigEnemyCount < should_have_bigEnemy
-                bE = BigEnemy!
+                bE = BigEnemy player.position+ofset
                 @pool\queue bE
                 @cooldown = @period
                 @pool\emit "spawn", bE
@@ -32,7 +38,7 @@ class EnemySpawner
                 
                 return
             if @enemyCount < should_have_enemy
-                e = Enemy!
+                e = Enemy player.position + ofset
                 @pool\queue e
                 @cooldown = @period
                 @pool\emit "spawn", e

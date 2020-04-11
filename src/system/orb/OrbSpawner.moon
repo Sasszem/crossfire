@@ -9,7 +9,7 @@ class OrbSpawner
         else
             num = math.random 15
         for i=1,num
-            angle = math.rad math.random 360
-            len = math.random 30
+            angle = math.random 360
+            len = math.random 10
             ofset = Vec2.fromAngle angle, len
             @pool\queue Orb(pos + ofset)

@@ -39,11 +39,13 @@ class EnemyAI
                     -- need to turn away
                     if math.abs(diff\angle!-enemy.angle+180)%360>2*enemy.turntreshold
                         enemy.state = "turn"
+                        enemy.velocity = Vec2(0,0)
                         return
                 else
                     -- need to turn to the player
                     if math.abs(diff\angle!-enemy.angle)%360>2*enemy.turntreshold
                         enemy.state = "turn"
+                        enemy.velocity = Vec2(0,0)
                         return
             
             -- aim logic
@@ -72,7 +74,7 @@ class EnemyAI
                     enemy.velocity = Vec2(0, 0)
                     return
                 else
-                    enemy.velocity = Vec2.fromAngle(enemy.angle, sign(enemy.movetarget-diff\length!)*enemy.movespeed)
+                    enemy.velocity = Vec2.fromAngle(enemy.angle, enemy.movespeed)
             
             -- turn logic
             if enemy.state=="turn"
