@@ -3,6 +3,8 @@ NataConfig = require "src.NataConfig"
 Player = require "src.entity.player.Player"
 Camera = require "src.entity.camera.Camera"
 
+Playfield = require "src.Playfield"
+
 import installEventLogger from require "src.EventLogger"
 
 class Game
@@ -30,6 +32,8 @@ class Game
         @pool\queue @camera
         @pool\flush!
 
+        @playfield = Playfield\new(@)
+
         @paused = false
         @debugDraw = false
 
@@ -41,6 +45,9 @@ class Game
     draw: () =>
         love.graphics.push!
         love.graphics.translate -@camera.position.x + @w/2, -@camera.position.y + @h/2
+        
+        @playfield\draw!
+
         @pool\emit "draw"
         if @debugDraw
             @pool\emit "debugDraw"
@@ -56,3 +63,5 @@ class Game
                 self\update(0.001, true)
         if key=="d" and not rep
             @debugDraw = not @debugDraw
+
+return Game

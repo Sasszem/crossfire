@@ -1,3 +1,5 @@
+require("src.utils")
+
 buildEntity = require "src.entity.buildEntity"
 C = require "src.Components"
 
@@ -14,7 +16,7 @@ ShockWave = (position) ->
                 @age += dt
                 @collision_radius = 1000*@age
             draw: =>
-                love.graphics.setColor { 1, 1, 1, 0.5}
+                love.graphics.setColor(rgb(255, 255, 255, 128))
                 love.graphics.circle "line", @position.x, @position.y, @collision_radius
         }
 

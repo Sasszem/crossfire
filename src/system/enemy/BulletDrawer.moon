@@ -1,10 +1,8 @@
-
-rgb = (r, g, b, a=255) ->
-    {r/255, g/255, b/255, a/255}
+require "src.utils"
 
 class BulletDrawer
     draw: =>
-        love.graphics.setColor {153/255, 0/255, 0/255}
+        love.graphics.setColor(rgb(153, 0, 0))
         for e in *@pool.groups.bullet.entities
             if e.type=="Bullet"
                 love.graphics.circle "fill", e.position.x, e.position.y, 10

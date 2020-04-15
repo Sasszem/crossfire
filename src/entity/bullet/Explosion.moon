@@ -1,3 +1,5 @@
+require("src.utils")
+
 buildEntity = require "src.entity.buildEntity"
 C = require "src.Components"
 
@@ -16,7 +18,7 @@ Explosion = (position, parent) ->
                 @age += dt
                 @collision_radius = 100*@age
             draw: =>
-                love.graphics.setColor { 1, 0.3, 0.3, 0.5}
+                love.graphics.setColor(rgb(255, 76, 76, 128))
                 love.graphics.setLineWidth 3
                 love.graphics.circle "line", @position.x, @position.y, @collision_radius
         }

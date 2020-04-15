@@ -1,3 +1,5 @@
+require "src.utils"
+
 Vec2 = require "src.Vec2"
 
 Enemy = require "src.entity.enemy.Enemy"
@@ -57,16 +59,16 @@ class EnemySpawner
         -- move target circles
         p = @pool.groups.player.entities[1]
         love.graphics.setLineWidth 2
-        love.graphics.setColor {1,1,1}
+        love.graphics.setColor(rgb(255, 255, 255))
         love.graphics.circle "line", p.position.x, p.position.y, eMt-eT
         love.graphics.circle "line", p.position.x, p.position.y, eMt+eT
-        love.graphics.setColor {0, 1, 0}
+        love.graphics.setColor(rgb(0, 255, 0))
         love.graphics.circle "line", p.position.x, p.position.y, bMt-bT
         love.graphics.circle "line", p.position.x, p.position.y, bMt+bT
 
         
         -- enemy states
-        love.graphics.setColor {1,1,1}
+        love.graphics.setColor(rgb(255, 255, 255))
         for en in *@pool.groups.enemy.entities
             love.graphics.print en.state, en.position.x, en.position.y
         

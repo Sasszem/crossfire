@@ -1,6 +1,7 @@
 --- BigEnemyes shoot @{src.entity.bullet.ExplodingBullet}s at the @{src.entity.player.Player}
 -- @classmod src.entity.enemy.BigEnemy
 
+require "src.utils"
 
 buildEntity = require "src.entity.buildEntity"
 C = require "src.Components"
@@ -21,7 +22,7 @@ BigEnemy = (position, angle=0) ->
         C.EnemyAI(120, 10, 60, 60, 30),
         {
             draw: () =>
-                love.graphics.setColor {255/255, 102/255, 0/255}
+                love.graphics.setColor(rgb(255, 102, 0))
                 love.graphics.circle "fill", @position.x, @position.y, 35
                 v = Vec2.fromAngle @angle, 50
                 love.graphics.setLineWidth 15
