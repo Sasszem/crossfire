@@ -120,9 +120,9 @@ build = ->
     recursive_delete "./build/", {}, ".*%.moon$"
 
 test = ->
-    build!
-    run_command "cd build && busted . -c"
-    run_command "cd build && luacov"
+    --build!
+    --run_command "cd build && busted . -c"
+    --run_command "cd build && luacov"
 
 package = ->
     build!

@@ -1,4 +1,4 @@
-nata = require "lib.nata"
+nata = require "lib.nata.nata"
 NataConfig = require "src.NataConfig"
 DespawnSystem = require "src.system.DespawnSystem"
 

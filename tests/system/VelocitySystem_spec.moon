@@ -1,4 +1,4 @@
-nata = require "lib.nata"
+nata = require "lib.nata.nata"
 NataConfig = require "src.NataConfig"
 VelocitySystem = require "src.system.VelocitySystem"
 Vec2 = require "src.Vec2"

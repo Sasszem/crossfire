@@ -1,4 +1,4 @@
-nata = require "lib.nata"
+nata = require "lib.nata.nata"
 NataConfig = require "src.NataConfig"
 Shoot = require "src.system.Shoot"
 Enemy = require "src.entity.enemy.Enemy"

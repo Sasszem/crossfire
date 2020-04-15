@@ -1,4 +1,4 @@
-nata = require "lib.nata"
+nata = require "lib.nata.nata"
 NataConfig = require "src.NataConfig"
 OrbMovement = require "src.system.orb.OrbMovement"
 Orb = require "src.entity.orb.Orb"

@@ -1,0 +1,3 @@
+[submodule "lib/nata"]
+	path = lib/nata
+	url = https://github.com/tesselode/nata

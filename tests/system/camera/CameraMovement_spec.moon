@@ -1,4 +1,4 @@
-nata = require "lib.nata"
+nata = require "lib.nata.nata"
 NataConfig = require "src.NataConfig"
 CameraMovement = require "src.system.camera.CameraMovement"
 Camera = require "src.entity.camera.Camera"
