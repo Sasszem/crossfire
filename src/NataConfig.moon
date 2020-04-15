@@ -71,6 +71,7 @@ NataConfig =
         require "src.system.player.OrbCollect"
         require "src.system.ScoreDrawer"
         require "src.system.enemy.AI"
+        require "src.system.orb.Powerup"
     }
 
 return NataConfig

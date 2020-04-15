@@ -136,7 +136,7 @@ love = ->
 clean = ->
     run_command "rm -rf build game.love"
     run_command "rm -rf src/Components.moon"
-    recursive_delete ".", {"/lib/", "lint_config%.lua", "main%.lua"}, ".*%.lua$"
+    recursive_delete ".", {"/lib/", "lint_config%.lua", "main%.lua", "/src/"}, ".*%.lua$"
     recursive_delete ".", {}, "luacov%..*%.out$"
 
 lint = ->

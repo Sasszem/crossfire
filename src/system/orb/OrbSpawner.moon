@@ -1,5 +1,6 @@
 Orb = require "src.entity.orb.Orb"
 Vec2 = require "src.Vec2"
+Powerup = require "src.entity.orb.Powerup"
 
 class OrbSpawner
     EnemyDeath: (pos, type) =>
@@ -13,3 +14,5 @@ class OrbSpawner
             len = math.random 10
             ofset = Vec2.fromAngle angle, len
             @pool\queue Orb(pos + ofset)
+        if math.random(1,10)==1
+            @pool\queue Powerup(pos)

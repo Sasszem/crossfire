@@ -6,24 +6,12 @@ function love.load()
     game = Game(w, h)
 end
 
-local update = true
-
 function love.update(dt) 
-    if update then
-        game:update(dt)
-    end
+    game:update(dt)
 end
 
 function love.keypressed(key, _, rep)
-    if key=="return" and not rep then
-        update = not update
-        return
-    end
-    if key=="space" then
-        game:update(0.001)
-    else 
-        game:update(0.1)
-    end
+    game:keypressed(key, rep)
 end
 
 function love.draw()

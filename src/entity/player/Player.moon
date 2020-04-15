@@ -16,6 +16,7 @@ Player = (position, angle=0) ->
         C.LivesCounterComponent!,
         {
             state: "Normal"
+            powerupCancel: -1
         }
 
 

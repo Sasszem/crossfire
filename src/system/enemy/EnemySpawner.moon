@@ -52,7 +52,7 @@ class EnemySpawner
             @bigEnemyCount -= 1
 
     -- debug draw
-    draw: =>
+    debugDraw: =>
 
         -- move target circles
         p = @pool.groups.player.entities[1]

@@ -12,6 +12,7 @@ IgnoredEvents = {
     "update"
     "draw"
     "collision"
+    "debugDraw"
 }
 
 -- Create lookup to check if event is ignored
