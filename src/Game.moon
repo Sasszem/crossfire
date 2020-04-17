@@ -1,7 +1,6 @@
 nata = require "lib.nata.nata"
 NataConfig = require "src.NataConfig"
 Player = require "src.entity.player.Player"
-Camera = require "src.entity.camera.Camera"
 
 Playfield = require "src.Playfield"
 HUD = require "src.HUD"
@@ -16,7 +15,6 @@ class Game
 
         -- shared game values & objects
         @score = 0
-        @camera = Camera!
         @player = Player!
         @player.state = "Shield"
 
@@ -30,7 +28,6 @@ class Game
         @pool = nata.new config
         installEventLogger(@pool)
         @pool\queue @player
-        @pool\queue @camera
         @pool\flush!
 
         @playfield = Playfield\new(@)
@@ -46,7 +43,7 @@ class Game
 
     draw: () =>
         love.graphics.push!
-        love.graphics.translate -@camera.position.x + @w/2, -@camera.position.y + @h/2
+        love.graphics.translate -@player.position.x + @w/2, -@player.position.y + @h/2
         
         @playfield\draw!
         @pool\emit "draw"
