@@ -2,7 +2,7 @@
 # Crossfire
 
 ### Introduction
-My goal is to create a game similat to [Crossfire](https://seet.itch.io/crossfire), a bullett-dodging shooting-less shooter for windows.
+My goal is to create a game similar to [Crossfire](https://seet.itch.io/crossfire), a bullett-dodging shooting-less shooter for windows.
 The original game was featured in [The Best Games from GMTK Game Jam 2018](https://www.youtube.com/watch?v=s2ebZXQ_J8Q).
 
 ### Why so much code & complexity?
@@ -14,6 +14,7 @@ My secondary goal is to let this project be kind of enterprise-ready
 - Refactored, re-implemented most of it
 - Went trough multiple OOP -> Functional -> OOP paradigm shifts
 - I track all of the work through github, using issues heavily
+
 So overall I created a few (hopefully) real-life-like issues for myself to deal with, just so I can try dealing with them.
 If my productivity suffered in the process, that only means I learnt a few things.
 
@@ -28,7 +29,7 @@ I feel like I'm not that good of a game designer, but I'll try to do my best to 
 
 ### If you'd want to try it out...
 I do not underestand why would you want, but sure
-You only need Löve2D, version 11.3 to run this, and a precompiled bundle, wihch I currently do not have.
+You only need Löve2D, version 11.3 to run this, and a precompiled bundle from the [releases page](https://github.com/Sasszem/crossfire/releases)
 
 #### To make that bundle yourself
 You need:
