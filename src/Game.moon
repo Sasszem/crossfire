@@ -4,6 +4,7 @@ Player = require "src.entity.player.Player"
 Camera = require "src.entity.camera.Camera"
 
 Playfield = require "src.Playfield"
+HUD = require "src.HUD"
 
 import installEventLogger from require "src.EventLogger"
 
@@ -33,6 +34,7 @@ class Game
         @pool\flush!
 
         @playfield = Playfield\new(@)
+        @hud = HUD\new(@)
 
         @paused = false
         @debugDraw = false
@@ -47,11 +49,14 @@ class Game
         love.graphics.translate -@camera.position.x + @w/2, -@camera.position.y + @h/2
         
         @playfield\draw!
-
         @pool\emit "draw"
         if @debugDraw
             @pool\emit "debugDraw"
         love.graphics.pop!
+        @hud\draw!
+        if @debugDraw
+            @hud\debugDraw!
+
 
     keypressed: (key, rep) =>
         if key=="return" and not rep

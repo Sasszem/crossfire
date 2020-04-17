@@ -59,7 +59,6 @@ NataConfig =
         require "src.system.enemy.ExplosionHit"
         require "src.system.player.PlayerDrawer"
         require "src.system.player.PlayerMovement"
-        require "src.system.FPSDrawer"
         require "src.system.enemy.BulletDrawer"
         require "src.system.player.Shield"
         require "src.system.player.Hit"
@@ -67,7 +66,6 @@ NataConfig =
         require "src.system.orb.OrbSpawner"
         require "src.system.orb.OrbDrawer"
         require "src.system.player.OrbCollect"
-        require "src.system.ScoreDrawer"
         require "src.system.enemy.AI"
         require "src.system.orb.Powerup"
     }

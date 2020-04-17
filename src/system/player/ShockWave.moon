@@ -12,3 +12,7 @@ class ShockWave
 
         -- hit entity
         @pool\emit "hit", victim
+
+        -- despawn Bullets
+        if @pool.groups.bullet.hasEntity[victim]
+            victim.despawnTimer = 0

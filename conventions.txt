@@ -1,0 +1,13 @@
+##################
+# ANGLE NOTATION #
+##################
+
+Angles are all in degrees, except in Lua's builting math functions, as they use rads
+Conversion from / to rads should always happen as close to those functions as possible
+All angles should be cropped to the [0, 360[ range
+
+######################
+# NAMING CONVENTIONS #
+######################
+- all variable names should be camelCase
+- all classes should be in ClassCase

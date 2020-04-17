@@ -3,6 +3,9 @@
     ["./"]: {
       "love"
       "arg"
+      "rgb"
+      "sign"
+      "cropAngle"
     }
     ["./tests/"]: {
       "it"

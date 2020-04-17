@@ -1,17 +1,6 @@
+require "src.utils"
+
 Vec2 = require "src.Vec2"
-
-sign = (num) ->
-    if num>0
-        return 1
-    return -1
-
-crop_angle = (angle) ->
-    x = angle
-    while x<-180
-        x+=360
-    while x>180
-        x-=360
-    return x
 
 class EnemyAI
     update: (dt) =>
@@ -22,7 +11,7 @@ class EnemyAI
             
             -- break locking if need to aim
             if enemy.state=="locked"
-                if math.abs(diff\angle!-enemy.angle)%360>enemy.turntreshold
+                if math.abs(diff\angle!-enemy.angle)>enemy.turntreshold
                     enemy.state = "aim"
                     return
 
@@ -37,13 +26,13 @@ class EnemyAI
                 -- too close or too away?
                 if diff\length! < enemy.movetarget
                     -- need to turn away
-                    if math.abs(diff\angle!-enemy.angle+180)%360>2*enemy.turntreshold
+                    if math.abs(cropAngle(diff\angle!+180)-enemy.angle)>2*enemy.turntreshold
                         enemy.state = "turn"
                         enemy.velocity = Vec2(0,0)
                         return
                 else
                     -- need to turn to the player
-                    if math.abs(diff\angle!-enemy.angle)%360>2*enemy.turntreshold
+                    if math.abs(diff\angle!-enemy.angle)>2*enemy.turntreshold
                         enemy.state = "turn"
                         enemy.velocity = Vec2(0,0)
                         return
@@ -51,20 +40,13 @@ class EnemyAI
             -- aim logic
             if enemy.state=="aim"
                 -- finished aiming
-                if math.abs(enemy.angle - diff\angle!)<10^-2
+                if math.abs(enemy.angle - diff\angle!)<1
                     enemy.state = "locked"
                     return
                 else
-                    -- move it towards the player
-                    enemy.angle += sign((enemy.angle-diff\angle!)%360 - 180) * enemy.turnrate * dt
-                    
-                    -- 'crop' angle value into [-180; 180] interval
-                    -- TODO: refactor this into a function or something
-                    if enemy.angle>180
-                        enemy.angle -= 360
-                    if enemy.angle<-180
-                        enemy.angle += 360
-                    return 
+                    -- aim towards the player
+                    enemy.angle += sign(diff\angle! - enemy.angle) * enemy.turnrate * dt
+                    enemy.angle = cropAngle(enemy.angle)
 
             -- move logic
             if enemy.state=="move"
@@ -83,17 +65,14 @@ class EnemyAI
                     turn_to = diff\angle! + 180
                 else
                     turn_to = diff\angle!
-                turn_to = crop_angle turn_to
+                turn_to = cropAngle(turn_to)
 
                 -- finished turning
                 if math.abs(enemy.angle - turn_to)<enemy.turntreshold
                     enemy.state = "move"
                     return
                 else
-                    -- move it towards the player
-                    enemy.angle += sign((enemy.angle-turn_to)%360 - 180) * enemy.turnrate * dt
-                    
-                    -- 'crop' angle value into [-180; 180] interval
-                    -- TODO: refactor this into a function or something
-                    enemy.angle = crop_angle enemy.angle
+                    -- turn it towards the target
+                    enemy.angle += sign(turn_to - enemy.angle) * enemy.turnrate * dt
+                    enemy.angle = cropAngle(enemy.angle)
                     return 

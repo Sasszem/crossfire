@@ -1,5 +1,8 @@
 --- A simple 2D vector class for computations
 --- @classmod src.Vec2
+
+require "src.utils"
+
 class Vec2
     --- Create and return a new Vec2
     -- @tparam number x the X component of the vector
@@ -43,4 +46,4 @@ class Vec2
     --- Compute the angle of the vector
     -- @treturn number the angle of the vector
     angle: =>
-        math.deg math.atan2(@y, @x)
+        cropAngle(math.deg(math.atan2(@y, @x)))
