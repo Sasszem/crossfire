@@ -43,25 +43,6 @@ NataConfig =
             filter: {'explosion_radius'}
         shoot:
             filter: {'bullet'}
-    systems: {
-        require "src.system.DespawnSystem"
-        require "src.system.CollisionSystem"
-        require "src.system.VelocitySystem"
-        require "src.system.enemy.EnemyHit"
-        require "src.system.enemy.EnemySpawner"
-        require "src.system.Shoot"
-        require "src.system.BulletCollision"
-        require "src.system.enemy.ExplosionSpawner"
-        require "src.system.enemy.ExplosionHit"
-        require "src.system.player.PlayerMovement"
-        require "src.system.player.Shield"
-        require "src.system.player.Hit"
-        require "src.system.player.ShockWave"
-        require "src.system.orb.OrbSpawner"
-        require "src.system.player.OrbCollect"
-        require "src.system.enemy.AI"
-        require "src.system.orb.Powerup"
-        require "src.system.TimeScore"
-    }
+    systems: require "src.AllSystems"
 
 return NataConfig

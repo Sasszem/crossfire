@@ -112,9 +112,35 @@ generate_component_imports = ->
     file_object\write "return Components"
     file_object\close!
 
+generate_system_imports = ->
+    all_lua = capture_command 'cd src/system/ && find . -name "*.lua"'
+    all_moon = capture_command 'cd src/system/ && find . -name "*.moon"'
+
+    file_object = io.open "src/AllSystems.lua", "w"
+    file_object\write "-- AUTO-GENERATED IMPORTS FILE\n"
+    file_object\write "-- GETS DISCARDED EVERY TIME\n"
+    file_object\write "-- AND A NEW ONE IS GENERATED\n"
+    file_object\write "-- DO NOT COMMIT THIS FILE!\n"
+    file_object\write "\n"
+    file_object\write "\n"
+    file_object\write "local AllSystems = {\n"
+
+    for line in magiclines all_lua
+        cn, _ = string.sub(line, 2, -5)\gsub("/", ".")
+        file_object\write "    require(\"src.system"..cn.."\"),\n"
+    
+    for line in magiclines all_moon
+        cn, _ = string.sub(line, 2, -6)\gsub("/", ".")
+        file_object\write "    require(\"src.system"..cn.."\"),\n"
+
+    file_object\write "}\n"
+    file_object\write "\n"
+    file_object\write "return AllSystems\n"
+    file_object\close!
 
 build = ->
     generate_component_imports!
+    generate_system_imports!
     recursive_copy ".", "./build", build_ignore
     run_command "moonc ./build/"
     recursive_delete "./build/", {}, ".*%.moon$"
@@ -136,6 +162,7 @@ love = ->
 clean = ->
     run_command "rm -rf build game.love"
     run_command "rm -rf src/Components.moon"
+    run_command "rm -rf src/AllSystems.lua"
     recursive_delete ".", {"/lib/", "lint_config%.lua", "main%.lua", "/src/"}, ".*%.lua$"
     recursive_delete ".", {}, "luacov%..*%.out$"
 
