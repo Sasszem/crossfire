@@ -11,7 +11,7 @@ class Shoot
         for entity in *@pool.groups.shoot.entities
             with entity
                 if .state!="locked"
-                    .shoot_cooldown = .refire_rate/3
+                    .shoot_cooldown = math.max(.shoot_cooldown, 0.5)
                     continue
                 .shoot_cooldown -= dt
                 if .shoot_cooldown <= 0 

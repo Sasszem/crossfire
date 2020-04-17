@@ -10,16 +10,16 @@ C = require "src.Components"
 
 Bullet = require "src.entity.bullet.Bullet"
 
-Enemy = (position, angle=0) ->
+Enemy = (position, angle=math.random(0, 360)) ->
     buildEntity "Enemy",
         C.PositionComponent position,
         C.VelocityComponent(nil, 30),
         C.DirectionComponent angle,
         C.CollisionComponent 30,
-        C.ShootComponent(Bullet, 3),
+        C.ShootComponent(Bullet, 5),
         C.DespawnComponent!,
         C.TargetComponent!,
-        C.EnemyAI(200, 20, 90, 70, 20),
+        C.EnemyAI(200, 20, 90, 70, 2),
         {
             draw: =>
                 love.graphics.setColor(rgb(255, 204, 0))

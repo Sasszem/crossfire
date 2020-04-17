@@ -6,4 +6,4 @@ class OrbCollect
             return
 
         orb.despawnTimer = 0
-        @pool.data.score += 1
+        @pool.data.score += 5

@@ -18,5 +18,7 @@ class ExplosionSpawner
 
         -- kill bullet
         bullet.despawnTimer = 0
+        -- hit that victim
+        @pool\emit "hit", victim
         @pool\queue Explosion(bullet.position, bullet.parent)
     

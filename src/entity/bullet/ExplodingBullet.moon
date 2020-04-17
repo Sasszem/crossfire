@@ -9,7 +9,7 @@ C = require "src.Components"
 ExplodingBullet = (position, angle=0, parent=nil) ->
     buildEntity "ExplodingBullet",
         C.PositionComponent(position),
-        C.VelocityComponent.fromPolar(angle, 30),
+        C.VelocityComponent.fromPolar(angle, 40),
         C.CollisionComponent(10),
         C.ExplosionComponent(50),
         C.DespawnComponent(10),

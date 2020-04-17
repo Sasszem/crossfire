@@ -10,6 +10,10 @@ class PlayerHit
         if player.state=="Ghost" or player.state=="Buster" 
             return
 
+        if player.hitCooldown > 0
+            return
+
+        player.hitCooldown = 5
         player.lives -= 1
         
         if player.lives == 0

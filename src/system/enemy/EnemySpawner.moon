@@ -24,9 +24,7 @@ class EnemySpawner
     update: (dt) =>
         @cooldown -= dt
         if @cooldown<=0
-            should_have_enemy = math.floor(@pool.data.score / 10) + 1
-            --should_have_bigEnemy = math.floor @pool.data.score / 50
-            should_have_bigEnemy = 1
+            should_have_enemy, should_have_bigEnemy = @\should_have!
 
             player = @pool.groups.player.entities[1]
             ofset = Vec2.fromAngle(math.random(360), math.random(100, 150))
@@ -53,6 +51,11 @@ class EnemySpawner
         if type=="BigEnemy"
             @bigEnemyCount -= 1
 
+    should_have: =>
+        should_have_enemy = math.min(math.floor(@pool.data.score / 30) + 3, 6)
+        should_have_bigEnemy = math.min(math.floor(@pool.data.score / 50), 2)
+        return should_have_enemy, should_have_bigEnemy
+
     -- debug draw
     debugDraw: =>
 
@@ -72,9 +75,8 @@ class EnemySpawner
         for en in *@pool.groups.enemy.entities
             love.graphics.print en.state, en.position.x, en.position.y
         
-        -- TODO: Refactor this into a member function to avoid code duplication!
-        should_have_enemy = math.floor(@pool.data.score / 10) + 1
-        should_have_bigEnemy = math.floor @pool.data.score / 50
+        should_have_enemy, should_have_bigEnemy = @\should_have!
+
         
         -- counts and should-haves
         love.graphics.push!

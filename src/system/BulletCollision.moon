@@ -17,8 +17,8 @@ class BulletCollisionResolver
         if bullet.parent == victim
             return
         
-        -- ignore shield player - bullet collisions
-        if @pool.groups.player.hasEntity[victim] and victim.state == "Shield"
+        -- ignore shield and ghost player - bullet collisions
+        if @pool.groups.player.hasEntity[victim] and ( victim.state == "Shield" or victim.state=="Ghost" )
             return
 
         -- kill bullet

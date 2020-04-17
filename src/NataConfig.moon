@@ -50,7 +50,6 @@ NataConfig =
         require "src.system.enemy.EnemyHit"
         require "src.system.enemy.EnemySpawner"
         require "src.system.Shoot"
-        require "src.system.WallSystem"
         require "src.system.BulletCollision"
         require "src.system.enemy.ExplosionSpawner"
         require "src.system.enemy.ExplosionHit"
@@ -62,6 +61,7 @@ NataConfig =
         require "src.system.player.OrbCollect"
         require "src.system.enemy.AI"
         require "src.system.orb.Powerup"
+        require "src.system.TimeScore"
     }
 
 return NataConfig

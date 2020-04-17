@@ -9,9 +9,9 @@ C = require "src.Components"
 Bullet = (position, angle=0, parent=nil) ->
     buildEntity "Bullet",
         C.PositionComponent(position),
-        C.VelocityComponent.fromPolar(angle, 50),
+        C.VelocityComponent.fromPolar(angle, 40),
         C.CollisionComponent(10),
-        C.DespawnComponent(10),
+        C.DespawnComponent(15),
         C.BulletComponent!,
         {
             :parent

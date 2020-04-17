@@ -10,16 +10,16 @@ Vec2 = require "src.Vec2"
 
 ExplodingBullet = require "src.entity.bullet.ExplodingBullet"
 
-BigEnemy = (position, angle=0) ->
+BigEnemy = (position, angle=math.random(0, 360)) ->
     buildEntity "BigEnemy",
         C.PositionComponent position,
         C.VelocityComponent!,
         C.DirectionComponent angle,
         C.CollisionComponent 30,
-        C.ShootComponent(ExplodingBullet, 6),
+        C.ShootComponent(ExplodingBullet, 7),
         C.DespawnComponent!,
         C.TargetComponent!,
-        C.EnemyAI(120, 10, 60, 60, 30),
+        C.EnemyAI(250, 10, 60, 60, 5),
         {
             draw: () =>
                 love.graphics.setColor(rgb(255, 102, 0))

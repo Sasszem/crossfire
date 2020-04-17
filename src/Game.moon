@@ -5,7 +5,7 @@ Player = require "src.entity.player.Player"
 Playfield = require "src.Playfield"
 HUD = require "src.HUD"
 
-import installEventLogger from require "src.EventLogger"
+--import installEventLogger from require "src.EventLogger"
 
 class Game
     new: (w, h) =>
@@ -16,7 +16,6 @@ class Game
         -- shared game values & objects
         @score = 0
         @player = Player!
-        @player.state = "Shield"
 
 
         -- Nata Config
@@ -26,7 +25,7 @@ class Game
 
         -- Nata Pool
         @pool = nata.new config
-        installEventLogger(@pool)
+        --installEventLogger(@pool)
         @pool\queue @player
         @pool\flush!
 

@@ -16,7 +16,7 @@ ShockWave = (position) ->
                 @age += dt
                 @collision_radius = 1000*@age
             draw: =>
-                love.graphics.setColor(rgb(255, 255, 255, 128))
+                love.graphics.setColor(rgb(255, 255, 255, 128 - @age*200))
                 love.graphics.circle "line", @position.x, @position.y, @collision_radius
         }
 

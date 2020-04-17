@@ -11,14 +11,14 @@ C = require "src.Components"
 colors =
     "Normal": rgb(51, 102, 255)
     "Buster": rgb(255, 204, 0)
-    "Ghost":  rgb(204, 51, 153)
+    "Ghost":  rgb(204, 51, 153, 128)
     "Shield": rgb(102, 255, 51)
 
 Player = (position, angle=0) ->
     buildEntity "Player",
         C.PositionComponent position,
         C.VelocityComponent!,
-        C.CollisionComponent 50,
+        C.CollisionComponent 40,
         C.DirectionComponent!,
         C.DespawnComponent!,
         C.TargetComponent!,
@@ -26,15 +26,20 @@ Player = (position, angle=0) ->
         {
             state: "Normal"
             powerupCancel: -1
+            hitCooldown: 0
             draw: =>
                 love.graphics.setColor(colors[@state])
-                love.graphics.circle("fill", @position.x, @position.y, 50)
-                v = Vec2.fromAngle(@angle, 100)
+                love.graphics.circle("fill", @position.x, @position.y, 40)
+                fromP = @position + Vec2.fromAngle(@angle, 39)
+                toP = @position + Vec2.fromAngle(@angle, 60)
                 love.graphics.setLineWidth(10)
-                love.graphics.line(@position.x, @position.y, @position.x + v.x, @position.y + v.y)
+                love.graphics.line(fromP.x, fromP.y, toP.x, toP.y)
                 if @state=="Shield"
                     love.graphics.setColor(rgb(255, 0, 0))
-                    love.graphics.circle("line", @position.x, @position.y, 50)
+                    love.graphics.circle("line", @position.x, @position.y, 40)
+            update: (dt) =>
+                if @hitCooldown > -1
+                    @hitCooldown -= dt
         }
 
 

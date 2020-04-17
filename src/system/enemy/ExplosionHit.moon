@@ -14,4 +14,7 @@ class ExplosionHit
         if victim==exp.parent
             return
         
+        if victim.type == "Player"
+            return
+        
         @pool\emit "hit", victim

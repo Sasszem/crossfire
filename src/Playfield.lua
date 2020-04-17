@@ -9,16 +9,6 @@ function Playfield:new(game, o)
     return o
 end
 
-local D = 200
-
-function Playfield:drawWalls() 
-    love.graphics.setColor(rgb(255, 0, 102))
-    love.graphics.setLineWidth(10)
-    love.graphics.line( -D, -D, -D,  D )
-    love.graphics.line( -D,  D,  D,  D )
-    love.graphics.line(  D,  D,  D, -D ) 
-    love.graphics.line(  D, -D, -D, -D )
-end
 
 function Playfield:drawBackground()
     local pos = self.game.player.position
@@ -61,7 +51,6 @@ end
 
 function Playfield:draw()
     self:drawBackground()
-    self:drawWalls()
 end
 
 return Playfield
