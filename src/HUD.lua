@@ -11,10 +11,12 @@ function HUD:new(game, o)
 end
 
 function HUD:draw()
+    love.graphics.setColor(rgb(255, 255, 255))
     love.graphics.printf(tostring(self.game.score), font, (self.game.w/2)-50, 10, 100, "center")
 end
 
 function HUD:debugDraw()
+    love.graphics.setColor(rgb(255, 0, 0))
     love.graphics.print("Current FPS: "..tostring(love.timer.getFPS()), 10, 10)
 end
 
