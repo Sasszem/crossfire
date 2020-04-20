@@ -22,7 +22,7 @@ function Powerup:collision(player, powerup)
     if player.state == "Buster" then
         player.collision_radius = 25
     end
-    player.powerupCancel = 15    
+    player.powerupCancel = 30    
     powerup.despawnTimer = 0
 end
 

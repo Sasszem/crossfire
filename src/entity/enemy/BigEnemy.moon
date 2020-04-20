@@ -19,7 +19,7 @@ BigEnemy = (position, angle=math.random(0, 360)) ->
         C.ShootComponent(ExplodingBullet, 7),
         C.DespawnComponent!,
         C.TargetComponent!,
-        C.EnemyAI(250, 10, 60, 60, 5),
+        C.EnemyAI(250, 30, 90, 60, 10),
         {
             draw: () =>
                 love.graphics.setColor(rgb(255, 102, 0))

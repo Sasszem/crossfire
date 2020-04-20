@@ -19,7 +19,7 @@ Enemy = (position, angle=math.random(0, 360)) ->
         C.ShootComponent(Bullet, 5),
         C.DespawnComponent!,
         C.TargetComponent!,
-        C.EnemyAI(200, 20, 90, 70, 2),
+        C.EnemyAI(200, 40, 120, 70, 2),
         {
             draw: =>
                 love.graphics.setColor(rgb(255, 204, 0))

@@ -10,6 +10,6 @@ class PlayerMovement
         for p in *@pool.groups.player.entities
             v = 40
             if p.state == "Buster"
-                v = 60
+                v = 80
             p.velocity = Vec2.fromAngle(angle, v)
             p.angle = angle

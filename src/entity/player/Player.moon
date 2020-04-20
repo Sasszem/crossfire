@@ -35,6 +35,7 @@ Player = (position, angle=0) ->
                 love.graphics.circle("fill", where.x, where.y, 5)
                 if @state=="Shield"
                     love.graphics.setColor(rgb(255, 0, 0))
+                    love.graphics.setLineWidth(3)
                     love.graphics.circle("line", @position.x, @position.y, @collision_radius)
             update: (dt) =>
                 if @hitCooldown > -1

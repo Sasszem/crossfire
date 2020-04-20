@@ -11,7 +11,7 @@ Orb = (position) ->
     buildEntity "Orb",
         C.PositionComponent(position),
         C.CollisionComponent(7),
-        C.DespawnComponent(15),
+        C.DespawnComponent(math.random(10, 20)),
         {
             draw: =>
                 love.graphics.setColor(rgb(255, 255, 255))
