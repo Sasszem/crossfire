@@ -46,3 +46,4 @@ build/*
 *.hex
 
 src/Components.moon
+src/AllSystems.lua

@@ -8,5 +8,8 @@ class PlayerMovement
         mx, my = love.mouse.getPosition!
         angle = (Vec2 mx-@w/2, my-@h/2)\angle!
         for p in *@pool.groups.player.entities
-            p.velocity = Vec2.fromAngle(angle, 40)
+            v = 40
+            if p.state == "Buster"
+                v = 60
+            p.velocity = Vec2.fromAngle(angle, v)
             p.angle = angle

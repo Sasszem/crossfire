@@ -13,17 +13,29 @@ function Powerup:collision(player, powerup)
         return
     end
 
+    if player.state ~= "Normal" then
+        self:revertPowerup(player)
+    end
+
     player.state = powerup.state
+
+    if player.state == "Buster" then
+        player.collision_radius = 25
+    end
     player.powerupCancel = 15    
     powerup.despawnTimer = 0
+end
+
+function Powerup:revertPowerup(player)
+    player.state = "Normal"
+    player.powerupCancel = -1
+    player.collision_radius = 40
 end
 
 function Powerup:update(dt)
     for i, e in ipairs(self.pool.groups.player.entities) do
         if e.powerupCancel <= 0 and e.powerupCancel ~= -1 then
-            e.state = "Normal"
-            e.powerupCancel = -1
-            print("Reverted powerup state")
+            self:revertPowerup(e)
         end
 
         if e.powerupCancel > 0 then

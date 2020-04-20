@@ -19,6 +19,6 @@ Orb = (position) ->
                 love.graphics.setColor(rgb(255, 255, 255, 128))
                 love.graphics.circle "fill", @position.x, @position.y, 7
             update: (dt) =>
-                @position += Vec2(math.random!-0.5, math.random!-0.5)*10*dt
+                @position += Vec2(math.random!-0.5, math.random!-0.5)*50*dt
         }
 return Orb

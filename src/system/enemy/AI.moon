@@ -4,22 +4,22 @@ Vec2 = require "src.Vec2"
 
 class EnemyAI
     update: (dt) =>
+        player = @pool.groups.player.entities[1]
         for enemy in *@pool.groups.enemy.entities
             -- grab the player, also the difference vector to it
-            player = @pool.groups.player.entities[1]
             diff = player.position - enemy.position
             
             -- break locking if need to aim
             if enemy.state=="locked"
                 if math.abs(diff\angle!-enemy.angle)>enemy.turntreshold
                     enemy.state = "aim"
-                    return
+                    continue
 
             -- if need to move
             if enemy.state=="aim" or enemy.state=="locked"
                 if math.abs(diff\length!-enemy.movetarget)>enemy.movetreshold
                     enemy.state = "move"
-                    return
+                    continue
 
             -- if need to turn
             if enemy.state=="move"
@@ -29,20 +29,20 @@ class EnemyAI
                     if math.abs(cropAngle(diff\angle!+180)-enemy.angle)>2*enemy.turntreshold
                         enemy.state = "turn"
                         enemy.velocity = Vec2(0,0)
-                        return
+                        continue
                 else
                     -- need to turn to the player
                     if math.abs(diff\angle!-enemy.angle)>2*enemy.turntreshold
                         enemy.state = "turn"
                         enemy.velocity = Vec2(0,0)
-                        return
+                        continue
             
             -- aim logic
             if enemy.state=="aim"
                 -- finished aiming
                 if math.abs(enemy.angle - diff\angle!)<1
                     enemy.state = "locked"
-                    return
+                    continue
                 else
                     -- aim towards the player
                     enemy.angle += sign(diff\angle! - enemy.angle) * enemy.turnrate * dt
@@ -54,7 +54,7 @@ class EnemyAI
                 if math.abs(diff\length!-enemy.movetarget)<1
                     enemy.state="aim"
                     enemy.velocity = Vec2(0, 0)
-                    return
+                    continue
                 else
                     enemy.velocity = Vec2.fromAngle(enemy.angle, enemy.movespeed)
             
@@ -70,9 +70,9 @@ class EnemyAI
                 -- finished turning
                 if math.abs(enemy.angle - turn_to)<enemy.turntreshold
                     enemy.state = "move"
-                    return
+                    continue
                 else
                     -- turn it towards the target
                     enemy.angle += sign(turn_to - enemy.angle) * enemy.turnrate * dt
                     enemy.angle = cropAngle(enemy.angle)
-                    return 
+                    continue 

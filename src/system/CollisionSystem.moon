@@ -9,6 +9,9 @@ class CollisionSystem
             for other in *@pool.groups.collision.entities
                 if other == entity
                     continue
+                if other.collision_radius==0 or entity.collision_radius==0
+                    continue
+
                 distance = (entity.position - other.position)\length!
                 if distance <= entity.collision_radius + other.collision_radius
                     @pool\emit "collision", entity, other
