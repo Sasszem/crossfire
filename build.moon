@@ -114,7 +114,6 @@ generate_component_imports = ->
 
 generate_system_imports = ->
     all_lua = capture_command 'cd src/system/ && find . -name "*.lua"'
-    all_moon = capture_command 'cd src/system/ && find . -name "*.moon"'
 
     file_object = io.open "src/AllSystems.lua", "w"
     file_object\write "-- AUTO-GENERATED IMPORTS FILE\n"
@@ -129,10 +128,6 @@ generate_system_imports = ->
         cn, _ = string.sub(line, 2, -5)\gsub("/", ".")
         file_object\write "    require(\"src.system"..cn.."\"),\n"
     
-    for line in magiclines all_moon
-        cn, _ = string.sub(line, 2, -6)\gsub("/", ".")
-        file_object\write "    require(\"src.system"..cn.."\"),\n"
-
     file_object\write "}\n"
     file_object\write "\n"
     file_object\write "return AllSystems\n"

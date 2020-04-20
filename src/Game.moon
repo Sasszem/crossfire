@@ -53,6 +53,7 @@ class Game
     update: (dt, force = false) =>
         if not @paused or force
             @pool\emit "update", dt
+        @pool\flush!
 
 
     draw: () =>
