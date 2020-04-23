@@ -1,7 +1,7 @@
 local Wall = {}
 
 function Wall:init()
-    self.size = 400
+    self.size = self.pool.data.config.wallSize
 end
 
 function Wall:update(dt)
@@ -14,8 +14,6 @@ function Wall:update(dt)
             if ent.collision_radius then
                 s = s - ent.collision_radius
             end
-
-            ent.wallCollision = (math.abs(ent.position.x)>=s) or (math.abs(ent.position.y)>=s)
             
             if not self.pool.groups.bullet.hasEntity[ent] then
                 x = math.min(x, s)
@@ -24,6 +22,31 @@ function Wall:update(dt)
                 y = math.max(y, -s)
                 ent.position.x = x
                 ent.position.y = y
+            else
+                local set = false
+                if ent.position.x > s then
+                    ent.velocity.x = -math.abs(ent.velocity.x)
+                    set = true
+                end
+                if ent.position.x < -s then
+                    ent.velocity.x = math.abs(ent.velocity.x)
+                    set = true
+                end
+
+                if ent.position.y > s then
+                    ent.velocity.y = -math.abs(ent.velocity.y)
+                    set = true
+                end
+                if ent.position.y < -s then
+                    ent.velocity.y = math.abs(ent.velocity.y)
+                    set = true
+                end
+
+                if set then
+                    ent.position = ent.position + ent.velocity * 0.01
+                    ent.despawnTimer = math.min(ent.despawnTimer + 5, 15)
+                    ent.parent = nil
+                end
             end
         end
     end

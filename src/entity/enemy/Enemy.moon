@@ -21,12 +21,38 @@ Enemy = (position, angle=math.random(0, 360)) ->
         C.TargetComponent!,
         C.EnemyAI(200, 40, 120, 70, 2),
         {
+            age: 0
             draw: =>
-                love.graphics.setColor(rgb(255, 204, 0))
+                primary_color = rgb(255, 204, 0)
+                secondary_color = rgb(230, 180, 0)
+
+                if @age<0.2
+                    t = @age * 5
+                    primary_color = rgb(255, 255-51*t, 255-255*t)
+
+                if @despawnTimer != -1
+                    t = @despawnTimer * 5
+                    primary_color = rgb(255, 204*t, 0)
+
+                love.graphics.setColor(primary_color)
+                love.graphics.setLineWidth(1)
                 love.graphics.circle("fill", @position.x, @position.y, 30)
-                v = Vec2.fromAngle(@angle, 50)
+                love.graphics.setColor(secondary_color)
+                --love.graphics.setColor(rgb(204, 102, 0))
+                love.graphics.circle("line", @position.x, @position.y, 30)
+                
+                fr = @position + Vec2.fromAngle(@angle, 30)
+                to = @position + Vec2.fromAngle(@angle, 50)
                 love.graphics.setLineWidth(10)
-                love.graphics.line(@position.x, @position.y, @position.x + v.x, @position.y + v.y)
+                love.graphics.line(fr.x, fr.y, to.x, to.y)
+                
+                fr = @position + Vec2.fromAngle(@angle, 29)
+                to = @position + Vec2.fromAngle(@angle, 49)
+                love.graphics.setLineWidth(8)
+                love.graphics.setColor(primary_color)
+                love.graphics.line(fr.x, fr.y, to.x, to.y)
+            update: (dt) =>
+                @age += dt
         }
 
 

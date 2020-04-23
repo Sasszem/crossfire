@@ -15,6 +15,10 @@ local bT = b.movetreshold
 
 local EnemySpawner = {}
 
+local function outside(pos, D)
+    return math.abs(pos.x)>=D or math.abs(pos.y)>=D
+end
+
 function EnemySpawner:init()
     self.enemyCount = 0
     self.bigEnemyCount = 0
@@ -27,11 +31,16 @@ function EnemySpawner:update(dt)
     if self.cooldown <= 0 then
         local should_have_enemy, should_have_bigEnemy = self:should_have()
 
-        player = self.pool.groups.player.entities[1]
-        ofset = Vec2.fromAngle(math.random(360), math.random(100, 150))
+        local player = self.pool.groups.player.entities[1]
+        local ofset = nil
+        while not ofset or outside(player.position + ofset, self.pool.data.config.wallSize) do
+            ofset = Vec2.fromAngle(math.random(360), math.random(100, 150))
+        end
+
+        local spawnPos = player.position+ofset, self.pool.data.config.wallSize
 
         if self.bigEnemyCount < should_have_bigEnemy then
-            local bE = BigEnemy(player.position+ofset)
+            local bE = BigEnemy(spawnPos)
             self.pool:queue(bE)
             self.cooldown = self.period
             self.pool:emit("spawn", bE)
@@ -40,7 +49,7 @@ function EnemySpawner:update(dt)
         end
 
         if self.enemyCount < should_have_enemy then
-            local e = Enemy(player.position + ofset)
+            local e = Enemy(spawnPos)
             self.pool:queue(e)
             self.cooldown = self.period
             self.pool:emit("spawn", e)

@@ -13,12 +13,16 @@ Orb = (position) ->
         C.CollisionComponent(7),
         C.DespawnComponent(math.random(10, 20)),
         {
+            age: 0
             draw: =>
+                if @age < 0.2
+                    return
                 love.graphics.setColor(rgb(255, 255, 255))
                 love.graphics.circle "fill", @position.x, @position.y, 5
                 love.graphics.setColor(rgb(255, 255, 255, 128))
                 love.graphics.circle "fill", @position.x, @position.y, 7
             update: (dt) =>
                 @position += Vec2(math.random!-0.5, math.random!-0.5)*50*dt
+                @age += dt
         }
 return Orb

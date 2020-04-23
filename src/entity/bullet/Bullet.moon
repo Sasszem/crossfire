@@ -23,8 +23,6 @@ Bullet = (position, angle=0, parent=nil) ->
                 love.graphics.circle("fill", @position.x, @position.y, 10-5*t)        
 
             update: (dt) =>
-                if @wallCollision
-                    @despawnTimer = math.min(1, @despawnTimer)
                 if @despawnTimer <= 1
                     @collision_radius = 0
         }

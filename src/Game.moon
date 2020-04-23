@@ -4,8 +4,10 @@ Player = require "src.entity.player.Player"
 
 Playfield = require "src.Playfield"
 HUD = require "src.HUD"
+config = require "src.config"
 
 DEBUG = true
+LOG = false
 
 local installEventLogger
 local ShockWave
@@ -14,7 +16,9 @@ local BigEnemy
 local Vec2
 
 if DEBUG
-    import installEventLogger from require "src.EventLogger"
+    if LOG
+        import installEventLogger from require "src.EventLogger"
+    
     ShockWave = require "src.entity.player.ShockWave"
     Enemy = require "src.entity.enemy.Enemy"
     BigEnemy = require "src.entity.enemy.BigEnemy"
@@ -26,6 +30,8 @@ class Game
         -- screen dimensions
         @w = w
         @h = h
+
+        @config = config
 
         -- shared game values & objects
         @score = 0
@@ -39,7 +45,7 @@ class Game
 
         -- Nata Pool
         @pool = nata.new config
-        if DEBUG
+        if LOG
             installEventLogger(@pool)
         @pool\queue @player
         @pool\flush!
@@ -98,5 +104,7 @@ class Game
                 if (e.position-m)\length! <= e.collision_radius
                     if e!=@player
                         e.despawnTimer = 0
+                    if @pool.groups.enemy.hasEntity[e]
+                        e.despawnTimer = 0.2
 
 return Game
