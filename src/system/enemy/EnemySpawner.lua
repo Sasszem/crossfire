@@ -5,14 +5,6 @@ local Vec2 = require "src.Vec2"
 local Enemy = require "src.entity.enemy.Enemy"
 local BigEnemy = require "src.entity.enemy.BigEnemy"
 
--- TODO: Refactor this
-local e = Enemy()
-local eMt = e.movetarget
-local eT = e.movetreshold
-local b = BigEnemy()
-local bMt = b.movetarget
-local bT = b.movetreshold
-
 local EnemySpawner = {}
 
 local function outside(pos, D)
@@ -34,7 +26,11 @@ function EnemySpawner:update(dt)
         local player = self.pool.groups.player.entities[1]
         local ofset = nil
         while not ofset or outside(player.position + ofset, self.pool.data.config.wallSize) do
-            ofset = Vec2.fromAngle(math.random(360), math.random(100, 150))
+            if player.state=="Buster" then
+                ofset = Vec2.fromAngle(math.random(360), math.random(150, 250))
+            else
+                ofset = Vec2.fromAngle(math.random(360), math.random(100, 150))
+            end
         end
 
         local spawnPos = player.position+ofset, self.pool.data.config.wallSize
@@ -43,8 +39,6 @@ function EnemySpawner:update(dt)
             local bE = BigEnemy(spawnPos)
             self.pool:queue(bE)
             self.cooldown = self.period
-            self.pool:emit("spawn", bE)
-            self.bigEnemyCount = self.bigEnemyCount + 1
             return
         end
 
@@ -52,26 +46,44 @@ function EnemySpawner:update(dt)
             local e = Enemy(spawnPos)
             self.pool:queue(e)
             self.cooldown = self.period
-            self.pool:emit("spawn", e)
-            self.enemyCount = self.enemyCount + 1
             return
         end
     end
 end
 
-function EnemySpawner:EnemyDeath(pos, type)
-    if type=="Enemy" then
+function EnemySpawner:addToGroup(group, e)
+    if group~="enemy" then
+        return
+    end
+
+    if e.type=="Enemy" then
+        self.enemyCount = self.enemyCount + 1
+    end
+    if e.type == "BigEnemy" then
+        self.bigEnemyCount = self.bigEnemyCount + 1
+    end
+end
+
+
+function EnemySpawner:removeFromGroup(group, e)
+    if group~="enemy" then
+        return
+    end
+
+    if e.type=="Enemy" then
         self.enemyCount = self.enemyCount - 1
     end
-    if type == "BigEnemy" then
+    if e.type == "BigEnemy" then
         self.bigEnemyCount = self.bigEnemyCount - 1
     end
 end
 
 
 function EnemySpawner:should_have()
-    should_have_enemy = math.min(math.floor(self.pool.data.score / 30) + 3, 6)
-    should_have_bigEnemy = math.min(math.floor(self.pool.data.score / 50), 2)
+    local max_enemy = 6 + math.floor(self.pool.data.score / 1000)
+    local max_bigEnemy = 2 + math.floor(self.pool.data.score / 1500)
+    should_have_enemy = math.min(math.floor(self.pool.data.score / 30) + 3, max_enemy)
+    should_have_bigEnemy = math.min(math.floor(self.pool.data.score / 50), max_bigEnemy)
     return should_have_enemy, should_have_bigEnemy
 end
 
@@ -79,6 +91,14 @@ end
 
 -- debug draw
 function EnemySpawner:debugDraw()
+    -- grab some constants
+    local e = Enemy()
+    local eMt = e.movetarget
+    local eT = e.movetreshold
+    local b = BigEnemy()
+    local bMt = b.movetarget
+    local bT = b.movetreshold
+
     -- move target circles
     local p = self.pool.groups.player.entities[1]
     love.graphics.setLineWidth(2)

@@ -33,7 +33,11 @@ end
 function HUD:draw()
     love.graphics.setColor(rgb(255, 255, 255))
     love.graphics.printf(tostring(self.game.score), self.font_50, (self.game.w/2)-100, 10, 200, "center")
-    love.graphics.printf(tostring(self.game.player.lives).." lives", self.font_20, (self.game.w)-120, 20, 120, "left")
+    local livesText = tostring(self.game.player.lives).." lives"
+    if self.game.player.lives==1 then
+        livesText = "1 life"
+    end
+    love.graphics.printf(livesText, self.font_20, (self.game.w)-140, 20, 120, "right")
     self:drawPowerupTimer()
 end
 

@@ -11,7 +11,7 @@ function PlayerMovement:update(dt)
     local mx, my = love.mouse.getPosition()
     local angle = Vec2(mx-self.w/2, my-self.h/2):angle()
     for _, p in ipairs(self.pool.groups.player.entities) do
-        local v = 40
+        local v = 45
         if p.state == "Buster" then
             v = 80
         end

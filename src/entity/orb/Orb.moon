@@ -18,9 +18,12 @@ Orb = (position) ->
                 if @age < 0.2
                     return
                 love.graphics.setColor(rgb(255, 255, 255))
+                love.graphics.setLineWidth(1)
                 love.graphics.circle "fill", @position.x, @position.y, 5
+                love.graphics.circle "line", @position.x, @position.y, 5
                 love.graphics.setColor(rgb(255, 255, 255, 128))
                 love.graphics.circle "fill", @position.x, @position.y, 7
+                love.graphics.circle "line", @position.x, @position.y, 7
             update: (dt) =>
                 @position += Vec2(math.random!-0.5, math.random!-0.5)*50*dt
                 @age += dt

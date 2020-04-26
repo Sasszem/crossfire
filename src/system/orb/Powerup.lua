@@ -13,6 +13,12 @@ function Powerup:collision(player, powerup)
         return
     end
 
+    if powerup.state == "Life" then
+        player.lives = player.lives + 1
+        powerup.despawnTimer = 0
+        return
+    end
+
     if player.state ~= "Normal" then
         self:revertPowerup(player)
     end

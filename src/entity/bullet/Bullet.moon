@@ -15,12 +15,15 @@ Bullet = (position, angle=0, parent=nil) ->
         C.BulletComponent!,
         {
             :parent
+            drawLayer: 1
             draw: =>
                 t = 0
                 if @despawnTimer <= 1
                     t = 1 - @despawnTimer
                 love.graphics.setColor(rgb(153+t*102, 255*t, 255*t, 255-255*t))
-                love.graphics.circle("fill", @position.x, @position.y, 10-5*t)        
+                love.graphics.circle("fill", @position.x, @position.y, 10-5*t)
+                love.graphics.setLineWidth(1)
+                love.graphics.circle("line", @position.x, @position.y, 10-5*t)
 
             update: (dt) =>
                 if @despawnTimer <= 1

@@ -23,6 +23,9 @@ function EnemyAI:stateTransitions(enemy, player, diff)
     -- if need to move
     if enemy.state=="aim" or enemy.state=="locked" then
         if math.abs(diff:length()-mt)>enemy.movetreshold then
+            if mt-diff:length() > enemy.movetreshold and enemy.wallTouch then
+                return
+            end
             enemy.state = "move"
             return
         end
@@ -83,7 +86,7 @@ function EnemyAI:moveState(enemy, player, diff, dt)
     end
 
     -- finished moving
-    if math.abs(diff:length()-mt)<1 then
+    if math.abs(diff:length()-mt)<1 or (diff:length()<mt and enemy.wallTouch) then
         enemy.state="aim"
         enemy.velocity = Vec2(0, 0)
         return

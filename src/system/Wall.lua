@@ -15,6 +15,8 @@ function Wall:update(dt)
                 s = s - ent.collision_radius
             end
             
+            ent.wallTouch = math.abs(ent.position.x)>=s or math.abs(ent.position.y)>=s
+
             if not self.pool.groups.bullet.hasEntity[ent] then
                 x = math.min(x, s)
                 x = math.max(x, -s)

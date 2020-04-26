@@ -1,6 +1,8 @@
 --- Nata ECS configuration
 --- @module src.NataConfig
 
+nata = require "lib.nata.nata"
+
 --- A class-based filter factory. Can filter subclasses if their name contains the superclasses name
 -- @tparam string filter the name of the class to filter
 -- @treturn function a filter function matching classes with given name
@@ -14,11 +16,30 @@ classFilter = (filter) ->
     (entity) -> 
         entity.type == filter
 
+loadedSystems = require "src.AllSystems"
+
+systems = {}
+for i, s in ipairs(loadedSystems)
+    systems[#systems + 1] = s
+
+systems[#systems + 1] = nata.oop({
+    include: {"draw"}
+    group: "draw"
+})
+
+systems[#systems + 1] = nata.oop({
+    exclude: {"draw"}
+})
+
 --- Nata groups and systems configuration 
 -- @table NataConfig
 NataConfig = 
-    groups: 
+    groups:
         all:  {},
+        draw:
+            filter: {'draw'}
+            sort: (a, b) ->
+                ((a.drawLayer or 0) < (b.drawLayer or 0)) and ((a.age or 0) < (b.age or 0))
         position:
             filter: {'position'}
         velocity: 
@@ -43,6 +64,6 @@ NataConfig =
             filter: {'explosion_radius'}
         shoot:
             filter: {'bullet'}
-    systems: require "src.AllSystems"
+    :systems
 
 return NataConfig
