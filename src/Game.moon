@@ -56,7 +56,30 @@ class Game
         @paused = false
         @debugDraw = false
 
+        @slowdown = false
+        @slowdownFactor = 1
+        @slowdownTime = 5
+        @slowdownFlag = false
+
     update: (dt, force = false) =>
+        -- enter slowdown
+        if love.mouse.isDown(1, 2, 3) and not @slowdown and @slowdownTime > 1 and not @slowdownFlag
+            @slowdown = true
+        -- quit slowdown
+        if @slowdown and (not love.mouse.isDown(1, 2, 3) or @slowdownTime<=0)
+            @slowdown = false
+            if @slowdownTime<=0
+                @slowdownFlag = true
+
+        if @slowdown
+            @slowdownFactor = math.max(0.3, @slowdownFactor - dt*1.5)
+            @slowdownTime = @slowdownTime - dt
+        else
+            @slowdownFactor = math.min(1, @slowdownFactor + dt*2.5)
+            @slowdownTime = math.min(@slowdownTime + dt, 5)
+        
+        dt = dt * @slowdownFactor
+        
         if not @paused or force
             @pool\emit "update", dt
         @pool\flush!
@@ -90,21 +113,25 @@ class Game
             @debugDraw = not @debugDraw
         if key=="w" and DEBUG 
             @pool\queue ShockWave @player.position
+
+        if DEBUG and (key=="1" or key=="2" or key=="x") 
+            x, y = love.mouse.getPosition()
+            sx, sy = @\screenToWorld(x, y)
+            if key=="1"
+                @pool\queue(Enemy(Vec2(sx, sy)))
+            if key=="2"
+                @pool\queue(BigEnemy(Vec2(sx, sy)))
+            if key=="x"
+                m = Vec2(sx, sy)
+                for e in *@pool.groups.collision.entities
+                    if (e.position-m)\length! <= e.collision_radius
+                        if e!=@player
+                            e.despawnTimer = 0
+                        if @pool.groups.enemy.hasEntity[e]
+                            e.despawnTimer = 0.2
     mousepressed: ( x, y, button, istouch, presses ) =>
-        if not DEBUG
-            return
-        sx, sy = @\screenToWorld(x, y)
-        if button==1
-            @pool\queue(Enemy(Vec2(sx, sy)))
-        if button==2
-            @pool\queue(BigEnemy(Vec2(sx, sy)))
-        if button==3
-            m = Vec2(sx, sy)
-            for e in *@pool.groups.collision.entities
-                if (e.position-m)\length! <= e.collision_radius
-                    if e!=@player
-                        e.despawnTimer = 0
-                    if @pool.groups.enemy.hasEntity[e]
-                        e.despawnTimer = 0.2
+        return
+    mousereleased: (x, y, button, istouch, presses) =>
+        @slowdownFlag = false    
 
 return Game

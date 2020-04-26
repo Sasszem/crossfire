@@ -27,17 +27,21 @@ Player = (position, angle=0) ->
             state: "Normal"
             powerupCancel: -1
             hitCooldown: 0
+            drawLayer: 5
             draw: =>
-                love.graphics.setColor(colors[@state])
+                fadeFactor = math.min((5 - @hitCooldown)/4, 1)
+                if fadeFactor < 0.2
+                    fadeFactor = 0
+                love.graphics.setColor(fade(colors[@state], fadeFactor))
                 love.graphics.setLineWidth(1)
                 love.graphics.circle("fill", @position.x, @position.y, @collision_radius)
                 love.graphics.circle("line", @position.x, @position.y, @collision_radius)
                 where = @position + Vec2.fromAngle(@angle, @collision_radius - 10)
-                love.graphics.setColor(rgb(0,0,0))
+                love.graphics.setColor(fade(rgb(0,0,0), fadeFactor))
                 love.graphics.circle("fill", where.x, where.y, 5)
                 love.graphics.circle("line", where.x, where.y, 5)
                 if @state=="Shield"
-                    love.graphics.setColor(rgb(255, 0, 0))
+                    love.graphics.setColor(fade(rgb(255, 0, 0), fadeFactor))
                     love.graphics.setLineWidth(3)
                     love.graphics.circle("line", @position.x, @position.y, @collision_radius)
             update: (dt) =>

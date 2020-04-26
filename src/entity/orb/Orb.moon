@@ -7,13 +7,12 @@ buildEntity = require "src.entity.buildEntity"
 C = require "src.Components"
 
 
-Orb = (position) ->
+Orb = (position, score = 0) ->
     buildEntity "Orb",
         C.PositionComponent(position),
         C.CollisionComponent(7),
-        C.DespawnComponent(math.random(10, 20)),
+        C.DespawnComponent(math.random(math.max(5, 10-math.floor(score / 500)), math.max(10, 20-math.floor(score / 500)))),
         {
-            age: 0
             draw: =>
                 if @age < 0.2
                     return
@@ -26,6 +25,5 @@ Orb = (position) ->
                 love.graphics.circle "line", @position.x, @position.y, 7
             update: (dt) =>
                 @position += Vec2(math.random!-0.5, math.random!-0.5)*50*dt
-                @age += dt
         }
 return Orb

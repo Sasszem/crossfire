@@ -19,13 +19,14 @@ local secondaryColors = {
     Life =      rgb(0, 51, 0),
 }
 
-local function Powerup(position)
+local function Powerup(position, score)
     return buildEntity("Powerup",
         C.PositionComponent(position),
         C.CollisionComponent(15),
-        C.DespawnComponent(10),
+        C.DespawnComponent(math.max(5, 10-math.floor(score/500))),
         { state = states[math.random(1,4)] }, 
         {
+            drawLayer = 2,
             draw = function (self)
                 love.graphics.setColor(secondaryColors[self.state])
                 love.graphics.setLineWidth(1)

@@ -39,7 +39,11 @@ NataConfig =
         draw:
             filter: {'draw'}
             sort: (a, b) ->
-                ((a.drawLayer or 0) < (b.drawLayer or 0)) and ((a.age or 0) < (b.age or 0))
+                dA = a.drawLayer or 0
+                dB = b.drawLayer or 0
+                aA = a.age or 0
+                aB = b.age or 0
+                return (dA < dB) or ((dA==dB) and (aA > aB))
         position:
             filter: {'position'}
         velocity: 

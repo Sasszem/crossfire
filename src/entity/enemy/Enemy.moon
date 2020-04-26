@@ -21,7 +21,6 @@ Enemy = (position, angle=math.random(0, 360)) ->
         C.TargetComponent!,
         C.EnemyAI(200, 40, 120, 70, 2),
         {
-            age: 0
             draw: =>
                 primary_color = rgb(255, 204, 0)
                 secondary_color = rgb(230, 180, 0)
@@ -51,8 +50,6 @@ Enemy = (position, angle=math.random(0, 360)) ->
                 love.graphics.setLineWidth(8)
                 love.graphics.setColor(primary_color)
                 love.graphics.line(fr.x, fr.y, to.x, to.y)
-            update: (dt) =>
-                @age += dt
         }
 
 

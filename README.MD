@@ -9,15 +9,16 @@ The original game was featured in [The Best Games from GMTK Game Jam 2018](https
 This is a bullet-dodging game. You control your character via the mouse, hopefully in a way to avoid being shot by the enemies. The enemies spawn randomly, and try to shoot you. You can not shoot back, instead you should try letting them shoot each other. When an enemy dies, you can get some points by collecting the orbs it left. Be quick, as the do despawn.
 Sometimes you get some powerups, such as shield (bullets bounce back), ghost(bullets pass trough you) or buster(you get faster, smaller and you can punch trought enemies) (not implemented yet). After some points, a few bigger enemies will spawn that shoot exploding bullets, which may kill more than one enemies...
 When you die, you spawn a shockwave that kills everything. When you run out of your lives (3), it is game over (not implemented yet).
+Press the mouse to enter slow-mo mode, where the game slows down by 5
 
 #### Keyboard shortcuts in debug mode
 - D to toggle debug draw
 - RETURN to freeze game
 - S to step 0.1s, SPACE to step 0.001s (only while frozen)
 - W to spawn a shockwave
-- Press mouse left button to spawn an enemy
-- Press rigth button to spawn a big enemy
-- Press middle button (wheel) to delete an entity
+- Press 1 to spawn an enemy at the cursor
+- Press 2 to spawn a big enemy at the cursor
+- Press x to delete entity under cursor
 
 ### Why so much code & complexity?
 My secondary goal is to let this project be kind of enterprise-ready

@@ -7,13 +7,9 @@ ShockWave = (position) ->
     buildEntity "ShockWave",
         C.PositionComponent position,
         C.CollisionComponent 0,
-        C.DespawnComponent 1,
-        {
-            age: 0
-        },
+        C.DespawnComponent 0.5,
         {
             update: (dt) =>
-                @age += dt
                 @collision_radius = 1000*@age
             draw: =>
                 love.graphics.setColor(rgb(255, 255, 255, 128 - @age*200))

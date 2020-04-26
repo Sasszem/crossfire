@@ -23,8 +23,27 @@ function HUD:drawPowerupTimer()
         return
     end
     local w = (self.game.w-40) * (self.game.player.powerupCancel/30)
+    local ypos = self.game.h - 30
+    if self.game.slowdownTime < 5 then
+        ypos = ypos - 30
+    end
     love.graphics.setColor(powerupColors[self.game.player.state])
+    love.graphics.rectangle("fill", 20, ypos, w, 20)
+    love.graphics.setColor(rgb(255, 255, 255))
+    love.graphics.setLineWidth(3)
+    love.graphics.rectangle("line", 20, ypos, self.game.w-40, 20)
+end
+
+function HUD:drawSlowdownTimer()
+    if self.game.slowdownTime==5 then
+        return
+    end
+    local w = (self.game.w-40) * (self.game.slowdownTime/5)
+    love.graphics.setColor(rgb(255, 255, 255, 128))
     love.graphics.rectangle("fill", 20, self.game.h-30, w, 20)
+    local wR = ((self.game.w-40)/5) * (math.min(self.game.slowdownTime, 1))
+    love.graphics.setColor(rgb(255, 0, 0, 128))
+    love.graphics.rectangle("fill", 20, self.game.h-30, wR, 20)
     love.graphics.setColor(rgb(255, 255, 255))
     love.graphics.setLineWidth(3)
     love.graphics.rectangle("line", 20, self.game.h-30, self.game.w-40, 20)
@@ -39,6 +58,7 @@ function HUD:draw()
     end
     love.graphics.printf(livesText, self.font_20, (self.game.w)-140, 20, 120, "right")
     self:drawPowerupTimer()
+    self:drawSlowdownTimer()
 end
 
 function HUD:debugDraw()

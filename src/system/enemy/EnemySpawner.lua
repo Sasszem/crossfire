@@ -19,6 +19,9 @@ function EnemySpawner:init()
 end
 
 function EnemySpawner:update(dt)
+    if self.pool.data.player.hitCooldown>=4.9 then
+        self.cooldown = self.period
+    end
     self.cooldown = self.cooldown - dt
     if self.cooldown <= 0 then
         local should_have_enemy, should_have_bigEnemy = self:should_have()
@@ -82,8 +85,8 @@ end
 function EnemySpawner:should_have()
     local max_enemy = 6 + math.floor(self.pool.data.score / 1000)
     local max_bigEnemy = 2 + math.floor(self.pool.data.score / 1500)
-    should_have_enemy = math.min(math.floor(self.pool.data.score / 30) + 3, max_enemy)
-    should_have_bigEnemy = math.min(math.floor(self.pool.data.score / 50), max_bigEnemy)
+    local should_have_enemy = math.min(math.floor(self.pool.data.score / 30) + 3, max_enemy)
+    local should_have_bigEnemy = math.min(math.floor(self.pool.data.score / 50), max_bigEnemy)
     return should_have_enemy, should_have_bigEnemy
 end
 

@@ -15,6 +15,11 @@ function PlayerMovement:update(dt)
         if p.state == "Buster" then
             v = 80
         end
+
+        if self.pool.data.slowdown then
+            v = v/self.pool.data.slowdownFactor
+        end
+        
         p.velocity = Vec2.fromAngle(angle, v)
         p.angle = angle
     end

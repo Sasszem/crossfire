@@ -9,13 +9,11 @@ Explosion = (position, parent) ->
         C.CollisionComponent 0,
         C.DespawnComponent 1,
         {
-            age: 0
             seen: {}
             :parent
         },
         {
             update: (dt) =>
-                @age += dt
                 @collision_radius = 100*@age
             draw: =>
                 love.graphics.setColor(rgb(255, 76, 76, 128-64*@age))

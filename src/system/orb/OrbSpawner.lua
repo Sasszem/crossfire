@@ -16,10 +16,10 @@ function OrbSpawner:EnemyDeath(pos, type)
         local angle = math.random(360)
         local len = math.random(10)
         local ofset = Vec2.fromAngle(angle, len)
-        self.pool:queue(Orb(pos + ofset))
+        self.pool:queue(Orb(pos + ofset, self.pool.data.score))
     end
     if math.random(1,10)==1 then
-        self.pool:queue(Powerup(pos))
+        self.pool:queue(Powerup(pos, self.pool.data.score))
     end
 end
 

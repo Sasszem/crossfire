@@ -21,7 +21,6 @@ BigEnemy = (position, angle=math.random(0, 360)) ->
         C.TargetComponent!,
         C.EnemyAI(250, 30, 90, 60, 10),
         {
-            age: 0
             draw: () =>
 
                 primary_color = rgb(255, 102, 0)
@@ -52,8 +51,6 @@ BigEnemy = (position, angle=math.random(0, 360)) ->
                 love.graphics.setLineWidth(12)
                 love.graphics.setColor(primary_color)
                 love.graphics.line(fr.x, fr.y, to.x, to.y)
-            update: (dt) =>
-                @age += dt
         }
 
 

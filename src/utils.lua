@@ -3,6 +3,10 @@ function rgb(r, g, b, a)
     return {r/255, g/255, b/255, a/255}
 end
 
+function fade(color, factor)
+    return {color[1], color[2], color[3], factor*color[4]}
+end
+
 function sign(num) 
     if num>0 then
         return 1

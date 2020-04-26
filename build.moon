@@ -78,7 +78,7 @@ build_ignore = {
     "build%.moon"
     "LICENSE"
     "%.gitignore"
-    "game%.zip"
+    "game%.love"
 }
 
 

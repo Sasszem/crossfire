@@ -7,7 +7,7 @@ end
 function Wall:update(dt)
     for _, ent in ipairs(self.pool.groups.position.entities) do
         -- ignore ShockWave
-        if ent.type~="ShockWave" then
+        if ent.type~="ShockWave" and ent.type~="Explosion" then
             local x = ent.position.x
             local y = ent.position.y
             local s = self.size
