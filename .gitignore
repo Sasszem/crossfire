@@ -1,12 +1,6 @@
 # Compiled Lua sources
 luac.out
 
-# Coverage reports
-luacov.*.out
-
-# build folder
-build/*
-
 # luarocks build files
 *.src.rock
 *.zip
@@ -45,6 +39,6 @@ build/*
 *.x86_64
 *.hex
 
-src/Components.moon
+src/Components.lua
 src/AllSystems.lua
-game.love
+releases/
