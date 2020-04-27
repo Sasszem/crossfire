@@ -1,6 +1,6 @@
 require("builder.utils")
 
-function Lint()
+local function Lint()
     run_command("luacheck .")
 end
 

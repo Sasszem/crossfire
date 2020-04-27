@@ -7,6 +7,6 @@ local function AIComponent(movetarget, movespeed, turnrate, movetreshold, turntr
         movetarget = movetarget,
         state = "locked",
     }
-end 
+end
 
 return AIComponent

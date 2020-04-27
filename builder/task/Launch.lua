@@ -1,9 +1,8 @@
 require("builder.utils")
 
 local Build = require("builder.task.Build")
-local Clean = require("builder.task.Clean")
 
-function Launch()
+local function Launch()
     Build()
     run_command("love .")
 end

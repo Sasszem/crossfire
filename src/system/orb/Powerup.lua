@@ -26,16 +26,16 @@ function Powerup:collision(player, powerup)
     player.state = powerup.state
 
     if player.state == "Buster" then
-        player.collision_radius = 25
+        player.collisionRadius = 25
     end
-    player.powerupCancel = 30    
+    player.powerupCancel = 30
     powerup.despawnTimer = 0
 end
 
 function Powerup:revertPowerup(player)
     player.state = "Normal"
     player.powerupCancel = -1
-    player.collision_radius = 40
+    player.collisionRadius = 40
 end
 
 function Powerup:update(dt)

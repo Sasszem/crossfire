@@ -1,7 +1,7 @@
 
-local function CollisionComponent(collision_radius)
+local function CollisionComponent(collisionRadius)
     return {
-        collision_radius = collision_radius or 10
+        collisionRadius = collisionRadius or 10
     }
 end
 

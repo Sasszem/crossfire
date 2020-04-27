@@ -9,9 +9,9 @@ local CollisionSystem = {}
 function CollisionSystem:update(dt)
     for _, entity in ipairs(self.pool.groups.collision.entities) do
         for _, other in ipairs(self.pool.groups.collision.entities) do
-            if other ~= entity and other.collision_radius~=0 and entity.collision_radius~=0 then
+            if other ~= entity and other.collisionRadius~=0 and entity.collisionRadius~=0 then
                 local distance = (entity.position - other.position):length()
-                if distance <= entity.collision_radius + other.collision_radius then
+                if distance <= entity.collisionRadius + other.collisionRadius then
                     self.pool:emit("collision", entity, other)
                 end
             end
@@ -19,4 +19,4 @@ function CollisionSystem:update(dt)
     end
 end
 
-return CollisionSystem        
+return CollisionSystem

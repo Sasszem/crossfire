@@ -1,12 +1,13 @@
---- System to translate @{src.entity.bullet.Bullet}-@{src.entity.enemy.Enemy} and @{src.entity.bullet.Bullet}-@{src.entity.player.Player} collision events 
---- (but ignore @{src.entity.bullet.ExplodingBullet}s) to hit events
+--- System to translate @{src.entity.bullet.Bullet}-@{src.entity.enemy.Enemy} and
+-- @{src.entity.bullet.Bullet}-@{src.entity.player.Player} collision events
+-- (but ignore @{src.entity.bullet.ExplodingBullet}s) to hit events
 -- @classmod src.system.bullet.BulletCollisionResolver
 
 local BulletCollisionResolver = {}
 
 --- collision event handler
--- @param first the first entity 
--- @param second the second entity 
+-- @param first the first entity
+-- @param second the second entity
 function BulletCollisionResolver:collision(bullet, victim)
     if bullet.type ~= "Bullet" then
         return

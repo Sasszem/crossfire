@@ -19,7 +19,7 @@ if DEBUG then
     if LOG then
         installEventLogger = require("src.EventLogger")
     end
-    
+
     ShockWave = require "src.entity.player.ShockWave"
     Enemy = require "src.entity.enemy.Enemy"
     BigEnemy = require "src.entity.enemy.BigEnemy"
@@ -102,14 +102,14 @@ end
 function Game:draw()
     love.graphics.push()
     love.graphics.translate(-self.player.position.x + self.w/2, -self.player.position.y + self.h/2)
-    
+
     self.playfield:draw()
-    
+
     self.pool:emit("draw")
     if self.debugDraw then
         self.pool:emit "debugDraw"
     end
-        
+
     love.graphics.pop()
     self.hud:draw()
     if self.debugDraw then
@@ -131,7 +131,7 @@ function Game:keypressed(key, rep)
         self:update(0.001, true)
     end
     if key=="s" and self.paused then
-        for i=1, 100 do
+        for i = 1, 100 do
             self:update(0.001, true)
         end
     end
@@ -153,7 +153,7 @@ function Game:keypressed(key, rep)
         if key=="x" then
             local m = Vec2(sx, sy)
             for _, e in ipairs(self.pool.groups.collision.entities) do
-                if (e.position-m):length() <= e.collision_radius then
+                if (e.position-m):length() <= e.collisionRadius then
                     if e~=self.player then
                         e.despawnTimer = 0
                     end
@@ -171,7 +171,7 @@ function Game:mousepressed(x, y, button, istouch, presses)
 end
 
 function Game:mousereleased(x, y, button, istouch, presses)
-    self.slowdownFlag = false    
+    self.slowdownFlag = false
 end
 
 Game.__index = Game

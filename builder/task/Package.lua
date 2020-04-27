@@ -1,6 +1,6 @@
 require("builder.utils")
 
-function Package()
+local function Package()
     run_command("love-release -W 64")
 end
 

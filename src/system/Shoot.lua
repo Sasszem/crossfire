@@ -11,14 +11,14 @@ local Shoot = {}
 function Shoot:update(dt)
     for _, entity in ipairs(self.pool.groups.shoot.entities) do
         if entity.state=="locked" or entity.state=="aim" then
-            entity.shoot_cooldown = entity.shoot_cooldown - dt
-            if entity.shoot_cooldown <= 0 then
+            entity.shootCooldown = entity.shootCooldown - dt
+            if entity.shootCooldown <= 0 then
                 local dP = Vec2.fromAngle(entity.angle, 50)
                 self.pool:queue(entity.bullet(entity.position+dP, entity.angle, entity))
-                entity.shoot_cooldown = entity.shoot_cooldown + entity.refire_rate
+                entity.shootCooldown = entity.shootCooldown + entity.refireRate
             end
         else
-            entity.shoot_cooldown = math.max(entity.shoot_cooldown, 0.5)
+            entity.shootCooldown = math.max(entity.shootCooldown, 0.5)
         end
     end
 end

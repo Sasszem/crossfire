@@ -39,7 +39,7 @@ systems[#systems + 1] = nata.oop({
     exclude = {"draw"}
 })
 
---- Nata groups and systems configuration 
+--- Nata groups and systems configuration
 -- @table NataConfig
 local NataConfig = {
     groups = {
@@ -82,10 +82,7 @@ local NataConfig = {
             filter = {'isTarget'}
         },
         collision = {
-            filter = {'position', 'collision_radius'}
-        },
-        explosion = {
-            filter = {'explosion_radius'}
+            filter = {'position', 'collisionRadius'}
         },
         shoot = {
             filter = {'bullet'}

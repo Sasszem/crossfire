@@ -68,7 +68,7 @@ local function log(args)
         return
     end
     print(to_string(args))
-end 
+end
 
 -- Factory for replaced emit function
 local function logAndProxy(pool)
@@ -80,14 +80,14 @@ local function logAndProxy(pool)
     end
     return newEmit
 end
-    
+
 
 -- installs the new emit to the pool
 local function installEventLogger(pool)
     pool.oldEmit = pool.emit
     pool.emit = logAndProxy(pool)
 end
-   
+
 
 -- module exports
 return installEventLogger

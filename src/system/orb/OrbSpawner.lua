@@ -5,7 +5,7 @@ local Powerup = require "src.entity.orb.Powerup"
 local OrbSpawner = {}
 
 function OrbSpawner:EnemyDeath(pos, type)
-    local num = 1
+    local num
     if type=="Enemy" then
         num = math.random(8)
     else

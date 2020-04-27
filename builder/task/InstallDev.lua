@@ -1,6 +1,6 @@
 require("builder.utils")
 
-function InstallDev()
+local function InstallDev()
     print("NOTE: Luarocks 3+ is required!")
     print("NOTE: libzip is required!")
     print()

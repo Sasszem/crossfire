@@ -53,7 +53,7 @@ function Vec2:normalize()
     assert(len>0)
     return Vec2(self.x/len, self.y/len)
 end
-    
+
 
 --- Create a new vector from an angle and length
 -- @tparam number angle the angle

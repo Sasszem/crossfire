@@ -1,9 +1,9 @@
 require("builder.utils")
 
-function Clean()
+local function Clean()
     run_command("rm game.love", true)
-    run_command("rm src/AllSystems.lua")
-    run_command("rm src/Components.lua")
+    run_command("rm src/AllSystems.lua", true)
+    run_command("rm src/Components.lua", true)
 end
 
 return Clean

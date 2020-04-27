@@ -65,7 +65,7 @@ end
 
 function EnemyAI:aimState(enemy, player, diff, dt)
     -- aim logic
-    
+
     -- finished aiming
     if math.abs(enemy.angle - diff:angle())<1 then
         enemy.state = "locked"
@@ -96,13 +96,13 @@ end
 
 function EnemyAI:turnState(enemy, player, diff, dt)
     -- turn logic
-    
+
     local mt = enemy.movetarget
     if player.state=="Buster" then
         mt = 1000
     end
 
-    local turn_to = 0
+    local turn_to
     if diff:length() < mt then
         turn_to = diff:angle() + 180
     else
@@ -122,15 +122,3 @@ function EnemyAI:turnState(enemy, player, diff, dt)
 end
 
 return EnemyAI
-            
-            
-
-            
-
-            
-            
-            
-
-            
-            
-            

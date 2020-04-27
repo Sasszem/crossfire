@@ -7,17 +7,17 @@ function ExplosionSpawner:collision(bullet, victim)
         return
     end
 
-    if not self.pool.groups.explosion.hasEntity[bullet] then
+    if bullet.type ~= "ExplodingBullet" then
         return
     end
 
     if victim.state == "Ghost" then
         return
     end
-    
+
     -- kill bullet
     bullet.despawnTimer = 0
-    
+
     if victim.state ~= "Buster" and victim.state ~= "Shield" then
         -- hit that victim
         self.pool:emit("hit", victim)

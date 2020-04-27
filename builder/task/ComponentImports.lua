@@ -1,6 +1,6 @@
 require("builder.utils")
 
-function GenerateComponentImports()
+local function GenerateComponentImports()
     local all_lua = capture_command('cd src/component/ && find . -name "*.lua"')
 
     local file_object = io.open("src/Components.lua", "w")
@@ -11,7 +11,7 @@ function GenerateComponentImports()
     file_object:write("\n")
     file_object:write("\n")
     file_object:write("local Components = {\n")
-    
+
     local sCount = 0
 
     for line in magiclines(all_lua) do
@@ -19,7 +19,7 @@ function GenerateComponentImports()
         file_object:write("    "..className.." = require(\"src.component."..className.."\"),\n")
         sCount = sCount + 1
     end
-    
+
     file_object:write("}\n")
     file_object:write("\n")
     file_object:write("return Components\n")

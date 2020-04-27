@@ -1,16 +1,16 @@
-Game = require "src.Game"
+local Game = require "src.Game"
 
 local game = nil
 
-function love.load() 
+function love.load()
     love.window.setTitle("Crossfire")
-    local succ = love.window.setIcon(love.image.newImageData("asset/icon.png"))
+    love.window.setIcon(love.image.newImageData("asset/icon.png"))
     local w, h = love.graphics.getDimensions()
     love.keyboard.setKeyRepeat(true)
     game = Game(w, h)
 end
 
-function love.update(dt) 
+function love.update(dt)
     game:update(dt)
 end
 

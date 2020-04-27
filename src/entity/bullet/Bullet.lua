@@ -6,9 +6,13 @@ require "src.utils"
 local buildEntity = require "src.entity.buildEntity"
 local C = require "src.Components"
 
-local function Bullet(position, angle, parent)
+local Bullet = {}
+Bullet.__index = Bullet
+
+
+function Bullet:new(position, angle, parent)
     angle = angle or 0
-    return buildEntity("Bullet",
+    local ent = buildEntity("Bullet",
         C.PositionComponent(position),
         C.VelocityComponent.fromPolar(angle, 40),
         C.CollisionComponent(10),
@@ -17,22 +21,32 @@ local function Bullet(position, angle, parent)
         {
             parent = parent,
             drawLayer = 1,
-            draw = function(self)
-                local t = 0
-                if self.despawnTimer <= 1 then
-                    t = 1 - self.despawnTimer
-                end
-                love.graphics.setColor(rgb(153+t*102, 255*t, 255*t, 255-255*t))
-                love.graphics.circle("fill", self.position.x, self.position.y, 10-5*t)
-                love.graphics.setLineWidth(1)
-                love.graphics.circle("line", self.position.x, self.position.y, 10-5*t)
-            end,
-            update = function(self, dt)
-                if self.despawnTimer <= 1 then
-                    self.collision_radius = 0
-                end
-            end
         })
+    setmetatable(ent, Bullet)
+    return ent
 end
 
+
+function Bullet:update(dt)
+    if self.despawnTimer <= 1 then
+        self.collisionRadius = 0
+    end
+end
+
+
+function Bullet:draw()
+    local t = 0
+
+    if self.despawnTimer <= 1 then
+        t = 1 - self.despawnTimer
+    end
+
+    love.graphics.setColor(rgb(153+t*102, 255*t, 255*t, 255-255*t))
+    love.graphics.circle("fill", self.position.x, self.position.y, 10-5*t)
+    love.graphics.setLineWidth(1)
+    love.graphics.circle("line", self.position.x, self.position.y, 10-5*t)
+end
+
+
+setmetatable(Bullet, {__call = Bullet.new})
 return Bullet

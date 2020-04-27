@@ -11,10 +11,10 @@ function Wall:update(dt)
             local x = ent.position.x
             local y = ent.position.y
             local s = self.size
-            if ent.collision_radius then
-                s = s - ent.collision_radius
+            if ent.collisionRadius then
+                s = s - ent.collisionRadius
             end
-            
+
             ent.wallTouch = math.abs(ent.position.x)>=s or math.abs(ent.position.y)>=s
 
             if not self.pool.groups.bullet.hasEntity[ent] then

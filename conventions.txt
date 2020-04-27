@@ -9,5 +9,5 @@ All angles should be cropped to the [0, 360[ range
 ######################
 # NAMING CONVENTIONS #
 ######################
-- all variable names should be camelCase
+- all non-strictly-local variable names should be camelCase
 - all classes should be in ClassCase

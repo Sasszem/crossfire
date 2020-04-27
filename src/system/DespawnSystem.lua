@@ -1,4 +1,4 @@
---- A system updating despawn timers and removing despawned entities 
+--- A system updating despawn timers and removing despawned entities
 -- @classmod src.system.DespawnSystem
 
 local DespawnSystem = {}

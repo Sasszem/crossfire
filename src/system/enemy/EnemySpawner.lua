@@ -36,7 +36,7 @@ function EnemySpawner:update(dt)
             end
         end
 
-        local spawnPos = player.position+ofset, self.pool.data.config.wallSize
+        local spawnPos = player.position+ofset
 
         if self.bigEnemyCount < should_have_bigEnemy then
             local bE = BigEnemy(spawnPos)
@@ -132,6 +132,3 @@ function EnemySpawner:debugDraw()
 end
 
 return EnemySpawner
-        
-        
-        

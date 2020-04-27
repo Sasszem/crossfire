@@ -14,13 +14,12 @@ function Playfield:drawWalls()
     love.graphics.setLineWidth(10)
     love.graphics.line( -self.D, -self.D, -self.D,  self.D )
     love.graphics.line( -self.D,  self.D,  self.D,  self.D )
-    love.graphics.line(  self.D,  self.D,  self.D, -self.D ) 
+    love.graphics.line(  self.D,  self.D,  self.D, -self.D )
     love.graphics.line(  self.D, -self.D, -self.D, -self.D )
 end
 
 
 function Playfield:drawBackground()
-    local pos = self.game.player.position
     local D = self.D
 
     love.graphics.setLineWidth(1)
