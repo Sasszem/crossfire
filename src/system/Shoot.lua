@@ -10,7 +10,7 @@ local Shoot = {}
 -- @tparam number dt delta-time since prev. call
 function Shoot:update(dt)
     for _, entity in ipairs(self.pool.groups.shoot.entities) do
-        if entity.state=="locked" or entity.state=="aim" then
+        if entity.state=="locked"then
             entity.shootCooldown = entity.shootCooldown - dt
             if entity.shootCooldown <= 0 then
                 local dP = Vec2.fromAngle(entity.angle, 50)
@@ -18,7 +18,9 @@ function Shoot:update(dt)
                 entity.shootCooldown = entity.shootCooldown + entity.refireRate
             end
         else
-            entity.shootCooldown = math.max(entity.shootCooldown, 0.5)
+            if entity.state~="aim" then
+                entity.shootCooldown = math.max(entity.shootCooldown, 0.5)
+            end
         end
     end
 end

@@ -29,24 +29,15 @@ function Powerup:collision(player, powerup)
         player.collisionRadius = 25
     end
     player.powerupCancel = 30
+    flux.to(player, 30, {powerupCancel = 0}):ease("linear"):oncomplete(self:revertPowerup(player))
     powerup.despawnTimer = 0
 end
 
 function Powerup:revertPowerup(player)
-    player.state = "Normal"
-    player.powerupCancel = -1
-    player.collisionRadius = 40
-end
-
-function Powerup:update(dt)
-    for i, e in ipairs(self.pool.groups.player.entities) do
-        if e.powerupCancel <= 0 and e.powerupCancel ~= -1 then
-            self:revertPowerup(e)
-        end
-
-        if e.powerupCancel > 0 then
-            e.powerupCancel = e.powerupCancel - dt
-        end
+    return function()
+        player.state = "Normal"
+        player.powerupCancel = -1
+        player.collisionRadius = 40
     end
 end
 

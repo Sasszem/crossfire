@@ -40,13 +40,6 @@ function Player:new(position, angle)
 end
 
 
-function Player:update(dt)
-    if self.hitCooldown > -1 then
-        self.hitCooldown = self.hitCooldown - dt
-    end
-end
-
-
 function Player:draw()
     local fadeFactor = math.min((5 - self.hitCooldown)/4, 1)
     if fadeFactor < 0.2 then

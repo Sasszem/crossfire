@@ -20,6 +20,7 @@ function PlayerHit:hit(player)
 
     -- set cooldown
     player.hitCooldown = 5
+    flux.to(player, 5, {hitCooldown = 0})
 
     player.lives = player.lives - 1
 

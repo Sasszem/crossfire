@@ -1,3 +1,5 @@
+require("src.utils")
+
 local nata = require("lib.nata.nata")
 local NataConfig = require("src.NataConfig")
 local Player = require("src.entity.player.Player")
@@ -65,39 +67,50 @@ function Game:new(w, h)
     o.slowdownTime = 5
     o.slowdownFlag = false
 
+    o.noSlowdownTweens = flux.group()
+
     return o
 end
 
 function Game:update(dt, force)
-    -- enter slowdown
-    if love.mouse.isDown(1, 2, 3) and not self.slowdown and self.slowdownTime > 1 and not self.slowdownFlag then
-        self.slowdown = true
-    end
-
-    -- quit slowdown
-    if self.slowdown and (not love.mouse.isDown(1, 2, 3) or self.slowdownTime<=0) then
-        self.slowdown = false
-        if self.slowdownTime<=0 then
-            self.slowdownFlag = true
-        end
-    end
-
-    if self.slowdown then
-        self.slowdownFactor = math.max(0.3, self.slowdownFactor - dt*1.5)
-        self.slowdownTime = self.slowdownTime - dt
-    else
-        self.slowdownFactor = math.min(1, self.slowdownFactor + dt*2.5)
-        self.slowdownTime = math.min(self.slowdownTime + dt, 5)
-    end
+    self.noSlowdownTweens:update(dt)
+    self:calculateSlowdown(dt)
 
     dt = dt * self.slowdownFactor
 
     if not self.paused or force then
         self.pool:emit("update", dt)
+        flux.update(dt)
     end
     self.pool:flush()
 end
 
+function Game:calculateSlowdown(dt)
+    -- enter slowdown
+    if love.mouse.isDown(1, 2, 3) and not self.slowdown and self.slowdownTime > 1 and not self.slowdownFlag then
+        self:enterSlowdown()
+    end
+
+    -- quit slowdown
+    if self.slowdown and (not love.mouse.isDown(1, 2, 3) or self.slowdownTime<=0) then
+        self:leaveSlowdown()
+        if self.slowdownTime<=0 then
+            self.slowdownFlag = true
+        end
+    end
+end
+
+function Game:enterSlowdown()
+    self.slowdown = true
+    self.noSlowdownTweens:to(self, 0.5, {slowdownFactor=0.3})
+    self.noSlowdownTweens:to(self, self.slowdownTime, {slowdownTime=0}):ease("linear")
+end
+
+function Game:leaveSlowdown()
+    self.slowdown = false
+    self.noSlowdownTweens:to(self, 0.5, {slowdownFactor=1})
+    self.noSlowdownTweens:to(self, 5-self.slowdownTime, {slowdownTime=5}):ease("linear")
+end
 
 function Game:draw()
     love.graphics.push()

@@ -4,121 +4,146 @@ local Vec2 = require "src.Vec2"
 
 local EnemyAI = {}
 
+local function closestAngle(from, to)
+    -- return an angle that is congruent to to % 360
+    -- but means the correct turning way
+
+    if math.abs(from-to)>180 then
+        -- turning directly would be the stupid version
+        if from>to then
+            return to + 360, math.abs(to + 360 - from)
+        end
+        return to - 360, math.abs(to - 360 - from)
+    end
+    -- turning directly is the smart way
+    return to, math.abs(to - from)
+end
+
+local function cleanup(enemy)
+    return function()
+        -- crop the angle in the [0, 360[ range after a tween
+        enemy.angle = cropAngle(enemy.angle)
+        enemy.state = "locked"
+        enemy.targetPoint = nil
+        enemy.tween = nil
+    end
+end
+
 function EnemyAI:update(dt)
     local player = self.pool.groups.player.entities[1]
     for _, enemy in ipairs(self.pool.groups.enemy.entities) do
         -- grab the player, also the difference vector to it
         local diff = player.position - enemy.position
-        self:stateTransitions(enemy, player, diff)
-        self[enemy.state .. "State"](self, enemy, player, diff, dt)
+        self:aimEnemy(enemy, player, diff)
+        self:moveEnemy(enemy, player, diff)
     end
 end
 
-function EnemyAI:stateTransitions(enemy, player, diff)
+function EnemyAI:aimEnemy(enemy, player, diff)
+    -- only care about locked enemies
+    if enemy.state ~= "locked" then
+        return
+    end
+
+    -- check if even need to aim
+    if math.abs(diff:angle() - enemy.angle)>enemy.turntreshold then
+        local target, delta = closestAngle(enemy.angle, diff:angle())
+        local t = delta / enemy.turnrate
+
+        enemy.state = "aim"
+
+        --set up interpolation between angles
+        enemy.tween = flux.to(enemy, t, {angle=target})
+        enemy.tween:ease("linear")
+        enemy.tween:oncomplete(cleanup(enemy))
+    end
+end
+
+local function setupMoveTween(enemy, tMove, targetPoint)
+    -- setup second tween
+    -- had a problem with :after - :oncompleate firing at first tween completion
+    -- so used this as a workatound
+    return function()
+        enemy.tween = flux.to(enemy.position, tMove, {x=targetPoint.x, y=targetPoint.y})
+        enemy.tween:ease("linear")
+        enemy.tween:oncomplete(cleanup(enemy))
+    end
+end
+
+function EnemyAI:moveEnemy(enemy, player, diff)
+    -- ignore if already moving
+    if enemy.state == "moveTurn" then
+        return
+    end
+
+    -- buster player run-away
     local mt = enemy.movetarget
     if player.state=="Buster" then
         mt = 1000
     end
 
     -- if need to move
-    if enemy.state=="aim" or enemy.state=="locked" then
-        if math.abs(diff:length()-mt)>enemy.movetreshold then
-            if mt-diff:length() > enemy.movetreshold and enemy.wallTouch then
-                return
-            end
-            enemy.state = "move"
+    if math.abs(diff:length()-mt)>enemy.movetreshold then
+
+        -- ignore at walls
+        if mt-diff:length() > enemy.movetreshold and enemy.wallTouch then
             return
         end
-    end
 
-    if enemy.state=="locked" then
-        -- break locking if need to aim
-        if math.abs(diff:angle()-enemy.angle)>enemy.turntreshold then
-            enemy.state = "aim"
-            return
+        -- stop existint tween (aiming)
+        if enemy.tween then
+            enemy.tween:stop()
+            cleanup(enemy)()
+        end
+
+        enemy.state = "moveTurn"
+
+        -- pick a target to move to
+        local angle = cropAngle(180 + diff:angle())
+        angle = math.random(angle - 15, angle + 15)
+        local dist = enemy.movetarget
+        dist = math.random(dist - 30, dist + 30)
+
+        -- calculate target vector and point
+        local targetVectorPlayer = Vec2.fromAngle(angle, dist) -- from player
+        local targetPoint = player.position + targetVectorPlayer
+
+        -- limit target into walls, including collision radius
+        local s = self.pool.data.config.wallSize - enemy.collisionRadius
+        targetPoint.x = math.min(targetPoint.x, s)
+        targetPoint.x = math.max(targetPoint.x, -s)
+        targetPoint.y = math.min(targetPoint.y, s)
+        targetPoint.y = math.max(targetPoint.y, -s)
+
+        -- save target point for debug draw
+        enemy.targetPoint = targetPoint
+
+        -- target vector from enemy
+        local targetVectorEnemy = targetPoint - enemy.position
+
+        -- calculate turn towards that point
+        local targetAngle, delta = closestAngle(enemy.angle, targetVectorEnemy:angle())
+        local tTurn = delta / enemy.turnrate
+
+        -- calculate moving towards that point
+        local len = targetVectorEnemy:length()
+        local tMove = len / enemy.movespeed
+
+        -- setup tween
+        enemy.tween = flux.to(enemy, tTurn, {angle = targetAngle})
+        enemy.tween:ease("linear")
+        enemy.tween:oncomplete(setupMoveTween(enemy, tMove, targetPoint))
+    end
+end
+
+function EnemyAI:debugDraw()
+    love.graphics.setColor(rgb(0, 255, 255))
+    for _, enemy in ipairs(self.pool.groups.enemy.entities) do
+        if enemy.state == "moveTurn" then
+            love.graphics.circle("fill", enemy.targetPoint.x, enemy.targetPoint.y, 10)
+            love.graphics.line(enemy.targetPoint.x, enemy.targetPoint.y, enemy.position.x, enemy.position.y)
         end
     end
-
-    -- if need to turn
-    if enemy.state=="move" then
-        -- too close or too away?
-        if diff:length() < mt then
-            -- need to turn away
-            if math.abs(cropAngle(diff:angle()+180)-enemy.angle)>5*enemy.turntreshold then
-                enemy.state = "turn"
-                enemy.velocity = Vec2(0,0)
-                return
-            end
-        else
-            -- need to turn to the player
-            if math.abs(diff:angle()-enemy.angle)>5*enemy.turntreshold then
-                enemy.state = "turn"
-                enemy.velocity = Vec2(0,0)
-            end
-        end
-    end
-end
-
-function EnemyAI:lockedState(enemy, player, diff, dt)
-
-end
-
-function EnemyAI:aimState(enemy, player, diff, dt)
-    -- aim logic
-
-    -- finished aiming
-    if math.abs(enemy.angle - diff:angle())<1 then
-        enemy.state = "locked"
-        return
-    end
-
-    -- aim towards the player
-    enemy.angle = enemy.angle + sign(diff:angle() - enemy.angle) * enemy.turnrate * dt
-    enemy.angle = cropAngle(enemy.angle)
-end
-
-function EnemyAI:moveState(enemy, player, diff, dt)
-    -- move logic
-
-    local mt = enemy.movetarget
-    if player.state=="Buster" then
-        mt = 1000
-    end
-
-    -- finished moving
-    if math.abs(diff:length()-mt)<1 or (diff:length()<mt and enemy.wallTouch) then
-        enemy.state="aim"
-        enemy.velocity = Vec2(0, 0)
-        return
-    end
-    enemy.velocity = Vec2.fromAngle(enemy.angle, enemy.movespeed)
-end
-
-function EnemyAI:turnState(enemy, player, diff, dt)
-    -- turn logic
-
-    local mt = enemy.movetarget
-    if player.state=="Buster" then
-        mt = 1000
-    end
-
-    local turn_to
-    if diff:length() < mt then
-        turn_to = diff:angle() + 180
-    else
-        turn_to = diff:angle()
-    end
-    turn_to = cropAngle(turn_to)
-
-    -- finished turning
-    if math.abs(enemy.angle - turn_to)<5*enemy.turntreshold then
-        enemy.state = "move"
-        return
-    end
-
-    -- turn it towards the target
-    enemy.angle = enemy.angle + sign(turn_to - enemy.angle) * enemy.turnrate * dt
-    enemy.angle = cropAngle(enemy.angle)
 end
 
 return EnemyAI

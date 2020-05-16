@@ -42,3 +42,4 @@ luac.out
 src/Components.lua
 src/AllSystems.lua
 releases/
+lib/

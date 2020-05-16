@@ -1,3 +1,6 @@
 [submodule "lib/nata"]
 	path = lib/nata
 	url = https://github.com/tesselode/nata
+[submodule "lib/flux"]
+	path = lib/flux
+	url = https://github.com/rxi/flux

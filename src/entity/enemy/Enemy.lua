@@ -17,10 +17,9 @@ function Enemy:new(position, angle)
     angle = angle or math.random(0, 360)
     local ent = buildEntity("Enemy",
         C.PositionComponent(position),
-        C.VelocityComponent(nil, 30),
         C.DirectionComponent(angle),
         C.CollisionComponent(30),
-        C.ShootComponent(Bullet, 5),
+        C.ShootComponent(Bullet, 4),
         C.DespawnComponent(),
         C.TargetComponent(),
         C.EnemyAI(200, 40, 120, 70, 2)

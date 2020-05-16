@@ -11,11 +11,12 @@ files["src"] = {
         "unpack",
         "math",
         
-        -- utils.lua functions
+        -- utils.lua functions and values
         "rgb",
         "cropAngle",
         "sign",
         "fade",
+        "flux",
     }
 }
 files["main.lua"] = files["src"]

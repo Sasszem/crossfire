@@ -17,12 +17,8 @@ function Explosion:new(position, parent)
             parent = parent
         })
     setmetatable(ent, Explosion)
+    flux.to(ent, 1, {collisionRadius = 100})
     return ent
-end
-
-
-function Explosion:update(dt)
-    self.collisionRadius = 100*self.age
 end
 
 

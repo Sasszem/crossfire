@@ -14,12 +14,8 @@ function ShockWave:new(position)
         C.DespawnComponent(0.5)
     )
     setmetatable(ent, ShockWave)
+    flux.to(ent, 0.5, {collisionRadius = 1000})
     return ent
-end
-
-
-function ShockWave:update(dt)
-    self.collisionRadius = 1000 * self.age
 end
 
 

@@ -19,7 +19,7 @@ function EnemySpawner:init()
 end
 
 function EnemySpawner:update(dt)
-    if self.pool.data.player.hitCooldown>=4.9 then
+    if self.pool.data.player.hitCooldown>2 then
         self.cooldown = self.period
     end
     self.cooldown = self.cooldown - dt
