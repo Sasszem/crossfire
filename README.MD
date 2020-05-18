@@ -60,6 +60,15 @@ Steps:
 ### Used assets
 - [David Chung's DigitFont](https://www.1001fonts.com/01-digit-font.html)
 - [Some bell sound from orangefreesounds.com](http://www.orangefreesounds.com/ding-ding-ding/) (edited that a bit)
+- [Firecraker sound for shooting](http://www.orangefreesounds.com/firecracker-sounds/) - edited that heavily 
+- [Explosion sound](http://www.orangefreesounds.com/8-bit-explosion/)
+- [powerup sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)
+- [extra life sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)
+- [death sound](http://www.orangefreesounds.com/free-explosion-sound-effect/)- [bullet hit and menu](http://www.orangefreesounds.com/single-hammer-hit-on-wood/)
+- [powerup reverse](http://www.orangefreesounds.com/shut-down-sound-effect/)
+- [enemy spawning noises](http://www.orangefreesounds.com/vanishing-sound-effect/)
+- [menu music](http://www.orangefreesounds.com/synth-bassline-124-bpm/)
+- [game music](http://www.orangefreesounds.com/soft-lounge-background-track/)- [highscores music](http://www.orangefreesounds.com/groove-synth-loop-130-bpm/)
 
 ### Thanks to
  - the LÖVE2D team for this engine
