@@ -1,31 +1,32 @@
-local Game = require "src.Game"
+local Crossfire = require "src.Crossfire"
 
-local game = nil
+local CR = nil
 
 function love.load()
-    love.window.setTitle("Crossfire")
-    love.window.setIcon(love.image.newImageData("asset/icon.png"))
-    local w, h = love.graphics.getDimensions()
-    love.keyboard.setKeyRepeat(true)
-    game = Game(w, h)
+    CR = Crossfire()
+    CR:init()
 end
 
 function love.update(dt)
-    game:update(dt)
+    CR:update(dt)
 end
 
-function love.keypressed(key, _, rep)
-    game:keypressed(key, rep)
+function love.keypressed(key, code, rep)
+    CR:keypressed(key, code, rep)
 end
 
 function love.mousepressed( x, y, button, istouch, presses )
-    game:mousepressed( x, y, button, istouch, presses )
+    CR:mousepressed( x, y, button, istouch, presses )
 end
 
 function love.mousereleased( x, y, button, istouch, presses )
-    game:mousereleased( x, y, button, istouch, presses )
+    CR:mousereleased( x, y, button, istouch, presses )
+end
+
+function love.textinput(t)
+    CR:textinput(t)
 end
 
 function love.draw()
-    game:draw()
+    CR:draw()
 end

@@ -8,27 +8,25 @@ local Playfield = require("src.Playfield")
 local HUD = require("src.HUD")
 local config = require("src.config")
 
-local DEBUG = true
-local LOG = true
+local installEventLogger  = require("src.EventLogger")
+local ShockWave = require "src.entity.player.ShockWave"
+local Enemy = require "src.entity.enemy.Enemy"
+local BigEnemy = require "src.entity.enemy.BigEnemy"
+local Vec2 = require "src.Vec2"
 
-local installEventLogger
-local ShockWave
-local Enemy
-local BigEnemy
-local Vec2
+local Game = {
+    config = config,
+    score = 0,
+    paused = false,
+    debugDraw = false,
 
-if DEBUG then
-    if LOG then
-        installEventLogger = require("src.EventLogger")
-    end
+    slowdown = false,
+    slowdownFactor = 1,
+    slowdownTime = 5,
+    slowdownFlag = false,
 
-    ShockWave = require "src.entity.player.ShockWave"
-    Enemy = require "src.entity.enemy.Enemy"
-    BigEnemy = require "src.entity.enemy.BigEnemy"
-    Vec2 = require "src.Vec2"
-end
-
-local Game = {}
+    unpauseCooldown = 0,
+}
 
 function Game:new(w, h)
     local o = {}
@@ -38,9 +36,6 @@ function Game:new(w, h)
     o.h = h
 
     -- shared game values & objects
-    o.config = config
-
-    o.score = 0
     o.player = Player()
 
     -- nata config
@@ -49,27 +44,26 @@ function Game:new(w, h)
 
     -- nata pool creation
     o.pool = nata.new(nconfig)
-    if LOG then
-        installEventLogger(o.pool)
-    end
-
+    installEventLogger(o.pool)
     o.pool:queue(o.player)
     o.pool:flush()
+
+    -- setup game end even forwarding
+    o.pool:on("GameOver", function()
+        love.event.push("keypressed", "q", "q", false)
+    end)
 
     o.playfield = Playfield:new(o)
     o.hud = HUD:new(o)
 
-    o.paused = false
-    o.debugDraw = false
-
-    o.slowdown = false
-    o.slowdownFactor = 1
-    o.slowdownTime = 5
-    o.slowdownFlag = false
-
     o.noSlowdownTweens = flux.group()
-
+    o:unpause()
     return o
+end
+
+function Game:unpause()
+    self.unpauseCooldown = 0.1
+    self.noSlowdownTweens:to(self, 0.1, {unpauseCooldown = 0})
 end
 
 function Game:update(dt, force)
@@ -87,7 +81,12 @@ end
 
 function Game:calculateSlowdown(dt)
     -- enter slowdown
-    if love.mouse.isDown(1, 2, 3) and not self.slowdown and self.slowdownTime > 1 and not self.slowdownFlag then
+    if love.mouse.isDown(1, 2, 3)
+        and not self.slowdown
+        and self.slowdownTime > 1
+        and not self.slowdownFlag
+        and self.unpauseCooldown==0
+    then
         self:enterSlowdown()
     end
 
@@ -119,13 +118,13 @@ function Game:draw()
     self.playfield:draw()
 
     self.pool:emit("draw")
-    if self.debugDraw then
+    if self.debugDraw and self.options.debug then
         self.pool:emit "debugDraw"
     end
 
     love.graphics.pop()
     self.hud:draw()
-    if self.debugDraw then
+    if self.debugDraw and self.options.debug then
         self.hud:debugDraw()
     end
 end
@@ -137,6 +136,7 @@ end
 
 
 function Game:keypressed(key, rep)
+    local DEBUG = self.options.debug
     if key=="return" and not rep and DEBUG then
         self.paused = not self.paused
     end

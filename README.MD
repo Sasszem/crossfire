@@ -60,6 +60,7 @@ Steps:
 ### Used assets
 - [David Chung's DigitFont](https://www.1001fonts.com/01-digit-font.html)
 - [Some bell sound from orangefreesounds.com](http://www.orangefreesounds.com/ding-ding-ding/) (edited that a bit)
+- [supercomputer font by Disaster Fonts](https://www.1001fonts.com/supercomputer-font.html)
 - [Firecraker sound for shooting](http://www.orangefreesounds.com/firecracker-sounds/) - edited that heavily 
 - [Explosion sound](http://www.orangefreesounds.com/8-bit-explosion/)
 - [powerup sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)

@@ -17,6 +17,16 @@ files["src"] = {
         "sign",
         "fade",
         "flux",
+
+        -- GUI stuff from YALG
+        "rgb",
+        "Font",
+        "GUI",
+        "VDiv",
+        "HDiv",
+        "Button",
+        "Label",
+        "Switcher",
     }
 }
 files["main.lua"] = files["src"]
