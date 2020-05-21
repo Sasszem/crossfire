@@ -1,4 +1,3 @@
-[![CircleCI](https://circleci.com/gh/Sasszem/crossfire.svg?style=svg)](https://circleci.com/gh/Sasszem/crossfire)
 # Crossfire
 
 ### Introduction
@@ -22,15 +21,13 @@ Press the mouse to enter slow-mo mode, where the game slows down by 5
 
 ### Why so much code & complexity?
 My secondary goal is to let this project be kind of enterprise-ready
-- I have some unit tests
+- I have some unit tests (currently disabled)
 - I plan to make good documentation
-- I designed the backbone of the game to be extensible
-- (said backbone might be possible to refactor into its own framework in the future)
-- Refactored, re-implemented most of it
+- Refactored, re-implemented most of it many-many times
 - Went trough multiple OOP -> Functional -> OOP paradigm shifts
 - I track all of the work through github, using issues heavily
 
-So overall I created a few (hopefully) real-life-like issues for myself to deal with, just so I can try dealing with them.
+So overall I created a few (hopefully) real-life-like issues for myself to deal with, just so I can try dealing with them. This was partly unintentional...
 If my productivity suffered in the process, that only means I learnt a few things.
 
 ### So is this game playable & fun?
@@ -39,8 +36,9 @@ I feel like I'm not that good of a game designer, but I'll try to do my best to 
 
 ### Technical overview
  - [LÖVE2D](https://love2d.org/) engine
- - [Moonscript](https://moonscript.org/)
  - [Nata](https://github.com/tesselode/nata/) [ECS](https://en.wikipedia.org/wiki/Entity_component_system)-lib
+ - [flux tweening lib](https://github.com/rxi/flux)
+ - [my own GUI lib](https://github.com/sassszem/yalg)
 
 ### If you'd want to try it out...
 I do not underestand why would you want, but sure
@@ -51,11 +49,22 @@ You need:
  - Lua 5.3
  - luarocks
  - a linux system
+ - libzip
 Steps:
-- run `luarocks install moonscript`
-- clone this repository & cd into it
-- run `moon build.moon package`
-- your bundle is in the project directory, named `game.love`
+- clone this repo and `cd` into it
+- run `lua build.lua install-dev`
+This'll install `love-release` and also `luacheck`
+- run `lua build.lua package`
+- your files are in the releases directory
+
+To simply play the game:
+- `lua build.lua launch`
+
+To check for linting erros:
+- `lua build.lua lint`
+
+To clean up your mess:
+- `lua build.lua clean`
 
 ### Used assets
 - [David Chung's DigitFont](https://www.1001fonts.com/01-digit-font.html)
@@ -73,7 +82,6 @@ Steps:
 
 ### Thanks to
  - the LÖVE2D team for this engine
- - Leafo for Moonscript
  - Tesselode for Nata
- -  for the font I'm using
- 
+ - RXI for flux
+ - for the makers of the assets I used
