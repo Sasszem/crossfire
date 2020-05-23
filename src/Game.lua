@@ -8,7 +8,7 @@ local Playfield = require("src.Playfield")
 local HUD = require("src.HUD")
 local config = require("src.config")
 
-local installEventLogger  = require("src.EventLogger")
+local EventLogger  = require("src.EventLogger")
 local ShockWave = require "src.entity.player.ShockWave"
 local Enemy = require "src.entity.enemy.Enemy"
 local BigEnemy = require "src.entity.enemy.BigEnemy"
@@ -28,12 +28,13 @@ local Game = {
     unpauseCooldown = 0,
 }
 
-function Game:new(w, h)
+function Game:new(w, h, options)
     local o = {}
     setmetatable(o, Game)
     -- screen dimensions
     o.w = w
     o.h = h
+    o.options = options
 
     -- shared game values & objects
     o.player = Player()
@@ -44,7 +45,7 @@ function Game:new(w, h)
 
     -- nata pool creation
     o.pool = nata.new(nconfig)
-    installEventLogger(o.pool)
+    EventLogger.installEventLogger(o.pool)
     o.pool:queue(o.player)
     o.pool:flush()
 
@@ -62,6 +63,7 @@ function Game:new(w, h)
 end
 
 function Game:unpause()
+    EventLogger.enabled = self.options.log
     self.unpauseCooldown = 0.1
     self.noSlowdownTweens:to(self, 0.1, {unpauseCooldown = 0})
 end

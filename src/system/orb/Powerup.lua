@@ -19,9 +19,8 @@ function Powerup:collision(player, powerup)
         return
     end
 
-    if player.state ~= "Normal" then
-        self:revertPowerup(player)
-    end
+
+    self:revertPowerup(player)()
 
     player.state = powerup.state
 
@@ -29,12 +28,16 @@ function Powerup:collision(player, powerup)
         player.collisionRadius = 25
     end
     player.powerupCancel = 30
-    flux.to(player, 30, {powerupCancel = 0}):ease("linear"):oncomplete(self:revertPowerup(player))
+    player.tween = flux.to(player, 30, {powerupCancel = 0}):ease("linear"):oncomplete(self:revertPowerup(player))
     powerup.despawnTimer = 0
 end
 
 function Powerup:revertPowerup(player)
     return function()
+        if player.tween then
+            player.tween:stop()
+            player.tween = nil
+        end
         player.state = "Normal"
         player.powerupCancel = -1
         player.collisionRadius = 40

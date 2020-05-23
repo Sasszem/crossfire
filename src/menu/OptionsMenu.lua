@@ -40,6 +40,9 @@ local OptionsMenu = GUI(
     HDiv(
         Label("Debug mode"), Button("Off", BS, "debug"), HS
     ),
+    HDiv(
+        Label("Logging"), Button("Off", BS, "log"), HS
+    ),
     Label("", {span = 2}),
     HDiv(
         Button("Back", OBS, "escape"),

@@ -18,7 +18,6 @@ function BigEnemy:new(position, angle)
     angle = angle or math.random(0, 360)
     local ent = buildEntity("BigEnemy",
         C.PositionComponent(position),
-        C.VelocityComponent(),
         C.DirectionComponent(angle),
         C.CollisionComponent(30),
         C.ShootComponent(ExplodingBullet, 7),

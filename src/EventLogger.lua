@@ -1,3 +1,6 @@
+local EventLogger = {
+    enabled = false
+}
 
 local IgnoredEvents = {
     -- Basic NATA events
@@ -65,7 +68,7 @@ end
 
 -- Logger function - may log an event
 local function log(args)
-    if IgnoredEvents[args[1]] then
+    if not EventLogger.enabled or IgnoredEvents[args[1]] then
         return
     end
     print(to_string(args))
@@ -83,12 +86,13 @@ local function logAndProxy(pool)
 end
 
 
+
 -- installs the new emit to the pool
-local function installEventLogger(pool)
+function EventLogger.installEventLogger(pool)
     pool.oldEmit = pool.emit
     pool.emit = logAndProxy(pool)
 end
 
 
 -- module exports
-return installEventLogger
+return EventLogger

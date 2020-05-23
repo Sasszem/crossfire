@@ -168,8 +168,7 @@ function CrossfireGame:keypressed(key, code, rep)
         -- main menu
         if key=="space" then
             self.game = nil
-            self.game = Game(self.w, self.h)
-            self.game.options = self.options.options
+            self.game = Game(self.w, self.h, self.options.options)
             self.state = "game"
         end
         if key=="escape" then
