@@ -23,11 +23,11 @@ BS.margin = 5
 function BS:click(x, y, button)
     self.style.backgroundColor, self.style.activeBackground = self.style.activeBackground, self.style.backgroundColor
     self.text, self.style.activeText = self.style.activeText, self.text
-    self:getWidget("GUI").options[self.id] = (self.text == "On")
+    self:getWidget("options").options[self.id] = (self.text == "On")
 end
 
 
-local OptionsMenu = GUI(
+local OptionsMenu = VDiv(
     HDiv(
         Label("Sounds"), Button("Off", BS, "sounds"), HS
     ),
@@ -45,11 +45,12 @@ local OptionsMenu = GUI(
     ),
     Label("", {span = 2}),
     HDiv(
-        Button("Back", OBS, "escape"),
+        Button("Back", OBS, "options!~"),
         {
             slots = 5
         }
-    )
+    ),
+    "options"
 )
 
 OptionsMenu.options = {}
@@ -65,10 +66,12 @@ local PF = PlayField:new({config = require("src.config")})
 
 local originalDraw = OptionsMenu.draw
 function OptionsMenu:draw(background)
-    if background then
+    if self:getWidget("switcher").lastSelected=="mainMenu" then
         love.graphics.translate(400, 300)
         PF:draw()
         love.graphics.origin()
+    else
+        self:getWidget("game"):draw()
     end
     originalDraw(self)
 end

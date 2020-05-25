@@ -1,18 +1,23 @@
 require("lib.yalg")
 local ButtonStyle = require("src.menu.ButtonStyle")
 
-local MainMenu = GUI(
-    Button("Play", ButtonStyle, "space"),
-    Button("Highscores", ButtonStyle, "h"),
-    Button("Options", ButtonStyle, "o"),
-    Button("Credits", ButtonStyle, "c"),
-    Button("Quit", ButtonStyle, "escape"),
+local MainMenu = VDiv(
+    Button("Play", ButtonStyle, "main!game|switcher|y"),
+    Button("Highscores", ButtonStyle, "main!highscores"),
+    Button("Options", ButtonStyle, "main!options"),
+    Button("Credits", ButtonStyle, "main!credits"),
+    Button("Quit", ButtonStyle, "quitButton"),
     {
         width = 250,
         placement = "center",
         gap = 10
-    }
+    },
+    "mainMenu"
 )
+
+function MainMenu.widgets.quitButton.style:click()
+    love.event.push("quit")
+end
 
 -- draw the playfield as a background
 local PlayField = require("src.Playfield")

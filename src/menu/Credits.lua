@@ -6,7 +6,7 @@ local BS = require("src.menu.ButtonStyle")
 local LS = require("src.menu.LabelStyle")
 
 
-local Credits = GUI(
+local Credits = VDiv(
     HDiv(
         Label("Game by", LS), 
         Label("Sasszem", LS, "SML"), 
@@ -24,14 +24,15 @@ local Credits = GUI(
     Label("Original game idea by Seetoh Wei Tung", LS),
     Label(""),
     HDiv(
-        Button("Back", BS, "escape"),
+        Button("Back", BS, "credits!~"),
         {
             slots = 5
         }
     ),
     {
         slots = 7
-    }
+    },
+    "credits"
 )
 
 -- Do a cool lil effect on my name
@@ -55,11 +56,9 @@ end
 
 local t = 0
 
-local oldUpdate = Credits.update
 function Credits:update(dt)
     t = t + dt
-    oldUpdate(self)
-    self.widgets.SML.style.textColor = getColor(t)
+    self:getWidget("SML").style.textColor = getColor(t)
 end
 
 return Credits

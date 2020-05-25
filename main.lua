@@ -1,9 +1,7 @@
-local Crossfire = require "src.Crossfire"
 
-local CR = nil
+local CR = require "src.menu.Menu"
 
 function love.load()
-    CR = Crossfire()
     CR:init()
 end
 

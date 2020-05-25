@@ -48,24 +48,18 @@ function Game:new(w, h, options)
     EventLogger.installEventLogger(o.pool)
     o.pool:queue(o.player)
     o.pool:flush()
-
-    -- setup game end even forwarding
-    o.pool:on("GameOver", function()
-        love.event.push("keypressed", "q", "q", false)
-    end)
-
+    
     o.playfield = Playfield:new(o)
     o.hud = HUD:new(o)
 
     o.noSlowdownTweens = flux.group()
-    o:unpause()
     return o
 end
 
 function Game:unpause()
     EventLogger.enabled = self.options.log
-    self.unpauseCooldown = 0.1
-    self.noSlowdownTweens:to(self, 0.1, {unpauseCooldown = 0})
+    self.unpauseCooldown = 0.2
+    self.noSlowdownTweens:to(self, 0.2, {unpauseCooldown = 0})
 end
 
 function Game:update(dt, force)
@@ -139,6 +133,9 @@ end
 
 function Game:keypressed(key, rep)
     local DEBUG = self.options.debug
+    if key=="q" and DEBUG then
+        self.pool:emit("GameOver")
+    end
     if key=="return" and not rep and DEBUG then
         self.paused = not self.paused
     end

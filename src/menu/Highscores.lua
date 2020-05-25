@@ -37,7 +37,7 @@ end
 
 
 local ButtonMenu = HDiv(
-    Button("Back", BS, "escape"),
+    Button("Back", BS, "hs!~"),
     Label("", {span = 2}),
     Button("Erase highscores", BS, "eraseBtn"),
     "buttonMenu"
@@ -46,25 +46,22 @@ local ButtonMenu = HDiv(
 
 local ConfirmMenu = HDiv(
     Button("Yes", BS, "yesBtn"),
-    Label(""),
-    Label(""),
-    Label(""),
+    Label("Are you sure?", {span=3}),
     Button("No", BS, "noBtn"),
     "confirmMenu"
 )
 
-local HighscoresMenu = GUI(
-    VDiv(
-        line(1),
-        line(2),
-        line(3),
-        line(4),
-        line(5),
-        Switcher(ButtonMenu, ConfirmMenu, {}, "switcher"),
-        {
-            gap = 10,
-        }
-    )
+local HighscoresMenu = VDiv(
+    line(1),
+    line(2),
+    line(3),
+    line(4),
+    line(5),
+    Switcher(ConfirmMenu, ButtonMenu, {}, "eraseSwitcher"),
+    {
+        gap = 10,
+    },
+    "highscores"
 )
 
 -- set some styles, overriding default ones
@@ -76,23 +73,19 @@ HighscoresMenu.widgets.noBtn.style.borderColor = rgb(255, 255, 255)
 HighscoresMenu.widgets.noBtn.style.activeBorder = rgb(255, 255, 0)
 HighscoresMenu.widgets.eraseBtn.style.span = 2
 
--- recalculate because we changed geometry by setting span
-HighscoresMenu:recalculate()
-
-
 -- event handlers
 function HighscoresMenu.widgets.yesBtn.style:click(x, y, button)
     Highscores.delete()
-    HighscoresMenu:loadHighscores()
-    HighscoresMenu:getWidget("switcher").selected = "buttonMenu"
+    self:getWidget("highscores"):loadHighscores()
+    self:getWidget("eraseSwitcher").selected = "buttonMenu"
 end
 
 function HighscoresMenu.widgets.noBtn.style:click(x, y, button)
-    HighscoresMenu:getWidget("switcher").selected = "buttonMenu"
+    self:getWidget("eraseSwitcher").selected = "buttonMenu"
 end
 
 function HighscoresMenu.widgets.eraseBtn.style:click(x, y, button)
-    HighscoresMenu:getWidget("switcher").selected = "confirmMenu"
+    self:getWidget("eraseSwitcher").selected = "confirmMenu"
 end
 
 -- loader function

@@ -9,6 +9,7 @@ This is a bullet-dodging game. You control your character via the mouse, hopeful
 Sometimes you get some powerups, such as shield (bullets bounce back), ghost(bullets pass trough you) or buster(you get faster, smaller and you can punch trought enemies) (not implemented yet). After some points, a few bigger enemies will spawn that shoot exploding bullets, which may kill more than one enemies...
 When you die, you spawn a shockwave that kills everything. When you run out of your lives (3), it is game over (not implemented yet).
 Press the mouse to enter slow-mo mode, where the game slows down by 5
+You can pause the game any time by pressing ESC
 
 #### Keyboard shortcuts in debug mode
 - D to toggle debug draw
@@ -18,6 +19,7 @@ Press the mouse to enter slow-mo mode, where the game slows down by 5
 - Press 1 to spawn an enemy at the cursor
 - Press 2 to spawn a big enemy at the cursor
 - Press x to delete entity under cursor
+- Press q to instantly end the game
 
 ### Why so much code & complexity?
 My secondary goal is to let this project be kind of enterprise-ready

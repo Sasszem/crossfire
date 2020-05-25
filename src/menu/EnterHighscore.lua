@@ -1,6 +1,7 @@
 require("lib.yalg")
 
 local LS = require("src.menu.LabelStyle")
+local Highscores = require("src.Highscores")
 
 local rowStyle = {
     margin = 20,
@@ -16,7 +17,8 @@ local EnterHighscore = GUI(
         Label("", LS, "scoreLbl"),
         Label("", LS, "nameLbl"),
         rowStyle
-    )
+    ),
+    "enterHighscore"
 )
 
 -- copy my effect from credits
@@ -45,7 +47,7 @@ local oldUpdate = EnterHighscore.update
 function EnterHighscore:update(dt)
     t = t + dt
     oldUpdate(self)
-    self.widgets.hsLbl.style.textColor = getColor(t)
+    self:getWidget("hsLbl").style.textColor = getColor(t)
 end
 
 local utf8 = require("utf8")
@@ -65,6 +67,15 @@ end
 
 function EnterHighscore:textinput(tx)
     self:getWidget("nameLbl").text = self:getWidget("nameLbl").text..tx
+end
+
+function EnterHighscore:save()
+    print("Saving those highscores...")
+    Highscores.update(self:getWidget("game").game.score, self:getWidget("nameLbl").text)
+    love.keyboard.setTextInput(false)
+    self:getWidget("switcher").selected = "highscores"
+    self:getWidget("switcher").lastSelected = "mainMenu"
+    self:getWidget("highscores"):loadHighscores()
 end
 
 return EnterHighscore
