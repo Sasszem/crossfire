@@ -20,7 +20,7 @@ function BigEnemy:new(position, angle)
         C.PositionComponent(position),
         C.DirectionComponent(angle),
         C.CollisionComponent(30),
-        C.ShootComponent(ExplodingBullet, 7),
+        C.ShootComponent(ExplodingBullet, 7, "bigShoot"),
         C.DespawnComponent(),
         C.TargetComponent(),
         C.EnemyAI(250, 30, 90, 60, 10)

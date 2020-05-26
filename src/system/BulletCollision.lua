@@ -3,6 +3,7 @@
 -- (but ignore @{src.entity.bullet.ExplodingBullet}s) to hit events
 -- @classmod src.system.bullet.BulletCollisionResolver
 
+require("src.utils")
 local BulletCollisionResolver = {}
 
 --- collision event handler
@@ -28,6 +29,7 @@ function BulletCollisionResolver:collision(bullet, victim)
     end
 
     bullet.despawnTimer = 0
+    sounds:effect("bullet")
     self.pool:emit("hit", victim)
 end
 

@@ -3,6 +3,7 @@ require("src.utils")
 local nata = require("lib.nata.nata")
 local NataConfig = require("src.NataConfig")
 local Player = require("src.entity.player.Player")
+local Camera = require("src.entity.player.Camera")
 
 local Playfield = require("src.Playfield")
 local HUD = require("src.HUD")
@@ -38,6 +39,7 @@ function Game:new(w, h, options)
 
     -- shared game values & objects
     o.player = Player()
+    o.camera = Camera(o.player, o)
 
     -- nata config
     local nconfig = NataConfig
@@ -47,12 +49,14 @@ function Game:new(w, h, options)
     o.pool = nata.new(nconfig)
     EventLogger.installEventLogger(o.pool)
     o.pool:queue(o.player)
+    o.pool:queue(o.camera)
     o.pool:flush()
-    
+
     o.playfield = Playfield:new(o)
     o.hud = HUD:new(o)
 
     o.noSlowdownTweens = flux.group()
+    sounds:setSlowdown(o)
     return o
 end
 
@@ -60,6 +64,7 @@ function Game:unpause()
     EventLogger.enabled = self.options.log
     self.unpauseCooldown = 0.2
     self.noSlowdownTweens:to(self, 0.2, {unpauseCooldown = 0})
+    sounds:setBackgroundMusic("music2")
 end
 
 function Game:update(dt, force)
@@ -109,7 +114,7 @@ end
 
 function Game:draw()
     love.graphics.push()
-    love.graphics.translate(-self.player.position.x + self.w/2, -self.player.position.y + self.h/2)
+    love.graphics.translate(-self.camera.position.x + self.w/2, -self.camera.position.y + self.h/2)
 
     self.playfield:draw()
 
@@ -127,7 +132,7 @@ end
 
 
 function Game:screenToWorld(x, y)
-    return x-self.w/2+self.player.position.x, y-self.h/2+self.player.position.y
+    return x-self.w/2+self.camera.position.x, y-self.h/2+self.camera.position.y
 end
 
 

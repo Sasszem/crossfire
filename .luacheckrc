@@ -27,6 +27,9 @@ files["src"] = {
         "Button",
         "Label",
         "Switcher",
+
+        -- sound system
+        "sounds"
     }
 }
 files["main.lua"] = files["src"]

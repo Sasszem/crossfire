@@ -19,7 +19,7 @@ function OrbSpawner:EnemyDeath(pos, type)
         self.pool:queue(Orb(pos + ofset, self.pool.data.score))
     end
     if math.random(1,10)==1 then
-        self.pool:queue(Powerup(pos, self.pool.data.score))
+        self.pool:queue(Powerup(pos + Vec2(), self.pool.data.score))
     end
 end
 

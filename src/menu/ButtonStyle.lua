@@ -1,4 +1,6 @@
 require("lib.yalg")
+require("src.utils")
+
 local ButtonStyle = {
     placement = "fill",
     padding = 10,
@@ -9,7 +11,7 @@ local ButtonStyle = {
 function ButtonStyle:mouseEnter(x, y)
     -- set active border, backup current
     self.style.borderColor, self.style.activeBorder = self.style.activeBorder, self.style.borderColor
-    -- TODO: add sound!
+    sounds:effect("menu")
 end
 
 function ButtonStyle:mouseLeave(x, y)

@@ -29,7 +29,6 @@ end
 
 function Highscores.update(score, name)
     if name=="" then name=defaultName end
-    print(love.filesystem.getWorkingDirectory( ))
     local scores = Highscores.load()
     table.insert(scores, {score, name})
     table.sort(scores, function(a, b) return a[1]>b[1] end)

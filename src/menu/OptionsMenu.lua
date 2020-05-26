@@ -54,7 +54,7 @@ local OptionsMenu = VDiv(
 )
 
 OptionsMenu.options = {}
-
+sounds:setOptions(OptionsMenu.options)
 -- activate defaults
 OptionsMenu:getWidget("sounds").style.click(OptionsMenu:getWidget("sounds"))
 OptionsMenu:getWidget("effects").style.click(OptionsMenu:getWidget("effects"))

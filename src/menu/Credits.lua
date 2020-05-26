@@ -8,12 +8,12 @@ local LS = require("src.menu.LabelStyle")
 
 local Credits = VDiv(
     HDiv(
-        Label("Game by", LS), 
-        Label("Sasszem", LS, "SML"), 
+        Label("Game by", LS),
+        Label("Sasszem", LS, "SML"),
         {placement = "center", gap = 10}
     ),
     Label("Uses the Löve2D engine", LS),
-    Label("DigitFont by David Chung", 
+    Label("DigitFont by David Chung",
         {font = Font(30, "asset/DigitFont.ttf")}
     ),
     Label("Supercomputer font by Disaster Fonts", LS),
@@ -50,7 +50,7 @@ local function getColor(t)
     local r = math.max(v*rV, 0)*255
     local g = math.max(v*gV, 0)*255
     local b = math.max(v*bV, 0)*255
-    
+
     return rgb(r, g, b)
 end
 

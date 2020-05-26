@@ -1,4 +1,5 @@
 require("lib.yalg")
+require("src.utils")
 
 local LS = require("src.menu.LabelStyle")
 local Highscores = require("src.Highscores")
@@ -70,12 +71,12 @@ function EnterHighscore:textinput(tx)
 end
 
 function EnterHighscore:save()
-    print("Saving those highscores...")
     Highscores.update(self:getWidget("game").game.score, self:getWidget("nameLbl").text)
     love.keyboard.setTextInput(false)
     self:getWidget("switcher").selected = "highscores"
     self:getWidget("switcher").lastSelected = "mainMenu"
     self:getWidget("highscores"):loadHighscores()
+    sounds:setBackgroundMusic("music1")
 end
 
 return EnterHighscore

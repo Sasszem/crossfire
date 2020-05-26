@@ -19,7 +19,7 @@ function Enemy:new(position, angle)
         C.PositionComponent(position),
         C.DirectionComponent(angle),
         C.CollisionComponent(30),
-        C.ShootComponent(Bullet, 4),
+        C.ShootComponent(Bullet, 4, "shoot"),
         C.DespawnComponent(),
         C.TargetComponent(),
         C.EnemyAI(200, 40, 120, 70, 2)

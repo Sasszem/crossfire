@@ -2,6 +2,7 @@
 -- Also works for @{src.entity.enemy.BigEnemy}es and @{src.entity.bullet.ExplodingBullet}s
 -- @classmod src.system.enemy.Shoot
 
+require("src.utils")
 local Vec2 = require "src.Vec2"
 
 local Shoot = {}
@@ -15,6 +16,7 @@ function Shoot:update(dt)
             if entity.shootCooldown <= 0 then
                 local dP = Vec2.fromAngle(entity.angle, 50)
                 self.pool:queue(entity.bullet(entity.position+dP, entity.angle, entity))
+                sounds:effect(entity.shootSound)
                 entity.shootCooldown = entity.shootCooldown + entity.refireRate
             end
         else

@@ -101,7 +101,7 @@ function EnemyAI:moveEnemy(enemy, player, diff)
         -- pick a target to move to
         local angle = cropAngle(180 + diff:angle())
         angle = math.random(angle - 15, angle + 15)
-        local dist = enemy.movetarget
+        local dist = mt
         dist = math.random(dist - 30, dist + 30)
 
         -- calculate target vector and point

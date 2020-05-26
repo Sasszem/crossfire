@@ -1,4 +1,5 @@
 flux = require("lib.flux.flux")
+sounds = require("src.Sounds")
 
 function rgb(r, g, b, a)
     a = a or 255

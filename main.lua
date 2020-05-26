@@ -1,4 +1,5 @@
 
+require("src.utils")
 local CR = require "src.menu.Menu"
 
 function love.load()
@@ -7,6 +8,7 @@ end
 
 function love.update(dt)
     CR:update(dt)
+    sounds:update(dt)
 end
 
 function love.keypressed(key, code, rep)

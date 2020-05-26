@@ -1,4 +1,4 @@
-require "src.utils"
+require("src.utils")
 
 local Vec2 = require "src.Vec2"
 
@@ -60,9 +60,11 @@ function EnemySpawner:addToGroup(group, e)
     end
 
     if e.type=="Enemy" then
+        sounds:effect("enemySpawn")
         self.enemyCount = self.enemyCount + 1
     end
     if e.type == "BigEnemy" then
+        sounds:effect("bigSpawn")
         self.bigEnemyCount = self.bigEnemyCount + 1
     end
 end

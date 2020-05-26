@@ -1,3 +1,4 @@
+require("src.utils")
 local Explosion = require "src.entity.bullet.Explosion"
 
 local ExplosionSpawner = {}
@@ -24,6 +25,7 @@ function ExplosionSpawner:collision(bullet, victim)
     end
 
     self.pool:queue(Explosion(bullet.position, bullet.parent))
+    sounds:effect("explosion")
 end
 
 return ExplosionSpawner

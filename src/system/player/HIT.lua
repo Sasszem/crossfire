@@ -1,3 +1,4 @@
+require("src.utils")
 local ShockWave = require "src.entity.player.ShockWave"
 
 local PlayerHit = {}
@@ -29,6 +30,7 @@ function PlayerHit:hit(player)
     end
 
     self.pool:queue(ShockWave(player.position))
+    sounds:effect("playerDeath")
 end
 
 

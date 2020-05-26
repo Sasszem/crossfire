@@ -1,4 +1,5 @@
 require("lib.yalg")
+require("src.utils")
 
 -- main menu system
 -- handles & forwards input events too
@@ -63,6 +64,7 @@ function Menu:keypressed(key, code, rep)
         self:getWidget("game").game:keypressed(key, rep)
         if key=="escape" then
             self:getWidget("switcher").selected = "pause"
+            sounds:setBackgroundMusic("music1")
         end
         return
     end
@@ -90,4 +92,5 @@ function Menu:textinput(text)
     self:getWidget("enterHighscore"):textinput(text)
 end
 
+sounds:setBackgroundMusic("music1")
 return Menu
