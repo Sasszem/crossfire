@@ -22,19 +22,25 @@ You can pause the game any time by pressing ESC
 - Press q to instantly end the game
 
 ### Why so much code & complexity?
-My secondary goal is to let this project be kind of enterprise-ready
-- I have some unit tests (currently disabled)
-- I plan to make good documentation
+My secondary goal was to let this project be kind of enterprise-ready
+- I had some unit tests
+- <del>I plan to make good documentation</del>
+Lua's documentation tools can not really help here, and writing the whole thing by hand would be tedious, so I'll have to learn that skill in a future project.
 - Refactored, re-implemented most of it many-many times
 - Went trough multiple OOP -> Functional -> OOP paradigm shifts
 - I track all of the work through github, using issues heavily
 
 So overall I created a few (hopefully) real-life-like issues for myself to deal with, just so I can try dealing with them. This was partly unintentional...
 If my productivity suffered in the process, that only means I learnt a few things.
+#### Final tally:
+- project: 2875 LOC in 64 files
+- build system: 176 LOC in 10 files
+- 4 MB .love bundle (8.2 MB win64 bundle)
+- took around a year to make in my spare time 
+(while multiplexing between a couple of other projects I'll finish "one day")
 
 ### So is this game playable & fun?
-Currently, not so much, and I struggle to improve on it.
-I feel like I'm not that good of a game designer, but I'll try to do my best to make this fun.
+I did my best to make it so. I'm not a game designer, and I'd make a terrible one, but I am proud of myself for this.
 
 ### Technical overview
  - [LÖVE2D](https://love2d.org/) engine
@@ -69,18 +75,21 @@ To clean up your mess:
 - `lua build.lua clean`
 
 ### Used assets
+(for most sounds I used Audacity to edit them)
 - [David Chung's DigitFont](https://www.1001fonts.com/01-digit-font.html)
-- [Some bell sound from orangefreesounds.com](http://www.orangefreesounds.com/ding-ding-ding/) (edited that a bit)
+- [Some bell sound from orangefreesounds.com](http://www.orangefreesounds.com/ding-ding-ding/)
 - [supercomputer font by Disaster Fonts](https://www.1001fonts.com/supercomputer-font.html)
-- [Firecraker sound for shooting](http://www.orangefreesounds.com/firecracker-sounds/) - edited that heavily 
+- [Firecraker sound for shooting](http://www.orangefreesounds.com/firecracker-sounds/)
 - [Explosion sound](http://www.orangefreesounds.com/8-bit-explosion/)
 - [powerup sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)
 - [extra life sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)
-- [death sound](http://www.orangefreesounds.com/free-explosion-sound-effect/)- [bullet hit and menu](http://www.orangefreesounds.com/single-hammer-hit-on-wood/)
+- [death sound](http://www.orangefreesounds.com/free-explosion-sound-effect/)
+- [bullet hit and menu](http://www.orangefreesounds.com/single-hammer-hit-on-wood/)
 - [powerup reverse](http://www.orangefreesounds.com/shut-down-sound-effect/)
 - [enemy spawning noises](http://www.orangefreesounds.com/vanishing-sound-effect/)
 - [menu music](http://www.orangefreesounds.com/synth-bassline-124-bpm/)
-- [game music](http://www.orangefreesounds.com/soft-lounge-background-track/)- [highscores music](http://www.orangefreesounds.com/groove-synth-loop-130-bpm/)
+- [game music](http://www.orangefreesounds.com/soft-lounge-background-track/)
+- [highscores music](http://www.orangefreesounds.com/groove-synth-loop-130-bpm/)
 
 ### Thanks to
  - the LÖVE2D team for this engine
