@@ -17,6 +17,9 @@ files["src"] = {
         "sign",
         "fade",
         "flux",
+        "RED",
+        "GREEN",
+        "BLUE",
 
         -- GUI stuff from YALG
         "rgb",

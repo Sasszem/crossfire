@@ -51,9 +51,14 @@ function Player:draw()
     love.graphics.circle("fill", self.position.x, self.position.y, self.collisionRadius)
     love.graphics.circle("line", self.position.x, self.position.y, self.collisionRadius)
     local where = self.position + Vec2.fromAngle(self.angle, self.collisionRadius - 10)
+    local delta = Vec2.fromAngle(self.angle + 90, 7)
+    local point = where + delta
     love.graphics.setColor(fade(rgb(0,0,0), fadeFactor))
-    love.graphics.circle("fill", where.x, where.y, 5)
-    love.graphics.circle("line", where.x, where.y, 5)
+    love.graphics.circle("fill", point.x, point.y, 5)
+    love.graphics.circle("line", point.x, point.y, 5)
+    point = where - delta
+    love.graphics.circle("fill", point.x, point.y, 5)
+    love.graphics.circle("line", point.x, point.y, 5)
 
     if self.state=="Shield" then
         love.graphics.setColor(fade(rgb(255, 0, 0), fadeFactor))

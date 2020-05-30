@@ -5,7 +5,8 @@ local ButtonStyle = {
     placement = "fill",
     padding = 10,
     font = Font(30, "asset/supercomputer.ttf"),
-    activeBorder = rgb(0, 255, 0),
+    borderColor = RED,
+    activeBorder = GREEN,
 }
 
 function ButtonStyle:mouseEnter(x, y)

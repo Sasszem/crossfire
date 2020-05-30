@@ -5,7 +5,7 @@ local PauseMenu = VDiv(
     Button("Continue", ButtonStyle, "pause!game"),
     Button("Highscores", ButtonStyle, "pause!highscores"),
     Button("Options", ButtonStyle, "pause!options"),
-    Button("Main menu", ButtonStyle, "pause!mainMenu"),
+    Button("Main menu", ButtonStyle, "pause!saveOrQuit"),
     {
         width = 250,
         placement = "center",

@@ -8,16 +8,22 @@ local GameWrapper = Label:extend()
 
 function GameWrapper:endgameCallback()
     return function()
-        local score = self.game.score
-        if Highscore.shouldUpdate(score) then
-            self:getWidget("switcher").selected = "enterHighscore"
-            self:getWidget("scoreLbl").text = tostring(self.game.score)
-            love.keyboard.setTextInput(true)
-            sounds:setBackgroundMusic("music3")
-        else
-            self:getWidget("switcher").selected = "highscores"
-        end
+        self:endGame()
     end
+end
+
+function GameWrapper:endGame()
+    local score = self.game.score
+    if Highscore.shouldUpdate(score) then
+        self:getWidget("switcher").selected = "enterHighscore"
+        self:getWidget("scoreLbl").text = tostring(self.game.score)
+        love.keyboard.setTextInput(true)
+        sounds:setBackgroundMusic("music3")
+    else
+        self:getWidget("switcher").selected = "highscores"
+    end
+    self:getWidget("switcher").lastSelected = "mainMenu"
+    self:getWidget("highscores"):loadHighscores()
 end
 
 function GameWrapper:new()

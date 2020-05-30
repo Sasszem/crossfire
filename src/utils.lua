@@ -32,3 +32,16 @@ function cropAngle(angle)
     end
     return x
 end
+
+RED = rgb(189, 6, 27)
+GREEN = rgb(36, 179, 100)
+BLUE = rgb(0, 51, 204)
+
+local t = 0
+function update(dt)
+    t = t + dt
+end
+
+function getTime()
+    return t
+end

@@ -12,6 +12,7 @@ local Credits = require("src.menu.Credits")
 local PauseMenu = require("src.menu.PauseMenu")
 local Highscores = require("src.menu.Highscores")
 local EnterHighscore = require("src.menu.EnterHighscore")
+local SaveOrQuit = require("src.menu.SaveOrQuit")
 
 local Menu = GUI(
     Switcher(
@@ -21,6 +22,7 @@ local Menu = GUI(
         PauseMenu,
         Highscores,
         EnterHighscore,
+        SaveOrQuit,
         MainMenu,
         "switcher"
     )
@@ -51,8 +53,8 @@ end
 
 function Menu:update(dt)
     GUI.update(self)
-    self:getWidget("credits"):update(dt)
-    self:getWidget("enterHighscore"):update(dt)
+    self:getWidget("credits"):update()
+    self:getWidget("enterHighscore"):update()
     if self:getWidget("switcher").selected == "game" then
         self:getWidget("game").game:update(dt)
     end
@@ -80,6 +82,7 @@ function Menu:keypressed(key, code, rep)
         if key=="return" then
             self:getWidget("enterHighscore"):save()
         end
+        self:getWidget("enterHighscore"):keypressed(key, code, rep)
         return
     end
     -- return to prev. menu on escape

@@ -1,4 +1,5 @@
 require("lib.yalg")
+require("src.utils")
 
 local Highscores = require("src.Highscores")
 
@@ -15,7 +16,7 @@ local inactiveStyle = {
 }
 local activeStyle = {
     border = 2,
-    borderColor = rgb(255, 0, 0)
+    borderColor = RED,
 }
 
 -- line generator
@@ -46,7 +47,7 @@ local ButtonMenu = HDiv(
 
 local ConfirmMenu = HDiv(
     Button("Yes", BS, "yesBtn"),
-    Label("Are you sure?", {span=3}),
+    Label("Are you sure?", LS, "sureLbl"),
     Button("No", BS, "noBtn"),
     "confirmMenu"
 )
@@ -65,13 +66,14 @@ local HighscoresMenu = VDiv(
 )
 
 -- set some styles, overriding default ones
-HighscoresMenu.widgets.yesBtn.style.backgroundColor = rgb(0, 255, 0)
+HighscoresMenu.widgets.yesBtn.style.backgroundColor = GREEN
 HighscoresMenu.widgets.yesBtn.style.borderColor = rgb(255, 255, 255)
-HighscoresMenu.widgets.yesBtn.style.activeBorder = rgb(255, 255, 0)
-HighscoresMenu.widgets.noBtn.style.backgroundColor = rgb(255, 0, 0)
+HighscoresMenu.widgets.yesBtn.style.activeBorder = BLUE
+HighscoresMenu.widgets.noBtn.style.backgroundColor = RED
 HighscoresMenu.widgets.noBtn.style.borderColor = rgb(255, 255, 255)
-HighscoresMenu.widgets.noBtn.style.activeBorder = rgb(255, 255, 0)
+HighscoresMenu.widgets.noBtn.style.activeBorder = BLUE
 HighscoresMenu.widgets.eraseBtn.style.span = 2
+HighscoresMenu.widgets.sureLbl.style.span = 3
 
 -- event handlers
 function HighscoresMenu.widgets.yesBtn.style:click(x, y, button)

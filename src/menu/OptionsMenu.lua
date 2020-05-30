@@ -1,4 +1,5 @@
 require("lib.yalg")
+require("src.utils")
 
 local HS = {
     margin = 10,
@@ -6,6 +7,7 @@ local HS = {
     borderColor = rgb(255, 255, 255)
 }
 
+local LS = require("src.menu.LabelStyle")
 local OBS = require("src.menu.ButtonStyle")
 
 local BS = {}
@@ -14,10 +16,10 @@ for k, v in pairs(OBS) do
 end
 
 BS.activeBorder = rgb(255, 255, 255)
-BS.activeBackground = rgb(0, 255, 0)
+BS.activeBackground = GREEN
 BS.borderColor = rgb(128, 128, 128)
 BS.activeText = "On"
-BS.backgroundColor = rgb(255, 0, 0)
+BS.backgroundColor = RED
 BS.margin = 5
 
 function BS:click(x, y, button)
@@ -29,19 +31,19 @@ end
 
 local OptionsMenu = VDiv(
     HDiv(
-        Label("Sounds"), Button("Off", BS, "sounds"), HS
+        Label("Sounds", LS), Button("Off", BS, "sounds"), HS
     ),
     HDiv(
-        Label("Effects"), Button("Off", BS, "effects"), HS
+        Label("Effects", LS), Button("Off", BS, "effects"), HS
     ),
     HDiv(
-        Label("Music"), Button("Off", BS, "music"), HS
+        Label("Music", LS), Button("Off", BS, "music"), HS
     ),
     HDiv(
-        Label("Debug mode"), Button("Off", BS, "debug"), HS
+        Label("Debug mode", LS), Button("Off", BS, "debug"), HS
     ),
     HDiv(
-        Label("Logging"), Button("Off", BS, "log"), HS
+        Label("Logging", LS), Button("Off", BS, "log"), HS
     ),
     Label("", {span = 2}),
     HDiv(

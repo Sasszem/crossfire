@@ -47,7 +47,7 @@ function Sounds:update(dt)
     self:setVolumesFromOptions()
 end
 
-function Sounds:setVolumesFromOptions()
+function Sounds:getOptionsVolumes()
     local effectsVolume = 1
     local musicVolume = 1
     if not (self.options.music and self.options.sounds) then
@@ -56,6 +56,11 @@ function Sounds:setVolumesFromOptions()
     if not (self.options.effects and self.options.sounds) then
         effectsVolume = 0
     end
+    return musicVolume, effectsVolume
+end
+
+function Sounds:setVolumesFromOptions()
+    local musicVolume, effectsVolume = self:getOptionsVolumes()
 
     for k, name in pairs(self.playing) do
         k:setVolume(effectsVolume)
@@ -115,7 +120,11 @@ function Sounds:effect(name)
     if ignore[name] then
         ignore[effect] = true
     end
+
+    local _, effectsVolume = self:getOptionsVolumes()
+
     self:insert(effect)
+    effect:setVolume(effectsVolume)
     effect:play()
 end
 
@@ -132,6 +141,8 @@ function Sounds:setBackgroundMusic(name)
     end
     music:stop()
     music:setLooping(true)
+    local musicVolume, _ = self:getOptionsVolumes()
+    music:setVolume(musicVolume)
     music:play()
     soundTweens:to(self.music, 0.5,fS):onupdate(function()
         for k, v in pairs(self.music) do

@@ -7,6 +7,7 @@ function love.load()
 end
 
 function love.update(dt)
+    update(dt)
     CR:update(dt)
     sounds:update(dt)
 end

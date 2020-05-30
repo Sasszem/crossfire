@@ -1,7 +1,7 @@
 # Crossfire
 
 ### Introduction
-My goal is to create a game similar to [Crossfire](https://seet.itch.io/crossfire), a bullett-dodging shooting-less shooter for windows.
+My goal was to create a game similar to [Crossfire](https://seet.itch.io/crossfire), a bullett-dodging shooting-less shooter for windows.
 The original game was featured in [The Best Games from GMTK Game Jam 2018](https://www.youtube.com/watch?v=s2ebZXQ_J8Q).
 
 ### How to play
@@ -59,7 +59,7 @@ You need:
  - a linux system
  - libzip
 Steps:
-- clone this repo and `cd` into it
+- clone this repo with `--recurse-submodules` and `cd` into it
 - run `lua build.lua install-dev`
 This'll install `love-release` and also `luacheck`
 - run `lua build.lua package`
@@ -75,12 +75,12 @@ To clean up your mess:
 - `lua build.lua clean`
 
 ### Used assets
-(for most sounds I used Audacity to edit them)
+(I got all sounds from orangefreesounds.com, for most of them I used Audacity to edit and convert)
 - [David Chung's DigitFont](https://www.1001fonts.com/01-digit-font.html)
-- [Some bell sound from orangefreesounds.com](http://www.orangefreesounds.com/ding-ding-ding/)
 - [supercomputer font by Disaster Fonts](https://www.1001fonts.com/supercomputer-font.html)
-- [Firecraker sound for shooting](http://www.orangefreesounds.com/firecracker-sounds/)
-- [Explosion sound](http://www.orangefreesounds.com/8-bit-explosion/)
+- [pickup sound](http://www.orangefreesounds.com/ding-ding-ding/)
+- [shooting sound](http://www.orangefreesounds.com/firecracker-sounds/)
+- [explosion sound](http://www.orangefreesounds.com/8-bit-explosion/)
 - [powerup sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)
 - [extra life sound](http://www.orangefreesounds.com/video-game-bonus-bell-sound-effect/)
 - [death sound](http://www.orangefreesounds.com/free-explosion-sound-effect/)
