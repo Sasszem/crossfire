@@ -31,7 +31,7 @@ function MainMenu:drawTitle()
         i = i + 1
     end
     love.graphics.setColor(rgb(200, 200, 200))
-    local w, h = love.graphics.getDimensions()
+    local w, _ = love.graphics.getDimensions()
     love.graphics.printf(textTable, Font(100, "asset/DigitFont.ttf"), 0, 50, w, "center")
 end
 

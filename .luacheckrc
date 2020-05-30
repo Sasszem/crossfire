@@ -20,6 +20,11 @@ files["src"] = {
         "RED",
         "GREEN",
         "BLUE",
+        "getTime",
+        "update",
+
+        -- color effect
+        "getColor",
 
         -- GUI stuff from YALG
         "rgb",
